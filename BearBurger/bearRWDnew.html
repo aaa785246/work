@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif !important;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/7b738521b3.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="./image/bear_B.ico" type="image/x-icon/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>熊堡RWD</title>
+</head>
+
+<body class="bg_grid">
+    <nav class="navbar navbar-expand-md navbar-light bg-danger2">
+        <div class="container-fluid" id="navHeight">
+            <a class="navbar-brand"><img src="./image/bear_B.png" class="img-fluid" style="width: 100%;"></a>
+            <div>熊堡</div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item nav__link1">
+                        <a class="nav-link active fa-brands fa-facebook ms-4" aria-current="page"
+                            href="https://www.facebook.com/mcdonalds.tw"></a>
+                    </li>
+                    <li class="nav-item nav__link1">
+                        <a class="nav-link fa-brands fa-instagram ms-4"
+                            href="https://www.instagram.com/mcdonaldstw/"></a>
+                    </li>
+                    <li class="nav-item nav__link1">
+                        <a class="nav-link ms-4" href="bearRWDstore.html">門市</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-md navbar-light bg-warning">
+        <div class="container-fluid">
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item nav__link2">
+                        <a class="nav-link " href="bearRWDnew.html">新品</a>
+                    </li>
+                    <li class="nav-item nav__link2">
+                        <a class="nav-link " href="bearRWDbeef.html">牛肉系列</a>
+                    </li>
+                    <li class="nav-item nav__link2">
+                        <a class="nav-link" href="bearRWDchicken.html">香雞系列</a>
+                    </li>
+                    <li class="nav-item nav__link2">
+                        <a class="nav-link" href="bearRWDpork.html">豬肉系列</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- 輪播圖 ==================================================================================== -->
+    <div id="bearimg" class="carousel slide" data-bs-ride="carousel">
+        <!-- 圖片放置區 -->
+        <div class="carousel-inner">
+            <!-- active 表示頁面啟動時看到的那一個 -->
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="./image/iceb.png" class="d-block w-75 mx-auto heightAuto">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="./image/coffee.png" class="d-block w-75 mx-auto heightAuto" id="dog">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="./image/catmeme.png" class="d-block w-75 mx-auto heightAuto" id="cat">
+            </div>
+        </div>
+        <!-- 前後按鈕區 -->
+        <!-- 上一頁 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#bearimg" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <!-- 下一頁 -->
+        <button class="carousel-control-next" type="button" data-bs-target="#bearimg" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+    <!-- 動畫/dialog=========================================================================== -->
+    <section class="section">
+        <h5 class="text_title  animate__animated" id="setofftop" onclick="dog()">最新消息</h5>
+        <div class="div_div">
+            <div id="storeOpen1" class=" blueFont "> 1.文心店新開幕 全店9折！</div>
+            <dialog id="storeOpen2">
+                <div class="color">&nbsp;歡慶文心店新開幕</div>
+                <div class="conterClass">歡慶文心店新開幕 <span class="redFont">全店9折</span>，期間只到5/8號，趕快來享受超棒美食與超殺優惠吧！</div>
+                <p class="font"><button id="storeOpen3">確定</button></p>
+            </dialog>
+            <div id="storeOpen4" class="blueFont ">2.會員募集中 專屬優惠享折扣</div>
+            <dialog id="storeOpen5">
+                <div class="color">&nbsp;會員募集中 專屬優惠享折扣</div>
+                <div class="conterClass">會員募集中，馬上下載熊堡app並註冊會員，就贈送50元折價卷，擁有會員每日專屬優惠，以及集點兌換活動。</div>
+                <p class="font"><button id="storeOpen6">確定</button></p>
+            </dialog>
+            <div id="storeOpen7" class="blueFont ">3.熊堡5月公休日</div>
+            <dialog id="storeOpen8">
+                <div class="color">&nbsp;熊堡5月公休日</div>
+                <div class="conterClass"><span class="redFont">5/7，5/14，5/21，5/28 </span><br> 感謝您的支持，不要撲空囉。</div>
+                <p class="font"><button id="storeOpen9">確定</button></p>
+            </dialog>
+            <div id="storeOpen10" class="blueFont ">4.公益店周圍停車須知</div>
+            <dialog id="storeOpen11">
+                <div class="color">&nbsp;公益店周圍停車須知</div>
+                <div class="conterClass">近日檢舉魔人眾多，請勿停在公益店周圍<span class="redFont">紅線</span>上，以防止您收到<span
+                        class="redFont">罰單</span>，可將愛車移至對面星巴克，隔壁停車場臨停。<br>~熊堡祝您行車平安~</div>
+                <p class="font"><button id="storeOpen12">確定</button></p>
+            </dialog>
+            <div id="storeOpen13" class="blueFont ">5.客服與客訴管道</div>
+            <dialog id="storeOpen14">
+                <div class="color">&nbsp;客服與客訴管道</div>
+                <div class="conterClass">親愛的熊友們: <br>
+                    對於餐點與活動有任何問題或意見，歡迎到寄信到下方Email或致電本公司將馬上替您處理。<br>
+                    Email:bearburger@gmail.com <br> 電話:0425271197</div>
+                <p class="font"><button id="storeOpen15">確定</button></p>
+            </dialog>
+            <div id="storeOpen16" class="blueFont ">6.大薯買一送一</div>
+            <dialog id="storeOpen17">
+                <div class="color">&nbsp;大薯買一送一</div>
+                <div class="conterClass">如你所見，優惠到6/30號。</div>
+                <p class="font"><button id="storeOpen18">確定</button></p>
+            </dialog>
+        </div>
+    </section>
+    <!-- 卡片群組===================================================================== -->
+    <section class="section2 ">
+        <h5 class="text_title animate__animated" id="newProduct" onclick="cat()">新品</h5>
+        <div class="food_introduce_button tooltipX" id="produceButton">了解更多
+            <span class="tooltipXtext animate__animated" id="produce"> 新品上市快來體驗看看吧！</span>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/db.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f1">
+                    <div class=" collapse f1">
+                        <h5 class="card-title">草莓派</h5>
+                        <p class=""> 採用日本福岡甘王草莓製成果醬，鮮甜草莓醬搭配酥脆餅皮，令人愛不釋手。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/applepie.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f1">
+                    <div class=" collapse f1">
+                        <h5 class="card-title">蘋果派</h5>
+                        <p class="">吃熊堡，你是哪一派？ 當然是蘋果派！ 外皮酥脆內餡飽滿，濃厚的肉桂香氣，這股交會於味蕾的滋味~誰受得了~</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/gg.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f2">
+                    <div class="collapse f2">
+                        <h5 class="card-title">麥脆雞</h5>
+                        <p class="card-text">炸雞，就要麥脆鷄。 獨一無二「黃金美味3要點」，大腿棒腿一起來！ 麥當勞炸雞使用嚴選帶骨雞腿，堅持三道裹粉五道翻滾，表皮酥脆有層次！
+                            首創先烤後炸工法，高溫鎖住肉汁，給你嫩、脆、爽的好滋味！ 吃過了，你也會這樣說。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/roll.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f2">
+                    <div class="collapse f2">
+                        <h5 class="card-title">肉桂捲</h5>
+                        <p class="card-text">只選用冬日生產的醇香奶油， 溫暖辛香肉桂縈繞舌尖， 鬆軟潤口的肉桂捲便成了味蕾的座上賓。 (孕婦不建議食用)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/ck.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f3">
+                    <div class="collapse f3">
+                        <h5 class="card-title">韓風炸雞</h5>
+                        <p class="card-text">使用韓國不倒翁(OTTOGI) 甜辣醬調製而成的甘甜醬汁，裹在經典原味麥脆雞腿的「韓式炸雞」，令人食指大動。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/sweet.png" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f3">
+                    <div class="collapse f3">
+                        <h5 class="card-title">地瓜薯條</h5>
+                        <p class="card-text">嚴選台農57號、地瓜原顆鮮切、口感綿密香甜。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+    <footer class="row footerMargin">
+        <div class="col  d-none d-md-flex">聯絡我們:</div>
+        <div class="col d-none d-md-flex">tel:0425271197 <br> 地址:台中市二段51號18樓</div>
+        <div class="col d-none d-md-flex">有什麼寶貴意見要和我們分享嗎?</div>
+        <div class="col d-none d-md-flex">歡迎寫信至我們的服務信箱，以下是我們的服務信箱。 <br> Email:bearburger@gmail.com</div>
+        <div class="col d-flex d-md-none footer_md_text">感謝您的支持&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;電話:0425271197&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址:台中市二段51號18樓</div>
+    </footer>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/dialog.js"></script>
+    <script>
+        console.log(document.getElementById("dog").style.height)
+        console.log(document.getElementById("cat").style.height)
+    </script>
+</body>
+
+</html>

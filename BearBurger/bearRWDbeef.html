@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>熊堡-牛肉系列</title>
+    <script src="https://kit.fontawesome.com/7b738521b3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif !important;
+        }
+    </style>
+</head>
+
+
+
+<body class="bg_grid">
+    <nav class="navbar navbar-expand-md navbar-light bg-danger2">
+        <div class="container-fluid">
+            <a class="navbar-brand">熊堡</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item nav__link1">
+                        <a class="nav-link active fa-brands fa-facebook ms-4" aria-current="page"
+                            href="https://www.facebook.com/mcdonalds.tw"></a>
+                    </li>
+                    <li class="nav-item nav__link1">
+                        <a class="nav-link fa-brands fa-instagram ms-4"
+                            href="https://www.instagram.com/mcdonaldstw/"></a>
+                    </li>
+                    <li class="nav-item nav__link1">
+                        <a class="nav-link ms-4" href="bearRWDstore.html">門市</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-md navbar-light bg-warning">
+        <div class="container-fluid">
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item nav__link2">
+                        <a class="nav-link " href="bearRWDnew.html">新品</a>
+                    </li>
+                    <li class="nav-item nav__link2">
+                        <a class="nav-link " href="bearRWDbeef.html">牛肉系列</a>
+                    </li>
+                    <li class="nav-item nav__link2">
+                        <a class="nav-link" href="bearRWDchicken.html">香雞系列</a>
+                    </li>
+                    <li class="nav-item nav__link2">
+                        <a class="nav-link" href="bearRWDpork.html">豬肉系列</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- 輪播圖 ==================================================================================== -->
+    <div id="bearimg" class="carousel slide" data-bs-ride="carousel">
+        <!-- 圖片放置區 -->
+        <div class="carousel-inner">
+            <!-- active 表示頁面啟動時看到的那一個 -->
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="./image/iceb.png" class="d-block w-75 mx-auto heightAuto">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="./image/coffee.png" class="d-block w-75 mx-auto heightAuto" id="dog">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="./image/catmeme.png" class="d-block w-75 mx-auto heightAuto" id="cat">
+            </div>
+        </div>
+        <!-- 前後按鈕區 -->
+        <!-- 上一頁 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#bearimg" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <!-- 下一頁 -->
+        <button class="carousel-control-next" type="button" data-bs-target="#bearimg" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+    <!-- 卡片群組===================================================================== -->
+    <section class="section2 ">
+        <h5 class="text_title animate__animated" id="newProductBeef" onclick="cat()">牛肉系列</h5>
+        <div class="food_introduce_button tooltipX" id="produceButton">了解更多
+            <span class="tooltipXtext animate__animated" id="produce">最熱賣的100%紐澳牛肉搭上數種配料<br>一定要來試試</span>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/bigm.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f1">
+                    <div class=" collapse f1">
+                        <h5 class="card-title">大麥克</h5>
+                        <p class=""> 紐澳100%雙層純牛肉， 淋上大麥克招牌醬料， 加上生菜、吉事、洋蔥、酸黃瓜， 美味層層堆疊，口感樂趣無窮。 從美國總統到素人都是鐵粉， 經濟學家還發明「大麥克指數」致敬，果然，只有大麥克，才是大麥克！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/dbb.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f1">
+                    <div class=" collapse f1">
+                        <h5 class="card-title">雙層牛肉吉事堡</h5>
+                        <p class="">紐澳雙層100%優質牛肉， 搭配雙層切達吉事片， 酸黃瓜、洋蔥在裡面， 芥末醬、番茄醬淋上去， 層出不窮的經典滋味， 真的沒在跟你客氣的。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/AGB.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f2">
+                    <div class="collapse f2">
+                        <h5 class="card-title">安格斯牛肉堡</h5>
+                        <p class="card-text"> 頂級厚實4盎司安格斯牛肉配上經典BLT三大食材， 本產香Q培根的煙燻味，交疊在地鮮採牛番茄的清甜，以及整片當季原葉生菜的爽脆。 精心烘烤的香軟布里歐麵包，包覆著厚實、多汁、有勁、鮮甜、爽口等層次滋味， 每一口，都是美味之最！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/MDB.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f2">
+                    <div class="collapse f2">
+                        <h5 class="card-title">麥克雙牛堡</h5>
+                        <p class="card-text">紐澳雙層100%優質牛肉， 搭配切達吉事片， 酸黃瓜、洋蔥的香氣點綴以芥末、番茄醬的滋味，讓人安心的經典美味！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/CHDB.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f3">
+                    <div class="collapse f3">
+                        <h5 class="card-title">起司脆薯雙牛堡</h5>
+                        <p class="card-text">選用紐澳100%雙層純牛肉、美式經典香濃切達起司醬與人氣薯餅，搭配新鮮萵苣及蕃茄，最後蓋上熱烤玉米壓紋麵包，濃郁美式香氣在舌尖繚繞！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                    <img src="./image/SB.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f3">
+                    <div class="collapse f3">
+                        <h5 class="card-title">炸蝦天婦羅安格斯黑牛堡</h5>
+                        <p class="card-text">首度使用太平洋白蝦裹粉酥炸而成的炸蝦天婦羅入堡，有著更頂級價格及口感外酥內軟的豪華海陸饗宴。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+    <footer class="row footerMargin">
+        <div class="col  d-none d-md-flex">聯絡我們:</div>
+        <div class="col d-none d-md-flex">tel:0425271197 <br> 地址:台中市二段51號18樓</div>
+        <div class="col d-none d-md-flex">有什麼寶貴意見要和我們分享嗎?</div>
+        <div class="col d-none d-md-flex">歡迎寫信至我們的服務信箱，以下是我們的服務信箱。 <br> Email:bearburger@gmail.com</div>
+        <div class="col d-flex d-md-none footer_md_text ">感謝您的支持&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;電話:0425271197&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址:台中市二段51號18樓</div>
+    </footer>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/dialog.js"></script>
+    <script>
+        console.log(document.getElementById("dog").style.height)
+        console.log(document.getElementById("cat").style.height)
+    </script>
+</body>
+
+</html>

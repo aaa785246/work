@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>熊堡-豬肉系列</title>
+        <script src="https://kit.fontawesome.com/7b738521b3.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+        <link rel="stylesheet" href="./css/bootstrap.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <style>
+            @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+    
+            body {
+                font-family: 'Noto Sans TC', sans-serif !important;
+            }
+        </style>
+    </head>
+    
+    
+    
+    <body class="bg_grid">
+        <nav class="navbar navbar-expand-md navbar-light bg-danger2">
+            <div class="container-fluid">
+                <a class="navbar-brand">熊堡</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item nav__link1">
+                            <a class="nav-link active fa-brands fa-facebook ms-4" aria-current="page"
+                                href="https://www.facebook.com/mcdonalds.tw"></a>
+                        </li>
+                        <li class="nav-item nav__link1">
+                            <a class="nav-link fa-brands fa-instagram ms-4"
+                                href="https://www.instagram.com/mcdonaldstw/"></a>
+                        </li>
+                        <li class="nav-item nav__link1">
+                            <a class="nav-link ms-4" href="bearRWDstore.html">門市</a>
+                        </li>
+                    </ul>
+    
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-md navbar-light bg-warning">
+            <div class="container-fluid">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon "></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item nav__link2">
+                            <a class="nav-link " href="bearRWDnew.html">新品</a>
+                        </li>
+                        <li class="nav-item nav__link2">
+                            <a class="nav-link " href="bearRWDbeef.html">牛肉系列</a>
+                        </li> 
+                        <li class="nav-item nav__link2">
+                            <a class="nav-link" href="bearRWDchicken.html">香雞系列</a>
+                        </li>
+                        <li class="nav-item nav__link2">
+                            <a class="nav-link" href="bearRWDpork.html">豬肉系列</a>
+                        </li>
+                    </ul>
+    
+                </div>
+            </div>
+        </nav>
+        <!-- 輪播圖 ==================================================================================== -->
+        <div id="bearimg" class="carousel slide" data-bs-ride="carousel">
+            <!-- 圖片放置區 -->
+            <div class="carousel-inner">
+                <!-- active 表示頁面啟動時看到的那一個 -->
+                <div class="carousel-item active" data-bs-interval="2000">
+                    <img src="./image/iceb.png" class="d-block w-75 mx-auto heightAuto">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="./image/coffee.png" class="d-block w-75 mx-auto heightAuto" id="dog">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="./image/catmeme.png" class="d-block w-75 mx-auto heightAuto" id="cat">
+                </div>
+            </div>
+            <!-- 前後按鈕區 -->
+            <!-- 上一頁 -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#bearimg" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <!-- 下一頁 -->
+            <button class="carousel-control-next" type="button" data-bs-target="#bearimg" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+        <!-- 卡片群組===================================================================== -->
+        <section class="section2 ">
+            <h5 class="text_title animate__animated" id="newProductPork" onclick="cat()">豬肉系列</h5>
+            <div class="food_introduce_button tooltipX" id="produceButton">了解更多
+                <span class="tooltipXtext animate__animated" id="produce">嚴選每周新鮮豬肉，搭配起司、生菜，無論早餐還是午餐都能大滿足！</span>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                        <img src="./image/pork1.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f1">
+                        <div class=" collapse f1">
+                            <h5 class="card-title">豬肉滿福堡</h5>
+                            <p class=""> 早餐推薦你最經典的英式滿福!特選洗選蛋搭配櫸木煙燻火腿片，最後放上一片熱呼呼融化的切達吉事，這樣開啟一天真好!吃滿福，保好運，活力滿格，好運也滿格喔！</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                        <img src="./image/pork2.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f1">
+                        <div class=" collapse f1">
+                            <h5 class="card-title">豬肉蛋堡</h5>
+                            <p class="">香煎豬肉片的厚實，加上氣蒸式太陽蛋的柔嫩，還有鮮採萵苣的清新與切達吉事的香濃，口感層次豐富，讓早晨有了小奢華，給你蛋蛋正能量，迎接挑戰！</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                        <img src="./image/repork.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f2">
+                        <div class="collapse f2">
+                            <h5 class="card-title">嫩薑豬肉長堡</h5>
+                            <p class="card-text">拌炒至甜鹹入味的薑燒豬肉，日式和風醬料濃郁，一口咬下滿滿厚實感，加上新鮮生菜、鬆軟長堡麵包與洋蔥，令人食指大動。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                        <img src="./image/chpork.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f2">
+                        <div class="collapse f2">
+                            <h5 class="card-title">起司豬排堡</h5>
+                            <p class="card-text">金黃厚實的炸豬排搭配起司，除了雙份黃切達起司外，搭配濃郁鹹香的傑克起司醬，黑麵包不只是顏色改變，口感紮實，搭上清爽生菜點綴，整體濃而不膩！</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                        <img src="./image/pork3.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f3">
+                        <div class="collapse f3">
+                            <h5 class="card-title">胡麻豬排堡</h5>
+                            <p class="card-text">厚實的炸豬排跟香濃的胡麻醬搭配，滿口都是芝麻香，加上切絲生菜，彷彿置身日式餐廳。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" style="background-color: antiquewhite; cursor: pointer;">
+                        <img src="./image/gchpork.jpg" class="card-img-top" data-bs-toggle="collapse" data-bs-target=".f3">
+                        <div class="collapse f3">
+                            <h5 class="card-title">黃金起司豬排堡</h5>
+                            <p class="card-text">厚實多汁的牛肉淋上香氣濃郁的黑胡椒醬，搭配飽滿綿密的金黃薯餅，一口咬下美味十足！2023春節必嚐金迎招財薯來堡、金迎招財福堡，吃堡招財！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    
+        </section>
+        <footer class="row footerMargin">
+            <div class="col  d-none d-md-flex">聯絡我們:</div>
+            <div class="col d-none d-md-flex">tel:0425271197 <br> 地址:台中市二段51號18樓</div>
+            <div class="col d-none d-md-flex">有什麼寶貴意見要和我們分享嗎?</div>
+            <div class="col d-none d-md-flex">歡迎寫信至我們的服務信箱，以下是我們的服務信箱。 <br> Email:bearburger@gmail.com</div>
+            <div class="col d-flex d-md-none footer_md_text ">感謝您的支持&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;電話:0425271197&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址:台中市二段51號18樓</div>
+        </footer>
+        <script src="./js/bootstrap.bundle.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="./js/dialog.js"></script>
+        <script>
+            console.log(document.getElementById("dog").style.height)
+            console.log(document.getElementById("cat").style.height)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,412 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+
+} */
+
+
+.bg_grid {
+  background-color: antiquewhite;
+  display: grid;
+}
+
+.icon {
+  /* border: 2px blue solid; */
+  padding: 0 0 0 2vw;
+  font-size: 2rem;
+  line-height: 10vh;
+}
+
+
+.nav_bar {
+  width: 99vw;
+  height: 10vh;
+  background-color: red;
+  /* border: solid 5px blue; */
+  color: black;
+  list-style-type: none;
+  display: flex;
+}
+
+.nav_bar2 {
+  width: 99vw;
+  height: 10vh;
+  background-color: yellow;
+  /* border: solid 5px blue; */
+  color: black;
+  display: flex;
+}
+
+.nav_ul {
+  list-style-type: none;
+  margin-left: auto;
+  padding-right: 3vw;
+  /* border: 2px blue solid; */
+  line-height: 10vh;
+}
+
+.nav_ul2 {
+  margin-right: auto;
+  /* border: 2px blue solid; */
+}
+
+.nav_li {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-right: 3rem;
+  /* border:blue 2px solid ; */
+}
+
+.nav_li>a {
+  line-height: 4rem;
+}
+
+.ul_a {
+  display: inline-block;
+  font-size: 1.5rem;
+  line-height: 10vh;
+  padding-left: 3vw;
+  /* border:blue 2px solid ; */
+  list-style-type: none;
+}
+
+.start {
+  list-style-type: none;
+  line-height: 10vh;
+  /* border:blue 2px solid; */
+  padding-right: 4rem;
+  font-size: 1.5rem;
+}
+
+.auto_img {
+  width: 99vw;
+}
+.heightAuto {
+height: auto;
+}
+/* #cat {
+  height: 1040px;
+} */
+.section {
+  background-color: rgba(192, 127, 84, 0.979);
+  height: 60vh;
+  width: 80vw;
+  /* border: 5px solid red; */
+  margin: 10vh 10vw;
+  border-radius: 20px;
+}
+
+.section2 {
+  background-color: rgba(192, 127, 84, 0.979);
+  height: 100%;
+  width: 70vw;
+  /* border: 5px solid red; */
+  margin: auto;
+  margin-top: 10vh;
+  border-radius: 20px;
+}
+
+.text_title {
+  text-align: center;
+  font-size: 30px;
+  margin: 30px auto 0 auto;
+  /* border: 3px solid red; */
+  width: 100%;
+}
+
+/* div {
+    display: grid;
+} */
+.div_div {
+  display: grid;
+  width: 80%;
+  height: 30vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+  line-height: 20px;
+  font-size: 20px;
+  /* border: 3px solid red; */
+  grid-template-columns: auto auto;
+  /* position: relative; */
+
+}
+
+.div_div_product {
+  display: grid;
+  /* border: 5px solid red; */
+  grid-template-columns: 23vw 23vw 23vw;
+  /* grid-template-rows: 15vw 10vw; */
+  text-align: center;
+  margin: 0 0 0 5vw;
+  font-size: 15px;
+  /* height: 20vw; */
+}
+
+.div_img {
+  width: 20vw;
+  margin-top: 2vw;
+  /* height: 13vw; */
+  cursor: pointer;
+}
+
+.food_introduce_button {
+  margin-left: 60vw;
+  text-align: center;
+  /* padding-left:auto ; */
+  background-color: #ffbc0d;
+  color: black;
+  width: auto;
+  border-radius: 10%;
+  font-size: small;
+  /* border: 5px solid red; */
+}
+
+.collapse:not(.show) {
+  display: none;
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+
+.footerMargin {
+  margin-top:  5rem; 
+  background-color: black;
+  width: auto;
+  color: white;
+}
+
+.footer_md_text {
+  justify-content: center;
+  align-items: center;
+}
+
+
+ul li:hover {
+  color: white;
+}
+
+ul a:hover {
+  color: white;
+}
+
+dialog {
+  /* position: absolute; */
+  border: none;
+  width: 500px;
+  /* height: 30vh; */
+  /* top: 0; */
+  background: antiquewhite;
+  font-size: medium;
+  box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  line-height: 1.7em;
+  margin: 80vh auto 0;
+
+}
+@keyframes  example {
+  0% {
+    margin-top: 85vh;
+  }
+  100% {
+    margin-top: 80vh;
+  }
+}
+
+dialog::backdrop {
+  background-color: grey, 50%;
+}
+
+
+
+.font {
+  text-align: right;
+}
+
+#storeOpen3,
+#storeOpen6,
+#storeOpen9,
+#storeOpen12,
+#storeOpen15,
+#storeOpen18 {
+  background-color: #ffbc0d;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#storeOpen2,
+#storeOpen5,
+#storeOpen8,
+#storeOpen11,
+#storeOpen14,
+#storeOpen17 {
+  width: 50vw;
+  position: relative;
+  animation-name: example;
+  animation-duration: 1s;
+  font-size: larger;
+  /* animation-timing-function: cubic-bezier(0.1, 0.885, 0.32, 1.7) */
+}
+
+
+.color {
+  /* display: none; */
+  background-color: #ffbc0d;
+  text-align: center;
+}
+
+.tooltipX {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    /* 悬停元素上显示点线 */
+}
+
+
+
+.tooltipX:hover {
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
+    color: rgba(0, 0, 0, 0.6)
+}
+
+.tooltipX:hover .tooltipXtext {
+    visibility: visible;
+}
+.tooltipX .tooltipXtext {
+  visibility: hidden;
+  width: 120px;
+  background-color: antiquewhite;
+  color: black;
+  /* text-align: center; */
+  border-radius: 6px;
+  /* 定位 */
+  position: absolute;
+  /* top: -120%; */
+  bottom: 100%;
+  right: 100%;
+  z-index: 1;
+  height: auto;
+  /* border: #ffbc0d 3px solid ; */
+}
+
+
+
+.redFont {
+  color: red;
+}
+
+.blueFont {
+  color: #1a0dab;
+  font-size: larger;
+}
+
+.blueFont:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  text-shadow: 3px 3px 3px  #ffd000;
+}
+
+.nav__link1:hover {
+  background-color: #ffd000;
+}
+.nav__link1:hover a{
+  color: white;
+}
+.nav__link2:hover a{
+  color: white;
+}
+.nav__link2:hover {
+  background-color: rgb(252, 73, 73);
+ 
+}
+
+.blueFont:active {
+  color: black;
+}
+
+#newProduct,
+#setofftop,
+#newProductBeef,
+#newProductCh,
+#newProductPork {
+  visibility: hidden;
+}
+
+@media (max-width: 767.98px) { 
+  .div_div {
+    grid-template-columns: auto ;
+  }
+ }
+
+/*地圖 ====================================================================== */
+.mapdialog {
+  display: flex;
+  height: 300px;
+  margin-top: 50px;
+}
+
+.option {
+  width: 120px;
+  height: 50px;
+  margin: auto 0;
+  /* border: #ee2f2f 5px solid; */
+}
+
+.shopaddress {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background-color: cornsilk;
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+
+}
+
+.showmap1 {
+  position: relative;
+  width: 450px;
+  height: 300px;
+  background-color: darksalmon;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+select:has(.s1:checked)~.shopaddress .a,
+select:has(.s1:checked)~.showmap1 .a {
+    visibility: visible;
+}
+
+select:has(.s2:checked)~.shopaddress .b,
+select:has(.s2:checked)~.showmap1 .b {
+    visibility: visible;
+}
+
+select:has(.s3:checked)~.shopaddress .c,
+select:has(.s3:checked)~.showmap1 .c {
+    visibility: visible;
+}
+
+.info,
+.map {
+    position: absolute;
+    visibility: hidden;
+
+}

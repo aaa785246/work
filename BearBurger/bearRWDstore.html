@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>熊堡-地圖</title>
+    <script src="https://kit.fontawesome.com/7b738521b3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif !important;
+        }
+    </style>
+</head>
+
+
+
+<body class="bg_grid">
+    <nav class="navbar navbar-expand-md navbar-light bg-danger2">
+        <div class="container-fluid">
+            <a class="navbar-brand">熊堡</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active fa-brands fa-facebook ms-4" aria-current="page"
+                            href="https://www.facebook.com/mcdonalds.tw"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fa-brands fa-instagram ms-4"
+                            href="https://www.instagram.com/mcdonaldstw/"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ms-4" href="bearRWDstore.html">門市</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-md navbar-light bg-warning">
+        <div class="container-fluid">
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " href="bearRWDnew.html">新品</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="bearRWDbeef.html">牛肉系列</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bearRWDchicken.html">香雞系列</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bearRWDpork.html">豬肉系列</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- 輪播圖 ==================================================================================== -->
+    <div id="bearimg" class="carousel slide" data-bs-ride="carousel">
+        <!-- 圖片放置區 -->
+        <div class="carousel-inner">
+            <!-- active 表示頁面啟動時看到的那一個 -->
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="./image/iceb.png" class="d-block w-75 mx-auto heightAuto">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="./image/newBg.png" class="d-block w-75 mx-auto heightAuto" id="dog">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="./image/catmeme.png" class="d-block w-75 mx-auto heightAuto" id="cat">
+            </div>
+        </div>
+        <!-- 前後按鈕區 -->
+        <!-- 上一頁 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#bearimg" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <!-- 下一頁 -->
+        <button class="carousel-control-next" type="button" data-bs-target="#bearimg" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="mapdialog">
+        <select class="option">
+            <option>請選擇查詢門市</option>
+            <option class="s1">文心二店</option>
+            <option class="s2">公益二店</option>
+            <option class="s3">文心家樂福</option>
+        </select>
+        <div class="shopaddress ">
+            <div class="info a">
+                <p>文心二店</p>
+                <span>407台中市西屯區文心路二段57號1樓</span>
+                <br><span>04-22580809</span>
+            </div>
+            <div class="info b">
+                <p>公益二店</p>
+                <span>408台中市南屯區公益路二段128號</span>
+                <br><span>04-23285051</span>
+            </div>
+            <div class="info c">
+                <p>文心家樂福</p>
+                <span>408台中市南屯區文心路一段521號B1</span>
+                <br><span>04-22518939</span>
+            </div>
+        </div>
+        <div class="showmap1">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7281.008487238151!2d120.64138300288812!3d24.154042520658535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d8aaddfd073%3A0xaea08ebf92048de2!2z6bql55W25YueLeWPsOS4reaWh-W_g-S6jOmkkOW7sw!5e0!3m2!1szh-TW!2stw!4v1681108681416!5m2!1szh-TW!2stw"
+                width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" class="a map"></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7281.008487238151!2d120.64138300288812!3d24.154042520658535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d4595348e69%3A0x7b8bcb2c74826933!2z6bql55W25YueLeWPsOS4reWFrOebiuS6jOW6lw!5e0!3m2!1szh-TW!2stw!4v1681108697056!5m2!1szh-TW!2stw"
+                width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" class="b map"></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7281.008487238151!2d120.64138300288812!3d24.154042520658535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d966fb99b5b%3A0xa53f88cdb22f2704!2z6bql55W25YueLeaWh-W_g-Wutuaoguemj-mkkOW7sw!5e0!3m2!1szh-TW!2stw!4v1681108721104!5m2!1szh-TW!2stw"
+                width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" class="c map"></iframe>
+        </div>
+    </div>
+    <!-- footer===================================================================== -->
+    <footer class="row footerMargin">
+        <div class="col  d-none d-md-flex">聯絡我們:</div>
+        <div class="col d-none d-md-flex">tel:0425271197 <br> 地址:台中市二段51號18樓</div>
+        <div class="col d-none d-md-flex">有什麼寶貴意見要和我們分享嗎?</div>
+        <div class="col d-none d-md-flex">歡迎寫信至我們的服務信箱，以下是我們的服務信箱。 <br> Email:bearburger@gmail.com</div>
+        <div class="col d-flex d-md-none footer_md_text ">感謝您的支持</div>
+    </footer>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/dialog.js"></script>
+</body>
+
+</html>
