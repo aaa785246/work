@@ -23,15 +23,16 @@ function App() {
     <div>
       <div className="header">
         <div id="header1">面面相覷</div>
-        <div id="header2">主功能介紹</div>
-        <div id="header3">登入</div>
+        <div>
+        <img rc="https://raw.githubusercontent.com/aaa785246/work/main/sp-junyou/src/theme/img/menu.png" alt="menu"></img>
+        <div id="header2">面試經驗</div>
+        <div id="header3">討論區</div>
+        <div id="header4">登入</div>
+        </div>
+        
       </div>
       <div className="bgsup">
-        <div className="imageContainer">
-          <img className="homeImg" src="./theme/img/suit.jpg" alt="suit"></img>
-          <div></div>
-          <div></div>
-        </div>
+        <div className="title">123</div>    
       </div>
     </div>
   );
