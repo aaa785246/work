@@ -1,0 +1,73 @@
+//不同顏色dialog測試
+
+// import {
+//   AlertDialog,
+//   AlertDialogBody,
+//   AlertDialogFooter,
+//   AlertDialogHeader,
+//   AlertDialogContent,
+//   AlertDialogOverlay,
+//   AlertDialogCloseButton,
+// } from '@chakra-ui/react'
+
+function AlertDialogExample({state}) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
+  var dialogWork = "";
+  var dialogColorSelect= "";
+  var dialogHover = "";
+  
+  //判斷dialog用於編輯或刪除
+  if (state==1) {
+    dialogWork = "編輯"
+    dialogColorSelect = "orange.300"  
+    dialogHover = "orange.400"
+  }else {
+    dialogWork = "刪除"
+    dialogColorSelect = "red.500"
+    dialogHover = "red.600"
+
+  }
+
+  return (
+    <>
+      <Button bg={dialogColorSelect} onClick={onOpen} _hover={{bg:dialogHover}}>
+        {dialogWork}
+      </Button>
+     
+
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='20px' fontWeight='bold'>
+             確定要{dialogWork}嗎?
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+            {dialogWork}後將無法復原
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                取消
+              </Button>
+              <Button bg={dialogColorSelect}  _hover={{bg:dialogHover}} onClick={onClose} ml={3}>
+              {dialogWork}
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </>
+  )
+}
+
+
+// <ChakraProvider>
+    // {/* 在這裡呼叫 AlertDialogExample 函式  */}
+    // {/* <AlertDialogExample state={1}/> */}
+    // </ChakraProvider>

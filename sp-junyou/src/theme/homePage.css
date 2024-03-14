@@ -1,0 +1,33 @@
+* {
+    font-size: 1rem;
+    margin: 0;
+}
+
+
+.header {
+    background-color: #B0C4DE;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    height: 48px;
+  
+}
+
+#main1 {
+    /* border: solid 3px green; */
+    /* height: 15px; */
+    margin: 18px;
+}
+
+#main2 {
+    /* border:  solid 3px yellow; */
+    /* height: 15px; */
+    margin: 18px;
+
+}
+
+#main3 {
+    /* border:  solid 3px yellow; */
+    /* height: 15px; */
+    margin: 18px;
+}
