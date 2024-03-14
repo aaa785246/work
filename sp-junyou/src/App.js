@@ -20,19 +20,21 @@ import "./theme/homePage.css";
 
 function App() {
   return (
-    <div>
+    <div className="bgsup">
       <div className="header">
         <div id="header1">面面相覷</div>
-        <div>
-        <img rc="https://raw.githubusercontent.com/aaa785246/work/main/sp-junyou/src/theme/img/menu.png" alt="menu"></img>
-        <div id="header2">面試經驗</div>
-        <div id="header3">討論區</div>
-        <div id="header4">登入</div>
-        </div>
-        
+        <img
+          id="menu"
+          src="https://raw.githubusercontent.com/aaa785246/work/main/sp-junyou/src/theme/img/menu.png"
+          alt="menu"
+        ></img>
       </div>
-      <div className="bgsup">
-        <div className="title">123</div>    
+
+      <div className="titleBox">
+        <div className="title">輕鬆獲取</div>
+      </div>
+      <div className="titleBox">
+        <div className="title2">所需要的面試資訊</div>
       </div>
     </div>
   );
