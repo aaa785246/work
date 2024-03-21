@@ -40,7 +40,10 @@ const toggleSearch = () => {
     <!-- 菜單 -->
     <div  :class="myMenuToggle ? 'menuOn' : 'menuOff'"></div>
     <!-- 內容 -->
-    <div :class="myMenuToggle ? 'menu-textOn' : 'menu-textOff'">面試心得分享</div>
+    <RouterLink to="/shareExp">
+      <div :class="myMenuToggle ? 'menu-textOn' : 'menu-textOff'">面試心得分享</div>
+    </RouterLink>
+
     <RouterLink to="/login"> <div :class="myMenuToggle ? 'menu-text2On' : 'menu-textOff'" >會員中心</div></RouterLink>
     <!-- 關閉鈕 -->
     <img src="@/img/close.png" id="menu" title="menu" alt="this is menu" @click="toggleMenu" :class="myMenuToggle ? 'closeButtonOn' : 'closeButtonOff'"/>

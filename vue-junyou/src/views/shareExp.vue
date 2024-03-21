@@ -33,7 +33,8 @@ var heartCount = "80";
       class="sh-searchBoxGlassOn"
     />
   </div>
-  <div class="articleBox">
+  <RouterLink to="/">
+    <div class="articleBox">
     <div class="sh-title">{{ artic }}</div>
     <div class="sh-content">{{ msg }}</div>
     <div class="heartAndMsg-container">
@@ -43,8 +44,24 @@ var heartCount = "80";
       <div class="heartCount">{{ heartCount }}</div>
     </div>
   </div>
+  </RouterLink>
+ 
+  <RouterLink to="/">
+    <div class="articleBox2">
+    <div class="sh-title">{{ artic }}</div>
+    <div class="sh-content">{{ msg }}</div>
+    <div class="heartAndMsg-container">
+      <img src="@/img/heart.png" alt="heart" class="heart" />
+      <div class="heartCount">{{ heartCount }}</div>
+      <img src="@/img/message2.png" alt="heart" class="message" />
+      <div class="heartCount">{{ heartCount }}</div>
+    </div>
+  </div>
+  </RouterLink>
+  
 
-  <div class="articleBox2">
+  <RouterLink to="/">
+    <div class="articleBox2">
     <div class="sh-title">{{ artic }}</div>
     <div class="sh-content">{{ msg }}</div>
     <div class="heartAndMsg-container">
@@ -54,15 +71,5 @@ var heartCount = "80";
       <div class="heartCount">{{ heartCount }}</div>
     </div>
   </div>
-
-  <div class="articleBox2">
-    <div class="sh-title">{{ artic }}</div>
-    <div class="sh-content">{{ msg }}</div>
-    <div class="heartAndMsg-container">
-      <img src="@/img/heart.png" alt="heart" class="heart" />
-      <div class="heartCount">{{ heartCount }}</div>
-      <img src="@/img/message2.png" alt="heart" class="message" />
-      <div class="heartCount">{{ heartCount }}</div>
-    </div>
-  </div>
+  </RouterLink>
 </template>
