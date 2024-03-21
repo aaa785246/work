@@ -20,7 +20,7 @@ const toggleSearch = () => {
 <template>
   <img src="@/img/logo_75.jpg" id="logo" title="logo" alt="this is logo" />
   <img src="@/img/magnifying-glass.png" id="search" title="search" alt="this is search" @click="toggleSearch"/>
-  <div >
+  <div>
   <!-- 遮罩 -->
   <div :class="mySearchToggle ? 'menuMaskOn' : 'menuMaskOff'"></div>
   <!-- 搜尋框 -->

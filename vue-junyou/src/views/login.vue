@@ -3,8 +3,18 @@ import "@/assets/login.css"
 
 </script>
 <template>
+    <!-- 回上一頁 -->
+<RouterLink to="/">
+    <img
+        src="@/img/back.png"
+        className="back"
+        title="back"
+        alt="this is back"
+      />
+</RouterLink>
+
 <div class="login">
-    <img src="@/img/logo_75.jpg" alt="this is logo" class="logo">
+    <RouterLink to="/"><img src="@/img/logo_75.jpg" alt="this is logo" class="logo"></RouterLink>
     <p class="loginTitle">輕鬆獲取 <br>所需要的面試資訊</p>
 </div>
 
@@ -22,7 +32,10 @@ import "@/assets/login.css"
     <div class="remember">
         記住帳號
     </div>
-    <div class="register">註冊</div>
-    <div class="forget">忘記密碼?</div>
+    <RouterLink to="/register"><div class="register">註冊</div></RouterLink>
+    <RouterLink to="/forgetPwd"> <div class="forget">忘記密碼</div></RouterLink>
+</div>
+<div class="loginbtnBox">
+    <button class="loginbtn"> 登入</button>
 </div>
 </template>

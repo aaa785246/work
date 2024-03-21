@@ -1,4 +1,11 @@
-.login {
+.back {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 15vw;
+}
+
+.registerPage {
     margin-top: 30vw;  
     display: flex;
     align-items: center;
@@ -6,21 +13,21 @@
     text-align: center;
 }
 
-.logo {
+.reg-logo {
     font-size: 2rem;
     font-weight: bold;
     border-right: 2px solid black;
     padding-right: 5vw;
 }
 
-.loginTitle {
+.reg-loginTitle {
     font-size: 1.2rem;
     font-weight: bold;
     line-height: 1.4rem;
     margin-left: 5vw;
 } 
 
-.inputText {
+.reg-inputText {
     width: 70%;
     height: 5vh;
     background-color: white;
@@ -30,16 +37,17 @@
     border: none;
 }
 
-.inputAria {
+.reg-inputAria {
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
     /* margin-top: 10vw; */
-    padding-top: 15vw;
+    padding-top: 20vw;
 }
 
-.inputAria2 {
+
+.reg-inputAria2 {
     display: flex;
     text-align: center;
     align-items: center;
@@ -48,44 +56,13 @@
     padding-top: 5vw;
 }
 
-.inputP {
-    width: 20%;
-    /* font-weight: bold; */
+
+.reg-inputP {
+    width: 30%;
+    font-weight: bold;
 }
 
-.stateAria{
-    display: flex;
-    text-align: center;
-    align-items: center;
-    margin-top: 7vw;
-}
-
-.check {
-    margin-left: 9vw;
-}
-
-.remember {
-    font-size: 0.9rem;
-    /* font-weight: bold; */
-    margin-left: 1vw;
-}
-
-.register {
-    margin-left: 27vw;
-    padding-right: 1vw;
-    border-right: 2px solid black;
-    font-size: 0.9rem;
-    /* font-weight: bold; */
-    line-height: 1.2rem;
-}
-
-.forget {
-    margin-left: 1vw;
-    font-size: 0.9rem;
-    /* font-weight: bold; */
-}
-
-.loginbtn {
+.reg-loginbtn {
     background-color: #EADFDF;
     border: none;
     border-radius: 5px;
@@ -94,15 +71,8 @@
     
 }
 
-.loginbtnBox {
+.reg-loginbtnBox {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.back {
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: 15vw;
 }

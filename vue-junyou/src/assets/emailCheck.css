@@ -1,0 +1,76 @@
+.back {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 15vw;
+}
+
+.emailPage {
+    margin-top: 30vw;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.email-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    border-right: 2px solid black;
+    padding-right: 5vw;
+}
+
+.email-loginTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.4rem;
+    margin-left: 5vw;
+} 
+
+.email-text {
+    font-weight: 500;
+    margin-top: 10vw;
+    line-height: 1.2rem;
+
+}
+
+.email-textBox{
+    display: flex;
+    justify-content: center;
+}
+
+
+.email-inputText {
+    width: 70%;
+    height: 5vh;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    padding-left: 5vw;
+    border: none;
+}
+
+.email-inputAria2 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 10vw; */
+    padding-top: 10vw;
+}
+
+.email-loginbtn {
+    background-color: #EADFDF;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10vw;
+    padding: 3vw 30vw;
+    
+}
+
+.email-loginbtnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
