@@ -1,0 +1,86 @@
+.login {
+    margin-top: 30vw;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    border-right: 2px solid black;
+    padding-right: 5vw;
+}
+
+.loginTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.4rem;
+    margin-left: 5vw;
+} 
+
+.inputText {
+    width: 70%;
+    height: 5vh;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    padding-left: 5vw;
+    border: none;
+}
+
+.inputAria {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 10vw; */
+    padding-top: 10vw;
+}
+
+.inputAria2 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 10vw; */
+    padding-top: 3vw;
+}
+
+.inputP {
+    width: 20%;
+    font-weight: bold;
+}
+
+.stateAria{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-top: 5vw;
+}
+
+.check {
+    margin-left: 9vw;
+}
+
+.remember {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-left: 1vw;
+}
+
+.register {
+    margin-left: 25vw;
+    padding-right: 1vw;
+    border-right: 2px solid black;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.forget {
+    margin-left: 1vw;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+

@@ -24,16 +24,12 @@ const toggleSearch = () => {
   <!-- 遮罩 -->
   <div :class="mySearchToggle ? 'menuMaskOn' : 'menuMaskOff'"></div>
   <!-- 搜尋框 -->
-  <div :class="mySearchToggle ? 'searchBoxOn' : 'searchBoxOff'"> </div>
+  <input type="text" :class="mySearchToggle ? 'searchBoxOn' : 'searchBoxOff'" placeholder="請輸入職業">
+  <!-- 搜尋框查詢按鈕 -->
+  <img src="@/img/magnifying-glass.png"  title="searchBoxGlass" alt="this is searchBoxGlass" :class="mySearchToggle ? 'searchBoxGlassOn' : 'searchBoxGlassOff'"/>
   </div>
 
-  <img src="@/img/close.png" id="menu" title="menu" alt="this is menu" @click="toggleSearch" :class="mySearchToggle ? 'closeButtonOn' : 'closeButtonOff'"/>
-
-
-
-
-
-
+  <!-- <img src="@/img/close.png" id="menu" title="menu" alt="this is menu" @click="toggleSearch" :class="mySearchToggle ? 'closeButtonOn' : 'closeButtonOff'"/> -->
 
 
 
@@ -45,7 +41,7 @@ const toggleSearch = () => {
     <div  :class="myMenuToggle ? 'menuOn' : 'menuOff'"></div>
     <!-- 內容 -->
     <div :class="myMenuToggle ? 'menu-textOn' : 'menu-textOff'">面試心得分享</div>
-    <div :class="myMenuToggle ? 'menu-text2On' : 'menu-textOff'">會員中心</div>
+    <RouterLink to="/login"> <div :class="myMenuToggle ? 'menu-text2On' : 'menu-textOff'" >會員中心</div></RouterLink>
     <!-- 關閉鈕 -->
     <img src="@/img/close.png" id="menu" title="menu" alt="this is menu" @click="toggleMenu" :class="myMenuToggle ? 'closeButtonOn' : 'closeButtonOff'"/>
   </div>

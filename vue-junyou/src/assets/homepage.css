@@ -169,10 +169,30 @@ body {
     width: 70%;
     height: 5vh;
     margin-top: 15%;
-    margin-left: 15%;
+    margin-left: 10%;
     background-color: white;
     border-radius: 20px;
     z-index: 5;
+    visibility: visible;
+    padding-left: 4vw;
 }
 
 
+.searchBoxOff {
+    visibility: hidden;
+    display: none;
+}
+
+.searchBoxGlassOn {
+    position: fixed;
+    width: 7vw;
+    margin-top: 8.5vh;
+    margin-left: 70vw;
+    z-index: 6;
+    visibility: visible;
+}
+
+.searchBoxGlassOff {
+    visibility: hidden;
+    display: none;
+}
