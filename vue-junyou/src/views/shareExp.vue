@@ -17,20 +17,20 @@ var heartCount = "80";
   <RouterLink to="/">
     <img
       src="@/img/back.png"
-      className="back"
+      className="sh-back"
       title="back"
       alt="this is back"
     />
   </RouterLink>
   <div>
     <!-- 搜尋框 -->
-    <input type="text" placeholder="請輸入職業" class="sh-searchBoxOn" />
+    <input type="text" placeholder="請輸入職業" class="sh-searchBox" />
     <!-- 搜尋框查詢按鈕 -->
     <img
       src="@/img/magnifying-glass.png"
       title="searchBoxGlass"
       alt="this is searchBoxGlass"
-      class="sh-searchBoxGlassOn"
+      class="sh-searchBoxGlass"
     />
   </div>
   <RouterLink to="/">

@@ -7,7 +7,7 @@ const data = sessionStorage.getItem('status');
   <RouterLink to="/login">
     <img
         src="@/img/back.png"
-        className="back"
+        className="em-back"
         title="back"
         alt="this is back"
       />

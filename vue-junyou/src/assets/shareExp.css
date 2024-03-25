@@ -1,28 +1,33 @@
-.sh-searchBoxOn {
+body {
+    padding: 0 2rem;
+}
+
+.sh-searchBox {
     position: fixed;
-    width: 80vw;
+    top: 20vw;
+    width: 82vw;
     height: 5vh;
-    margin-top: 20vw;
     background-color: white;
     border-radius: 20px;
     padding-left: 4vw;
     border: none;
 }
 
-.sh-searchBoxGlassOn {
+.sh-searchBoxGlass {
     position: fixed;
     width: 7vw;
-    margin-top: 21.5vw;
-    margin-left: 70vw;
+    top: 21vw;
+    left: 80vw;
     z-index: 6;
     visibility: visible;
 }
 
-.back {
+.sh-back {
     width: 25px;
     height: 25px;
     position: absolute;
-    top: 15vw;
+    top: 8vw;
+    left: 10vw;
 }
 
 .articleBox {
@@ -47,7 +52,7 @@
 .heartAndMsg-container {
     display: flex;
     align-items: center;
-   padding-bottom: 3vw;
+    padding-bottom: 3vw;
 }
 
 
@@ -57,14 +62,17 @@
     margin-left: 45vw;
 
 }
+
 .heartCount {
     margin-left: 3vw;
 }
+
 .message {
     width: 25px;
     height: 25px;
     margin-left: 3vw;
 }
+
 
 .articleBox2 {
     margin-top: 5vw;

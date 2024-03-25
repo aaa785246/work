@@ -1,8 +1,9 @@
-.back {
+.rg-back {
     width: 25px;
     height: 25px;
     position: absolute;
     top: 15vw;
+    left: 10vw;
 }
 
 .registerPage {

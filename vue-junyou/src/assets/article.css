@@ -1,0 +1,57 @@
+body {
+    padding: 0 2rem;
+}
+
+.ar-back {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 15vw;
+    left: 10vw;
+}
+
+.article-title {
+    margin-top: 28vw;
+    margin-left: 10vw;
+    font-size: 1.3rem;
+}
+
+.article-user {
+    margin: 5vw 0;
+    margin-left: 10vw;
+    font-size: 1.2rem;
+}
+
+.article-content {
+    margin-left: 10vw;
+    margin-bottom: 5vw;
+}
+
+.ar-heartAndMsg-container {
+    display: flex;
+    align-items: center;
+    padding-bottom: 3vw;
+}
+
+.ar-heart {
+    width: 25px;
+    height: 25px;
+    margin-left: 10vw;
+
+}
+
+.ar-heartCount {
+    margin-left: 3vw;
+}
+
+.ar-bookmark {
+    width: 25px;
+    height: 25px;
+    margin-left: 3vw;
+}
+
+.ar-share {
+    width: 25px;
+    height: 25px;
+    margin-left: 30vw;
+}

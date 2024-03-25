@@ -7,7 +7,7 @@ import "@/assets/login.css"
 <RouterLink to="/">
     <img
         src="@/img/back.png"
-        className="back"
+        className="lg-back"
         title="back"
         alt="this is back"
       />

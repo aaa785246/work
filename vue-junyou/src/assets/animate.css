@@ -12,7 +12,10 @@
 	        animation: slide-in-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
-
+.searchBoxOn,.searchBoxGlassOn {
+	-webkit-animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
 
 /* 標題 */
 @-webkit-keyframes slide-in-elliptic-top-fwd {
@@ -70,6 +73,30 @@
           -webkit-transform: translateX(0);
                   transform: translateX(0);
           opacity: 1;
+        }
+      }
+      
+
+/* 主頁 遮罩-搜尋框 */
+
+@-webkit-keyframes slide-bottom {
+        0% {
+          -webkit-transform: translateY(0);
+                  transform: translateY(0);
+        }
+        100% {
+          -webkit-transform: translateY(100px);
+                  transform: translateY(100px);
+        }
+      }
+      @keyframes slide-bottom {
+        0% {
+          -webkit-transform: translateY(0);
+                  transform: translateY(0);
+        }
+        100% {
+          -webkit-transform: translateY(100px);
+                  transform: translateY(100px);
         }
       }
       

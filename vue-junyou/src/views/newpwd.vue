@@ -8,7 +8,7 @@ sessionStorage.removeItem("status")
   <RouterLink to="/login">
     <img
       src="@/img/back.png"
-      className="back"
+      className="np-back"
       title="back"
       alt="this is back"
     />

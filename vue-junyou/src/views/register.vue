@@ -7,7 +7,7 @@ import "@/assets/register.css";
 <RouterLink to="/login">
     <img
         src="@/img/back.png"
-        className="back"
+        className="rg-back"
         title="back"
         alt="this is back"
       />

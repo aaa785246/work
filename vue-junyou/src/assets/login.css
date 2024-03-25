@@ -35,7 +35,6 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    /* margin-top: 10vw; */
     padding-top: 15vw;
 }
 
@@ -57,11 +56,12 @@
     display: flex;
     text-align: center;
     align-items: center;
+    /* justify-content: center; */
     margin-top: 7vw;
 }
 
 .check {
-    margin-left: 9vw;
+    margin-left: 12vw;
 }
 
 .remember {
@@ -71,7 +71,7 @@
 }
 
 .register {
-    margin-left: 27vw;
+    margin-left: 35vw;
     padding-right: 1vw;
     border-right: 2px solid black;
     font-size: 0.9rem;
@@ -100,9 +100,10 @@
     align-items: center;
 }
 
-.back {
+.lg-back {
     width: 25px;
     height: 25px;
     position: absolute;
     top: 15vw;
+    left: 10vw;
 }

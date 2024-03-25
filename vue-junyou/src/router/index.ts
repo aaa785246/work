@@ -38,7 +38,11 @@ const router = createRouter({
       name:'shareExp',
       component:()=>import("@/views/shareExp.vue")
     },
-    
+    {
+      path:'/article',
+      name:'article',
+      component:()=>import("@/views/article.vue")
+    },
   ]
 })
 

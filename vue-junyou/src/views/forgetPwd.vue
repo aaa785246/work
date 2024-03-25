@@ -8,7 +8,7 @@ sessionStorage.setItem('status', '1');
   <RouterLink to="/login">
     <img
       src="@/img/back.png"
-      className="back"
+      className="fg-back"
       title="back"
       alt="this is back"
     />
