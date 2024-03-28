@@ -1,8 +1,14 @@
+@font-face {
+    font-family: 'R';
+    src: url('../../public/R.ttc') format('truetype');
+}
+
 * {
     font-size: 1rem;
     margin: 0;
     line-height: 1rem;
     color: #000;
+    font-family: 'R', sans-serif;
     
 }
 

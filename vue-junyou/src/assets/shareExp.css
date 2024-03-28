@@ -41,7 +41,7 @@ body {
     padding-top: 7vw;
     margin-bottom: 5vw;
     margin-left: 3vw;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .sh-content {
@@ -63,8 +63,9 @@ body {
 
 }
 
-.heartCount {
+.heartAndMsgCount {
     margin-left: 3vw;
+    font-weight: bold;
 }
 
 .message {
