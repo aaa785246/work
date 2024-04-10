@@ -32,8 +32,8 @@ const toggleSearch = () => {
   <input type="text" :class="mySearchToggle ? 'searchBoxOn' : 'searchBoxOff'" placeholder="請輸入職業">
   <!-- 搜尋框查詢按鈕 -->
   <RouterLink to="/shareExp" ><img src="@/img/magnifying-glass.png"  title="searchBoxGlass" alt="this is searchBoxGlass" :class="mySearchToggle ? 'searchBoxGlassOn' : 'searchBoxGlassOff'"/></RouterLink>
-  
   </div>
+  
   <!-- 菜單開關 -->
   <div :class="myMenuToggle ? 'maskdivOn' : 'maskdivOff'">
     <!-- 遮罩 -->

@@ -78,6 +78,6 @@ const msgCount = ref(8);
       <img src="@/img/message2.png" alt="heart" class="message" />
       <div class="heartAndMsgCount">{{ msgCount }}</div>
     </div>
-  </div>
+    </div>
   </RouterLink>
 </template>

@@ -63,7 +63,7 @@
 }
 
 .check {
-    margin-left: 6vw;
+    margin-left: 50px;
 }
 
 .remember {
@@ -71,7 +71,7 @@
 }
 
 .register {
-    padding-left: 22vw;
+    padding-left: 100px;
     padding-right: 1vw;
     border-right: 2px solid black;
 }
@@ -142,9 +142,34 @@
     position: fixed; 
     z-index: 4;
     top: 92vw;
-    left: 40vw;
+    left: 46vw;
 }
+
+.lg-dialogTextOnPush{
+    position: fixed; 
+    z-index: 4;
+    top: 92vw;
+    left: 38vw;
+    margin-top: 23px;
+}
+
+.lg-dialogTextOnErr{
+    position: fixed; 
+    z-index: 4;
+    top: 92vw;
+    left: 36vw;
+    margin-top: 23px;
+}
+
 
 .lg-dialogTextOff{
 display: none;
 }
+
+@media screen and (min-height: 900px) {
+    .register {
+        padding-left: 120px;
+        padding-right: 1vw;
+        border-right: 2px solid black;
+    }
+  }
