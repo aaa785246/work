@@ -56,33 +56,28 @@
     display: flex;
     text-align: center;
     align-items: center;
-    /* justify-content: center; */
+    line-height: 1rem;
     margin-top: 7vw;
+    width: 100vw;
+    font-size: 0.9rem;
 }
 
 .check {
-    margin-left: 12vw;
+    margin-left: 6vw;
 }
 
 .remember {
-    font-size: 0.9rem;
-    /* font-weight: bold; */
     margin-left: 1vw;
 }
 
 .register {
-    margin-left: 35vw;
+    padding-left: 22vw;
     padding-right: 1vw;
     border-right: 2px solid black;
-    font-size: 0.9rem;
-    /* font-weight: bold; */
-    line-height: 1.2rem;
 }
 
 .forget {
     margin-left: 1vw;
-    font-size: 0.9rem;
-    /* font-weight: bold; */
 }
 
 .loginbtn {
@@ -136,8 +131,8 @@
     position: fixed; 
     width: 100px;
     z-index: 4;
-    top:55vw;
-    left: 39vw;
+    top:57vw;
+    left: 42vw;
 }
 .lg-warningImgOff{
     display: none;
@@ -146,5 +141,10 @@
 .lg-dialogTextOn{
     position: fixed; 
     z-index: 4;
-    top: 100vw;
+    top: 92vw;
+    left: 40vw;
+}
+
+.lg-dialogTextOff{
+display: none;
 }

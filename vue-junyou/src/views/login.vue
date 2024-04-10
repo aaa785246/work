@@ -8,18 +8,48 @@ const router = useRouter();
 const userAccount = ref("");
 const pwd = ref("");
 //前端傳入帳號密碼做驗證 後端傳回一個布靈值 當他等於true的時候登入成功
-const loginDataCheck = ref(false);
+const loginStateCheck = ref(false);
+//用來開關遮罩的變數
+const loginMuskOn = ref(false);
+//登入狀態決定dialog框彈出內容
+const dialogText = ref("");
+const dialogImgSrc = ref("@src/img/warning.png");
+const acceptSecond = ref(3);
 // 登入判斷
 const getuserAccountAndPwd = () => {
-  // if (loginDataCheck.value) {
-  //    //登入成功dialog彈出並轉址
-  //    router.push('/')
-  // }else{
-  //    //登入失敗dialog彈出
-  //    console.log("帳號或密碼錯誤")
-  // }
-  loginDataCheck.value = !loginDataCheck.value;
+  // 當loginState(帳密)驗證成功傳回true
+  if (loginStateCheck.value==true){
+    //開啟遮罩
+    loginMuskOn.value= true;
+    // 更新dialog內容與圖片
+    dialogText.value = "登入成功";
+    dialogImgSrc.value = `${import.meta.env.BASE_URL}src/img/accept.png`
+    //跳轉網址
+    setInterval(acceptSecondDown,1000);
+    
+
+
+  }else {
+    //開啟遮罩
+    loginMuskOn.value= true;
+    // 更新dialog內容與圖片
+    dialogText.value = "登入失敗";
+    dialogImgSrc.value = `${import.meta.env.BASE_URL}src/img/warning.png`;
+  }
 };
+// 點選遮罩即關閉
+const muskOff = () => {
+  loginMuskOn.value = ! loginMuskOn.value;
+}
+
+//跳轉網址function
+const acceptSecondDown = () => {
+  acceptSecond.value--
+  if (acceptSecond.value==-1) {
+      router.push("/shareExp")
+    }
+}
+
 </script>
 <template>
   <!-- 回上一頁 -->
@@ -61,14 +91,17 @@ const getuserAccountAndPwd = () => {
   <div class="stateAria">
     <input type="checkbox" class="check" />
     <div class="remember">記住帳號</div>
-    <RouterLink to="/register"><div class="register">註冊</div></RouterLink>
-    <RouterLink to="/forgetPwd"> <div class="forget">忘記密碼</div></RouterLink>
+    <div class="register"><RouterLink to="/register"><div >註冊</div></RouterLink></div>
+    <div class="forget"><RouterLink to="/forgetPwd"><div>忘記密碼</div></RouterLink></div>
+   
   </div>
   <div class="loginbtnBox">
     <button class="loginbtn" @click="getuserAccountAndPwd">登入</button>
   </div>
-  <div :class="loginDataCheck ? 'lg-menuMaskOn' : 'lg-menuMaskOff'"></div>
-  <div :class="loginDataCheck ? 'lg-dialogOn' : 'lg-dialogOff'"></div>
-  <img src="@/img/warning.png" alt="" :class="loginDataCheck?'lg-warningImgOn':'lg-warningImgOff'">
-  <div :class="loginDataCheck ? 'lg-dialogTextOn' : 'lg-dialogTextOff'">你他媽</div>
+  <!-- 登入成功或失敗遮罩 -->
+  <div :class="loginMuskOn ? 'lg-menuMaskOn' : 'lg-menuMaskOff'" @click="muskOff"></div>
+  <div :class="loginMuskOn ? 'lg-dialogOn' : 'lg-dialogOff'"></div>
+  <img :src="dialogImgSrc" alt="" :class="loginMuskOn?'lg-warningImgOn':'lg-warningImgOff'">
+  <!-- <div :class="loginMuskOn ? 'lg-dialogTextOn' : 'lg-dialogTextOff'">{{dialogText}} </div> -->
+  <div :class="loginMuskOn ? 'lg-dialogTextOn' : 'lg-dialogTextOff'">畫面於{{acceptSecond}}秒後跳轉...</div>
 </template>
