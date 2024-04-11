@@ -4,7 +4,14 @@ import "@/assets/animate.css";
 import { ref } from "vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
+import { useLoginStore } from '@/stores/login'
+import router from "@/router";
 
+//pinia
+const store = useLoginStore();
+if (store.$state.loginState == false) {
+  router.push("/error")
+}
 const userName = ref("馬克");
 const toggleMenu = () => {
   myMenuToggle.value = !myMenuToggle.value;

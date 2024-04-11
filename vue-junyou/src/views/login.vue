@@ -3,12 +3,18 @@ import "@/assets/login.css";
 import { ref } from "vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
+import { useLoginStore } from '@/stores/login'
+const store = useLoginStore();
 const router = useRouter();
 //使用者輸入的帳號密碼
 const userAccount = ref("");
 const pwd = ref("");
 //前端傳入帳號密碼做驗證 後端傳回一個布靈值 當他等於true的時候登入成功
-const loginStateCheck = ref(true);
+const loginStateCheck = ref(false);
+if (loginStateCheck.value==true) {
+  store.increment()
+  console.log("狀態:"+store.$state.loginState)
+}
 //用來開關遮罩
 const loginMuskOn = ref(false);
 //登入狀態決定dialog框彈出內容(圖片、文字)
@@ -135,7 +141,7 @@ function ClassChange(id:string,oldClassName: string,newClassName: string)
   <!-- 登入成功或失敗遮罩 -->
   <div
     :class="loginMuskOn ? 'lg-menuMaskOn' : 'lg-menuMaskOff'" @click="muskOff"></div>
-  <div :class="loginMuskOn ? 'lg-dialogOn' : 'lg-dialogOff'"></div>
+  <div :class="loginMuskOn ? 'lg-dialogOn' : 'lg-dialogOff'" @click="muskOff"></div>
   <img :src="dialogImgSrc" alt="" :class="loginMuskOn ? 'lg-warningImgOn' : 'lg-warningImgOff'"
   />
   <div :class="loginMuskOn ? 'lg-dialogTextOn' : 'lg-dialogTextOff'">
@@ -143,3 +149,4 @@ function ClassChange(id:string,oldClassName: string,newClassName: string)
   </div>
   <div id="textOn2" class="lg-dialogTextOff">{{ dialogText2 }}</div>
 </template>
+@/stores/login

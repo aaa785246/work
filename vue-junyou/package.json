@@ -2,20 +2,20 @@
   "name": "vue-junyou",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build --force",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "dev": "vite",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.3.3",
@@ -30,6 +30,8 @@
     "npm-run-all2": "^6.1.2",
     "typescript": "~5.4.0",
     "vite": "^5.1.6",
+    "vue-cli-plugin-pinia": "~0.2.4",
     "vue-tsc": "^2.0.6"
-  }
+  },
+  "type": "module"
 }
