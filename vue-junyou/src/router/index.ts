@@ -49,7 +49,7 @@ const router = createRouter({
     },
     {
       path:'/error',
-      name:'merror',
+      name:'error',
       component:()=>import("@/views/error.vue")
     }
   ]

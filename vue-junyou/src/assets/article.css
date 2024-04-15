@@ -1,40 +1,33 @@
-
-
-
-body {
-    padding: 0 2rem;
-}
-
 .ar-back {
     width: 25px;
     height: 25px;
-    position: absolute;
-    top: 15vw;
-    left: 10vw;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
+
 .article-title {
-    margin-top: 28vw;
-    margin-left: 2vw;
+    margin-top: 50px;
+    margin-left: 20px;
     font-size: 1.3rem;
     font-weight: bold;
 }
 
 .article-user {
-    margin: 5vw 0;
-    margin-left: 2vw;
+    margin: 25px 0;
+    margin-left: 20px;
     font-size: 1.2rem;
-    /* font-weight:bolder; */
 }
 
 .article-content {
-    margin-left: 2vw;
+    margin: 0 20px;
     margin-bottom: 5vw;
+    line-height: 1.2rem;
 }
 
 .ar-heartAndMsg-container {
     display:flex;
-    padding-bottom: 3vw;
+    /* padding-bottom: 15px; */
     width: 100%;
 }
 
@@ -46,24 +39,25 @@ body {
 
 .ar-heartCount {
     width: 25px;
-    margin-left: 3vw;
+    margin-top: 5px;
+    margin-left: 20px;
 }
 
 .ar-bookmark {
     width: 25px;
     height: 25px;
-    margin-left: 3vw;
+    margin-left: 20px;
 }
 .ar-bookmarkOn {
     width: 31px;
     height: 25px;
-    margin-left: 2.3vw;
+    margin-left: 20px;
 }
 
 .ar-share {
     width: 25px;
     height: 25px;
-    margin-left: 45vw;
+    margin-left: 200px;
 }
 
 .ar-shareOn {
@@ -73,34 +67,29 @@ body {
 }
 
 .ar-articleBox {
-    margin-top: 5vw;
+    margin-top: 15px;
+    margin: 10px 30px;
     height: auto;
     background-color: #EADFDF;
     border-radius: 15px;
+
 }
 
-.ar-articleBox2 {
-    margin-top: 3vw;
-    height: auto;
-    background-color: #EADFDF;
-    border-radius: 15px;
-}
 
 .ar-messageName {
-    padding-top: 7vw;
-    margin-left: 4vw;
+    padding-top: 20px;
+    margin-left: 20px;
     font-size: 1rem;
 }
 
 .ar-content {
-    margin: 0 4vw;
-    padding-top: 3vw;
-    padding-bottom: 5vw;
+    margin: 0px 20px;
+    padding: 20px 0;
     font-size: 1rem;
 }
 
 .ar-allMsg {
-    margin-left: 2vw;
-    margin-top: 3vw;
+    margin: 30px 0;
+    margin-left: 30px;
 
 }
