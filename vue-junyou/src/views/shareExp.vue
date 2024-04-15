@@ -28,7 +28,7 @@ const msgCount = ref(8);
       alt="this is back"
     />
   </RouterLink>
-  <div>
+  <div class="sh-middle">
     <!-- 搜尋框 -->
     <input type="text" placeholder="請輸入職業" class="sh-searchBox" />
     <!-- 搜尋框查詢按鈕 -->
@@ -55,7 +55,7 @@ const msgCount = ref(8);
   </RouterLink>
  
   <RouterLink to="/article">
-    <div class="articleBox2">
+    <div class="articleBox">
     <div class="sh-title">{{ artic }}</div>
     <div class="sh-content">{{ msg }}</div>
     <div class="heartAndMsg-container">
@@ -69,7 +69,7 @@ const msgCount = ref(8);
   
 
   <RouterLink to="/article">
-    <div class="articleBox2">
+    <div class="articleBox">
     <div class="sh-title">{{ artic }}</div>
     <div class="sh-content">{{ msg }}</div>
     <div class="heartAndMsg-container">

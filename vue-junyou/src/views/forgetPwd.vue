@@ -21,7 +21,7 @@ sessionStorage.setItem('status', '1');
   </div>
   <div class="fg-textBox">
     <div class="fg-text">
-    註冊時使用的電子郵件:
+    註冊時使用的電子郵件
   </div>
   </div>
   <div class="fg-inputAria2">

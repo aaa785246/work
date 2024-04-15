@@ -1,5 +1,5 @@
 .login {
-    margin-top: 30vw;  
+    margin-top: 50px;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,23 +10,23 @@
     font-size: 2rem;
     font-weight: bold;
     border-right: 2px solid black;
-    padding-right: 5vw;
+    padding-right: 50px;
 }
 
 .loginTitle {
     font-size: 1.2rem;
     font-weight: bold;
     line-height: 1.4rem;
-    margin-left: 5vw;
+    margin-left: 30px;
 } 
 
 .inputText {
-    width: 70%;
-    height: 5vh;
+    width: 250px;
+    height: 50px;
     background-color: white;
     border-radius: 20px;
     font-size: 0.8rem;
-    padding-left: 5vw;
+    padding-left: 20px;
     border: none;
 }
 
@@ -35,7 +35,7 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding-top: 15vw;
+    padding-top: 80px;
 }
 
 .inputAria2 {
@@ -43,13 +43,11 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    /* margin-top: 10vw; */
-    padding-top: 5vw;
+    padding-top: 10px;
 }
 
 .inputP {
     width: 20%;
-    /* font-weight: bold; */
 }
 
 .stateAria{
@@ -57,50 +55,49 @@
     text-align: center;
     align-items: center;
     line-height: 1rem;
-    margin-top: 7vw;
-    width: 100vw;
+    margin-top: 30px;
+    width: 390px;
     font-size: 0.9rem;
 }
 
 .check {
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .remember {
-    margin-left: 1vw;
+    margin-left: 5px;
 }
 
 .register {
-    padding-left: 100px;
-    padding-right: 1vw;
+    padding-left: 120px;
+    padding-right: 5px;
     border-right: 2px solid black;
 }
 
 .forget {
-    margin-left: 1vw;
+    margin-left: 5px;
 }
 
 .loginbtn {
     background-color: #EADFDF;
     border: none;
     border-radius: 5px;
-    margin-top: 10vw;
-    padding: 3vw 30vw;
+    margin: 50px 0;
+    padding: 20px 120px;
     
 }
 
 .loginbtnBox {
+    width: 390px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .lg-back {
     width: 25px;
     height: 25px;
-    position: absolute;
-    top: 15vw;
-    left: 10vw;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .lg-menuMaskOn {
@@ -165,11 +162,3 @@
 .lg-dialogTextOff{
 display: none;
 }
-
-@media screen and (min-height: 900px) {
-    .register {
-        padding-left: 120px;
-        padding-right: 1vw;
-        border-right: 2px solid black;
-    }
-  }

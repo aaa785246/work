@@ -1,0 +1,46 @@
+.err-dialogOn {
+    width: 225px;
+    height: 325px;
+    border-radius: 15px;
+    background-color: #EADFDF;
+    opacity: 1;
+    z-index: 3;
+    margin: 100px 15px;
+}
+
+.err-warningImgOn{
+    position: relative;
+    top: 30px;
+    left: 60px;
+    width: 100px;
+    height: 100px;
+    z-index: 4;
+}
+
+.err-dialogTextOn{
+    position: relative;
+    top: 50px;
+    left: 75px;
+    z-index: 4;
+}
+
+.err-dialogTextOn2{
+    position: relative;
+    top: 55px;
+    left: 40px;
+    z-index: 4;
+}
+.err-btn {
+    position: relative;
+    top: 55px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    z-index: 4;
+    margin-top: 20px;
+}
+.err-dialogTextOn3{
+    background-color: #F6F1ED;
+    border-radius: 10px;
+    padding: 20px 30px;
+}

@@ -1,13 +1,12 @@
 .np-back {
     width: 25px;
     height: 25px;
-    position: absolute;
-    top: 15vw;
-    left: 10vw;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .npPage {
-    margin-top: 30vw;  
+    margin-top: 50px;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,21 +17,20 @@
     font-size: 2rem;
     font-weight: bold;
     border-right: 2px solid black;
-    padding-right: 5vw;
+    padding-right: 50px;
 }
 
 .np-loginTitle {
     font-size: 1.2rem;
     font-weight: bold;
     line-height: 1.4rem;
-    margin-left: 5vw;
+    margin-left: 30px;
 } 
 
 .np-text {
     font-weight: 500;
-    margin-top: 10vw;
+    margin-top: 100px;
     line-height: 1.2rem;
-
 }
 
 .np-textBox{
@@ -42,12 +40,12 @@
 
 
 .np-inputText {
-    width: 70%;
-    height: 5vh;
+    width: 250px;
+    height: 50px;
     background-color: white;
     border-radius: 20px;
     font-size: 0.8rem;
-    padding-left: 5vw;
+    padding-left: 20px;
     border: none;
 }
 
@@ -76,12 +74,13 @@
 }
 
 .np-inputText {
-    width: 70%;
-    height: 5vh;
+    width: 200px;
+    height: 50px;
     background-color: white;
     border-radius: 20px;
     font-size: 0.8rem;
-    padding-left: 5vw;
+    margin-left: 20px;
+    padding-left: 20px;
     border: none;
 }
 
@@ -91,7 +90,7 @@
     align-items: center;
     justify-content: center;
     /* margin-top: 10vw; */
-    padding-top: 15vw;
+    padding-top: 80px;
 }
 
 .np-inputAria2 {
@@ -99,26 +98,25 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    /* margin-top: 10vw; */
-    padding-top: 5vw;
+    padding-top: 10px;
 }
 
 .np-inputP {
-    width: 30%;
-    /* font-weight: bold; */
+    width: 100px;
+    font-weight: bold;
 }
 
 .np-loginbtn {
     background-color: #EADFDF;
     border: none;
     border-radius: 5px;
-    margin-top: 10vw;
-    padding: 3vw 30vw;
+    margin: 50px 0;
+    padding: 20px 120px;
     
 }
 
 .np-loginbtnBox {
+    width: 390px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }

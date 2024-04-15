@@ -1,13 +1,12 @@
 .fg-back {
-    width: 25px;
+     width: 25px;
     height: 25px;
-    position: absolute;
-    top: 15vw;
-    left: 10vw;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .forgetPage {
-    margin-top: 30vw;  
+    margin-top: 50px;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,22 +14,22 @@
 }
 
 .fg-logo {
-    font-size: 2rem;
+      font-size: 2rem;
     font-weight: bold;
     border-right: 2px solid black;
-    padding-right: 5vw;
+    padding-right: 50px;
 }
 
 .fg-loginTitle {
-    font-size: 1.2rem;
+   font-size: 1.2rem;
     font-weight: bold;
     line-height: 1.4rem;
-    margin-left: 5vw;
+    margin-left: 30px;
 } 
 
 .fg-text {
     font-weight: 500;
-    margin-top: 10vw;
+    margin-top: 100px;
     line-height: 1.2rem;
 
 }
@@ -42,12 +41,14 @@
 
 
 .fg-inputText {
-    width: 70%;
-    height: 5vh;
+    width: 200px;
+    height: 50px;
     background-color: white;
     border-radius: 20px;
     font-size: 0.8rem;
-    padding-left: 5vw;
+    margin-left: 20px;
+    padding-left: 20px;
+    margin-top: 30px;
     border: none;
 }
 
@@ -56,21 +57,19 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    /* margin-top: 10vw; */
-    padding-top: 5vw;
+    padding-top: 10px;
 }
 
 .fg-loginbtn {
     background-color: #EADFDF;
     border: none;
     border-radius: 5px;
-    margin-top: 10vw;
-    padding: 3vw 30vw;
-    
+    margin: 45px 0;
+    padding: 20px 120px;
 }
 
 .fg-loginbtnBox {
+    width: 390px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }

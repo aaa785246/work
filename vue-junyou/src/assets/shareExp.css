@@ -1,83 +1,84 @@
-/* body {
-    padding: 0 2rem;
-} */
 
+.sh-middle {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
 .sh-searchBox {
-    position: fixed;
-    top: 20vw;
-    width: 82vw;
-    height: 5vh;
+    position: relative; /* 將輸入框設置為相對定位的父元素 */    
+    width: 320px;
+    height: 40px;
     background-color: white;
     border-radius: 20px;
-    padding-left: 4vw;
+    margin-top: 30px;
+    padding-left: 20px;
     border: none;
 }
 
-.sh-searchBoxGlass {
-    position: fixed;
-    width: 7vw;
-    top: 21vw;
-    left: 80vw;
-    z-index: 6;
+.sh-searchBoxGlass { 
+    width: 25px;
+    height: 25px;
     visibility: visible;
+    position: absolute; /* 將圖片設置為絕對定位 */
+    top: 55%; /* 使圖片垂直居中 */
+    right: 50px; /* 距離輸入框右側的距離 */
+    z-index: 2;    
 }
 
 .sh-back {
     width: 25px;
     height: 25px;
-    position: absolute;
-    top: 8vw;
-    left: 10vw;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .articleBox {
-    margin-top: 40vw;
+    margin: 0 30px;
+    margin-top: 20px;
     height: auto;
     background-color: #EADFDF;
     border-radius: 15px;
 }
 
 .sh-title {
-    padding-top: 7vw;
-    margin-bottom: 5vw;
-    margin-left: 3vw;
+    padding-top: 30px;
+    margin-left: 15px;
+    margin-bottom: 15px;
     font-size: 1.4rem;
 }
 
 .sh-content {
-    margin: 3vw 3vw;
+    margin: 0 15px;
     font-size: 1rem;
 }
 
 .heartAndMsg-container {
     display: flex;
     align-items: center;
-    padding-bottom: 3vw;
+    padding-bottom: 30px;
+    height: 30px;
 }
 
 
 .heart {
     width: 25px;
     height: 25px;
-    margin-left: 45vw;
+    margin-left: 15px;
+    margin-top: 20px;
 
 }
 
 .heartAndMsgCount {
-    margin-left: 3vw;
+    margin-left: 20px;
+    margin-top: 20px;
     font-weight: bold;
 }
 
 .message {
     width: 25px;
     height: 25px;
-    margin-left: 3vw;
+    margin-left: 30px;
+    margin-top: 20px;
 }
 
 
-.articleBox2 {
-    margin-top: 5vw;
-    height: auto;
-    background-color: #EADFDF;
-    border-radius: 15px;
-}

@@ -1,13 +1,12 @@
 .rg-back {
     width: 25px;
     height: 25px;
-    position: absolute;
-    top: 15vw;
-    left: 10vw;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .registerPage {
-    margin-top: 30vw;  
+    margin-top: 50px;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,33 +17,34 @@
     font-size: 2rem;
     font-weight: bold;
     border-right: 2px solid black;
-    padding-right: 5vw;
+    padding-right: 50px;
 }
 
 .reg-loginTitle {
     font-size: 1.2rem;
     font-weight: bold;
     line-height: 1.4rem;
-    margin-left: 5vw;
+    margin-left: 30px;
 } 
 
 .reg-inputText {
-    width: 70%;
-    height: 5vh;
+    width: 200px;
+    height: 50px;
     background-color: white;
     border-radius: 20px;
     font-size: 0.8rem;
-    padding-left: 5vw;
+    margin-left: 20px;
+    padding-left: 20px;
     border: none;
 }
+
 
 .reg-inputAria {
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
-    /* margin-top: 10vw; */
-    padding-top: 20vw;
+    padding-top: 80px;
 }
 
 
@@ -53,13 +53,12 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    /* margin-top: 10vw; */
-    padding-top: 5vw;
+    padding-top: 10px;
 }
 
 
 .reg-inputP {
-    width: 30%;
+    width: 100px;
     font-weight: bold;
 }
 
@@ -67,13 +66,13 @@
     background-color: #EADFDF;
     border: none;
     border-radius: 5px;
-    margin-top: 10vw;
-    padding: 3vw 30vw;
+    margin: 50px 0;
+    padding: 20px 120px;
     
 }
 
 .reg-loginbtnBox {
+    width: 390px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
