@@ -13,6 +13,7 @@ const userAccount = ref("");
 const pwd = ref("");
 //前端傳入帳號密碼做驗證 後端傳回一個值 當他等於true的時候登入成功
 const loginState = ref(false);
+const content = ref("");
 //點選登入執行Component
 const actorsComponent = ref(false)
 
@@ -24,6 +25,8 @@ const getuserAccountAndPwd = () => {
   if (loginState.value) {
     store.increment()
     console.log("狀態:" + store.$state.loginState)
+  }else {
+    content.value = "登入失敗，帳號或密碼錯誤。"  
   }
 };
 
@@ -86,5 +89,5 @@ const muskOff = () => {
   <div class="loginbtnBox">
     <button class="loginbtn" @click="getuserAccountAndPwd">登入</button>
   </div>
-  <errorOrAccept v-if="actorsComponent" :state="loginState" />
+  <errorOrAccept v-if="actorsComponent" :state="loginState" :content="content" />
 </template>
