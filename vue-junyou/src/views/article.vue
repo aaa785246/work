@@ -2,8 +2,8 @@
 import "@/assets/article.css";
 import { ref, onMounted } from "vue";
 import { getArticleList, getMessageList } from "@/js/api";
-import articleContent from "./articleContent.vue";
-import messageContent from "./messageContent.vue";
+import articleContent from "@/components/articleContent.vue";
+import messageContent from "@/components/messageContent.vue";
 
 // onMounted(async () => {
 

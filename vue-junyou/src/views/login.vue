@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { defineComponent, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useLoginStore } from '@/stores/login'
-import errorOrAccept from "./errorOrAccept.vue";
+import errorOrAccept from "@/components/errorOrAccept.vue"
 const store = useLoginStore();
 const router = useRouter();
 

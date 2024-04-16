@@ -1,46 +1,63 @@
-.err-dialogOn {
+.err-btn {
+    position: relative;
+    top: -785px;
+    left: 145px;
+    z-index: 4;
+    margin-top: 20px;
+}
+.err-dialogTextOn3{
+    position: relative; 
+    top: -825px;
+    left: 145px;
+    z-index: 4;
+}
+
+
+.menuMaskOn {
+    position:fixed;
+    top: 0;
+    left: 100;
+    background-color: black;
+    opacity: 0.7;
+    width: 390px;
+    height: 100vh;
+    z-index: 2;
+}
+
+
+
+.dialogOn {
+    position: relative;
     width: 225px;
     height: 325px;
     border-radius: 15px;
     background-color: #EADFDF;
+    top: -500px;
+    left: 60px;
     opacity: 1;
     z-index: 3;
     margin: 100px 15px;
 }
 
-.err-warningImgOn{
+
+.imgOn{
     position: relative;
-    top: 30px;
-    left: 60px;
     width: 100px;
-    height: 100px;
+    top:-880px;
+    left:140px;
     z-index: 4;
 }
 
-.err-dialogTextOn{
-    position: relative;
-    top: 50px;
-    left: 75px;
+.dialogTextOn{
+    position: relative; 
+    top: -850px;
+    left: 140px;
     z-index: 4;
 }
 
-.err-dialogTextOn2{
-    position: relative;
-    top: 55px;
-    left: 40px;
+/* .dialogTextOn2{
+    position: relative; 
+    top: -845px;
+    left: 145px;
     z-index: 4;
-}
-.err-btn {
-    position: relative;
-    top: 55px;
-    left: 0px;
-    display: flex;
-    justify-content: center;
-    z-index: 4;
-    margin-top: 20px;
-}
-.err-dialogTextOn3{
-    background-color: #F6F1ED;
-    border-radius: 10px;
-    padding: 20px 30px;
-}
+} */

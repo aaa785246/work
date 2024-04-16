@@ -19,8 +19,8 @@ const router = createRouter({
       component:()=>import("@/views/register.vue")
     },
     {
-      path:'/emailCheck',
-      name:'emailCheck',
+      path:'/emailcheck',
+      name:'emailcheck',
       component:()=>import("@/views/emailCheck.vue")
     },
     {
@@ -34,8 +34,8 @@ const router = createRouter({
       component:()=>import("@/views/newpwd.vue")
     },
     {
-      path:'/shareExp',
-      name:'shareExp',
+      path:'/shareexp',
+      name:'shareexp',
       component:()=>import("@/views/shareExp.vue")
     },
     {
@@ -48,9 +48,9 @@ const router = createRouter({
       component:()=>import("@/views/member.vue")
     },
     {
-      path:'/error',
-      name:'error',
-      component:()=>import("@/views/error.vue")
+      path:'/erroracc',
+      name:'erroracc',
+      component:()=>import("@/components/errorOrAccept.vue")
     }
   ]
 })
