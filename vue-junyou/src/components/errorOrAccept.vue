@@ -5,13 +5,13 @@ import { defineProps } from "vue";
 import "@/assets/errorOrAccept.css";
 
 const props = defineProps<{
-  state: number;
+  state: boolean;
 }>();
 </script>
 
 <template>
   <!-- 失敗給0 成功給1 -->
-  <div v-if="$props.state === 0">
+  <div v-if="props.state">
     <!-- <div class="menuMaskOn"></div>
     <div class="dialogOn"></div>
     <img src="@/img/warning.png" class="imgOn" />
@@ -24,18 +24,17 @@ const props = defineProps<{
         <div class="err-dialogTextOn3">立即登入</div>
       </div>
     </RouterLink> -->
-    <dialog id="myDialog">
-      <p>測試</p>
-      <button id="closeBtn">Close</button>
-    </dialog>
   </div>
-  <div v-else>
-    <div class="menuMaskOn"></div>
+  <div class="test" v-else>
+    <!-- <div class="menuMaskOn"></div>
     <div class="dialogOn"></div>
     <img src="@/img/accept.png" alt="" class="imgOn" />
     <div class="dialogTextOn">
       <p>登入成功</p>
       <p>畫面於3秒後跳轉</p>
-    </div>
+    </div> -->
+    <dialog id="myDialog" class="dialog">
+      <p>測試</p>
+    </dialog>
   </div>
 </template>

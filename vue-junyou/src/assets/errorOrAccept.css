@@ -55,9 +55,19 @@
     z-index: 4;
 }
 
-/* .dialogTextOn2{
-    position: relative; 
-    top: -845px;
-    left: 145px;
-    z-index: 4;
-} */
+.dialog {
+    width: 225px;
+    height: 325px;
+    border: none;
+    border-radius: 20px; 
+}
+
+.dialog::backdrop {
+    max-width: 390px;
+    left: 100px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .test {
+    height: 100vh;
+  }

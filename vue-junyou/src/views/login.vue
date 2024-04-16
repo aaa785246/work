@@ -11,25 +11,23 @@ const router = useRouter();
 //使用者輸入的帳號密碼
 const userAccount = ref("");
 const pwd = ref("");
-//前端傳入帳號密碼做驗證 後端傳回一個number值 當他等於1的時候登入成功
-const loginState = ref(0);
+//前端傳入帳號密碼做驗證 後端傳回一個值 當他等於true的時候登入成功
+const loginState = ref(false);
 //點選登入執行Component
 const actorsComponent = ref(false)
 
 // 假設登入都成功
 const getuserAccountAndPwd = () => {
-  loginState.value = 0;
+  loginState.value = false;
   actorsComponent.value = true;
   //登入成功傳遞pinia變數
-  if (loginState.value === 1) {
+  if (loginState.value) {
     store.increment()
     console.log("狀態:" + store.$state.loginState)
   }
 };
 
-const errorOrAcceptState = computed(() => {
-  return loginState.value === 1 ? 1 : 0;
-});
+
 
 //用來開關遮罩
 const loginMuskOn = ref(false);
@@ -88,5 +86,5 @@ const muskOff = () => {
   <div class="loginbtnBox">
     <button class="loginbtn" @click="getuserAccountAndPwd">登入</button>
   </div>
-  <errorOrAccept v-if="actorsComponent" :state="errorOrAcceptState" />
+  <errorOrAccept v-if="actorsComponent" :state="loginState" />
 </template>
