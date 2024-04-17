@@ -10,7 +10,7 @@ const router = useRouter();
 //使用者輸入的帳號密碼
 const userEmail= ref("");
 const pwd = ref("");
-
+const seconds = ref(store.seconds)
 //前端傳入帳號密碼做驗證 後端傳回一個值 當他等於true的時候登入成功
 const loginState = ref(false);
 //dialog文字
@@ -23,12 +23,13 @@ email:string;
 pwd:string;
 };
 const user= ref<user>()
+  store.setInitial();
 // 假設登入都成功
 const getuserAccountAndPwd = async() => {
   const userData:user[] = await getUserDataList();
   if (userData) {
     //清空登入狀態
-    loginState.value = false;
+    // loginState.value = false;
     
     const userDataTmp = userData.find(
     v =>{ return v.email === userEmail.value && v.pwd === pwd.value})
@@ -36,8 +37,8 @@ const getuserAccountAndPwd = async() => {
     //帳號驗證後有該筆資料
     if (userDataTmp != undefined) {
       loginState.value = true;
-      //登入成功傳遞pinia變數
       store.increment()
+      store.countTime()
       console.log("登入狀態:" + store.loginPiniaState)
       content.value = "登入成功，"  
     }else{
@@ -49,12 +50,13 @@ const getuserAccountAndPwd = async() => {
 };
 
 
-//偵測userEmail
-// watch(userEmail,(newValue,oldValue)=>{
-//   if (newValue) {
-//     console.log(userEmail.value)
-//   }
-// })
+// 偵測pinia秒數
+watch(seconds,(newValue,oldValue)=>{
+  if (newValue) {
+    console.log(seconds)
+    // store.setZero()
+  }
+})
 //component關閉
 const componentClose=()=>{
   actorsComponent.value=false
@@ -62,6 +64,9 @@ const componentClose=()=>{
 
 const test = () => {
   console.log("pinia狀態:" + store.loginPiniaState)
+}
+const test2 = () => {
+  console.log("秒數:" + store.seconds)
 }
 </script>
 
@@ -103,6 +108,7 @@ const test = () => {
   <div class="loginbtnBox">
     <button class="loginbtn" @click="getuserAccountAndPwd">登入</button>
   </div>
-  <button class="loginbtn" @click="test">測試</button>
+  <button class="loginbtn" @click="test">狀態</button>
+  <button class="loginbtn" @click="test2">秒數</button>
   <errorOrAccept v-if="actorsComponent"  :state="loginState" :content="content" @close-dialog="componentClose"/>
 </template>
