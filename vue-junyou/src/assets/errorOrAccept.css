@@ -1,19 +1,4 @@
-.err-btn {
-    position: relative;
-    top: -785px;
-    left: 145px;
-    z-index: 4;
-    margin-top: 20px;
-}
-
-.err-dialogTextOn3 {
-    position: relative;
-    top: -825px;
-    left: 145px;
-    z-index: 4;
-}
-
-
+/* 
 .menuMaskOn {
     position: fixed;
     top: 0;
@@ -41,40 +26,56 @@
 }
 
 
-.imgOn {
-    position: relative;
-    width: 100px;
-    top: 10px;
-    left: 60px;
-    z-index: 4;
-}
 
 .dialogTextOn {
     position: relative;
     top: -850px;
     left: 140px;
     z-index: 4;
-}
+} */
 
+.imgOn {
+    position: relative;
+    width: 100px;
+    top: 10px;
+    left: 50px;
+    z-index: 4;
+}
 #dialog {
     --max-width: 390px;
-    height: 250px;
-    background-color: #EADFDF;
+    width: 200px;
+    height: 300px;
+    background-color: #F6F1ED;
     border: none;
-    z-index: 2;
     border-radius: 15px;
-    margin-bottom:800px ;
+    /* margin-bottom:800px ; */
 }
 
 #dialog::backdrop {
     max-width: var(--max-width);
     left: calc(50% - (var(--max-width) / 2));
-    height: auto;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
 .content {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
+}
+
+.content>p {
+    height: 30px;
+}
+
+.content2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+}
+.content-btn {
+    background-color: #EADFDF;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 50px;
 }

@@ -1,54 +1,68 @@
 <script setup lang="ts">
 import "@/assets/login.css";
-import { ref } from "vue";
-import { defineComponent, computed } from "vue";
+import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useLoginStore } from '@/stores/login'
 import errorOrAccept from "@/components/errorOrAccept.vue"
+import {  getUserDataList } from '@/js/api';
 const store = useLoginStore();
 const router = useRouter();
-
 //使用者輸入的帳號密碼
-const userAccount = ref("");
+const userEmail= ref("");
 const pwd = ref("");
+
 //前端傳入帳號密碼做驗證 後端傳回一個值 當他等於true的時候登入成功
 const loginState = ref(false);
+//dialog文字
 const content = ref("");
 //點選登入執行Component
+// const modelValue = defineModel<Boolean>();
 const actorsComponent = ref(false)
-
+interface user{
+email:string;
+pwd:string;
+};
+const user= ref<user>()
 // 假設登入都成功
-const getuserAccountAndPwd = () => {
-  loginState.value = false;
-  actorsComponent.value = true;
-  //登入成功傳遞pinia變數
-  if (loginState.value) {
-    store.increment()
-    console.log("狀態:" + store.$state.loginState)
-  }else {
-    content.value = "登入失敗，帳號或密碼錯誤。"  
+const getuserAccountAndPwd = async() => {
+  const userData:user[] = await getUserDataList();
+  if (userData) {
+    //清空登入狀態
+    loginState.value = false;
+    
+    const userDataTmp = userData.find(
+    v =>{ return v.email === userEmail.value && v.pwd === pwd.value})
+
+    //帳號驗證後有該筆資料
+    if (userDataTmp != undefined) {
+      loginState.value = true;
+      //登入成功傳遞pinia變數
+      store.increment()
+      console.log("登入狀態:" + store.loginPiniaState)
+      content.value = "登入成功，"  
+    }else{
+      content.value = "登入失敗，帳號或密碼錯誤。"  
+    }
+    actorsComponent.value = true;
   }
+ 
 };
 
 
-
-//用來開關遮罩
-const loginMuskOn = ref(false);
-// 點選遮罩即關閉
-const muskOff = () => {
-  loginMuskOn.value = !loginMuskOn.value;
+//偵測userEmail
+// watch(userEmail,(newValue,oldValue)=>{
+//   if (newValue) {
+//     console.log(userEmail.value)
+//   }
+// })
+//component關閉
+const componentClose=()=>{
+  actorsComponent.value=false
 }
 
-//跳轉秒數
-// const acceptSecond = ref(3);
-//秒數跑完跳轉網址
-// const acceptSecondDown = () => {
-//   acceptSecond.value--
-//   dialogText2.value = `畫面於${acceptSecond.value}秒後跳轉`;
-//   if (acceptSecond.value==-1) {
-//       router.push("/shareExp")
-//   }
-// }
+const test = () => {
+  console.log("pinia狀態:" + store.loginPiniaState)
+}
 </script>
 
 
@@ -65,7 +79,7 @@ const muskOff = () => {
 
   <div class="inputAria">
     <p class="inputP">帳號:</p>
-    <input type="text" class="inputText" placeholder="電子郵件" v-model="userAccount" />
+    <input type="text" class="inputText" placeholder="電子郵件" v-model="userEmail" />
   </div>
   <div class="inputAria2">
     <p class="inputP">密碼:</p>
@@ -89,5 +103,6 @@ const muskOff = () => {
   <div class="loginbtnBox">
     <button class="loginbtn" @click="getuserAccountAndPwd">登入</button>
   </div>
-  <errorOrAccept v-if="actorsComponent" :state="loginState" :content="content" />
+  <button class="loginbtn" @click="test">測試</button>
+  <errorOrAccept v-if="actorsComponent"  :state="loginState" :content="content" @close-dialog="componentClose"/>
 </template>

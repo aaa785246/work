@@ -4,13 +4,17 @@ import "@/assets/animate.css";
 import { ref } from "vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
-import { useLoginStore } from '@/stores/login'
 import router from "@/router";
+import { useLoginStore } from '@/stores/login'
 
 //pinia
-const store = useLoginStore();
-if (store.$state.loginState == false) {
-  router.push("/error")
+const store =  useLoginStore()
+// if (store) {
+//   console.log("pinia狀態:" + store.loginPiniaState)
+// }
+
+if (store.loginPiniaState != true) {
+  router.push("/")
 }
 const userName = ref("馬克");
 const toggleMenu = () => {

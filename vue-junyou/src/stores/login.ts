@@ -1,11 +1,16 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useLoginStore = defineStore('loginState', () => {
-  const loginState = ref(false)
-  function increment() {
-    loginState.value = !loginState.value
-  }
+export const useLoginStore = defineStore('loginPiniaState', {
+  state:()=>({loginPiniaState:false}),
+  actions:{
+    increment() {
+  this.loginPiniaState = !this.loginPiniaState
+    }
+  },
+  persist:true
+}
+)
 
-  return { loginState, increment }
-})
+
+// const persistPlugin = createPersistPlugin();

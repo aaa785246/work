@@ -12,7 +12,15 @@ const props = defineProps<{
   articleNumber: number;
 }>();
 
-// const articleIndex = computed<number>(() => props.articleNumber - 1);
+
+//定義article物件告訴TS
+interface Article {
+  userName: string;
+  title: string;
+  completed: string;
+  articleNumber: number;
+}
+
 const article = ref<Article>();
 onMounted(async () => {
   const articleData: Article[] = await getArticleList();
@@ -54,13 +62,6 @@ const toggleMark = () => {
   share.value = myMarkToggle.value ? "ar-shareOn" : "ar-share";
 };
 
-//定義article物件告訴TS
-interface Article {
-  userName: string;
-  title: string;
-  completed: string;
-  articleNumber: number;
-}
 
 //給予初始值避免API資料還沒抵達前渲染造成的問題
 // const articleList = ref<Article[]>([
