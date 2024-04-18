@@ -47,11 +47,6 @@ const router = createRouter({
       path:'/member',
       name:'member',
       component:()=>import("@/views/member.vue")
-    },
-    {
-      path:'/erroracc',
-      name:'erroracc',
-      component:()=>import("@/components/errorOrAccept.vue")
     }
   ]
 })

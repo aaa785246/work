@@ -1,118 +1,106 @@
-/* body {
-    margin: 0;
-} */
-
-
 .mem-back {
     width: 25px;
     height: 25px;
-    position: absolute;
-    top: 15vw;
-    left: 10vw;
 }
 
 
 .memberAria {
-    width: 100%;
+    width: 390px;
     height: 130px;
     background-color: #EADFDF;
     margin: 0;
     border-radius: 15px;
+    display: grid;
+    grid-template-columns:repeat(3,1fr) ;
+    align-items: center;
+    justify-items: center;
 }
 
 .userName {
-    position: absolute;
-    top: 17vw;
-    left: 43vw;
     font-size: 1.5rem;
 }
 
 .bell {
     width: 30px;
     height: 30px;
-    position: absolute;
-    top: 15vw;
-    left: 80vw;
 }
 
-.mem-maskdivOn {
-    display: block;
+.mem-back {
+    width: 25px;
+    height: 25px;
 }
 
-.mem-maskdivOff {
-    display: none;
-}
 
-.mem-menuMaskOn {
+.maskOn {
     position: fixed;
     top: 0%;
     background-color: black;
     opacity: 0.7;
-    width: 100vw;
+    width: 390px;
     height: 100vh;
-    z-index: 2;
-}
-
-
-.mem-menuOn {
-    position: fixed;
-    top: 0vw;
-    margin-left: 40vw;
-    width: 60vw;
-    height: 100%;
-    background-color: #F6F1ED;
     z-index: 3;
 }
 
-.mem-m-top30 {
-    height: auto;
-    margin: 0 5vw;
-    margin-top: 30vw;
+
+.menuOff {
+    display: none;
 }
 
-.mem-articleBox2 {
-    width: 50vw;
+.menuuuuuu{
+    position: relative;
+    top: 0px;
+    margin-left: 150px;
+    width: 340px;
+    height: 100vh;
+    background-color: #F6F1ED;
+    z-index: 4;
+}
+
+.menuOn {
+    position: relative;
+    top: 0px;
+    margin-left: 150px;
+    width: 240px;
+    height: 100vh;
+    background-color: #F6F1ED;
+    z-index: 5;
+    overflow:auto;
+}
+
+
+
+.mem-articleBox {
+    width: 180px;
     height: auto;
     margin-top: 10px;
+    margin-left: 15px;
     background-color: #EADFDF;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center; 
-    z-index: 4;
-    padding: 5vw;
+    z-index: 5;
+    padding: 15px;
 }
-
-.mem-title {
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-
+.userName {
+    padding: 40px 0;
+    padding-left: 50px;
 }
-
-
-.mem-closeButtonOn {
-    position: fixed;
-    z-index: 4;
+.closeButtonOn {
     width: 25px;
-    top: 12vw;
-    left: 83vw;
+    top: 0px;
+    left: 150px;
+    z-index: 4;
+    padding-top: 25px;
+    padding-left: 30px;
 }
-
-.mem-closeButtonOff {
+.closeButtonOff {
     visibility: hidden;
     display: none;
 }
 
 
-.userNameMaskOn {
-    position: absolute;
-    top: 15vw;
-    left: 55vw;
-    visibility: visible;
-    z-index: 4;
-    font-size: 1.5rem;
-    color: black;
-}
+
 
 .mem-middle {
     display: flex;
