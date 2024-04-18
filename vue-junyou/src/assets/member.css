@@ -35,8 +35,8 @@
     position: fixed;
     top: 0%;
     background-color: black;
-    opacity: 0.7;
-    width: 390px;
+    opacity: 1;
+    width: 150px;
     height: 100vh;
     z-index: 3;
 }
@@ -44,16 +44,6 @@
 
 .menuOff {
     display: none;
-}
-
-.menuuuuuu{
-    position: relative;
-    top: 0px;
-    margin-left: 150px;
-    width: 340px;
-    height: 100vh;
-    background-color: #F6F1ED;
-    z-index: 4;
 }
 
 .menuOn {

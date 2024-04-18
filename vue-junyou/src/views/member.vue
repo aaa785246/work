@@ -34,6 +34,7 @@ const myMenuToggle = ref(false);
 
 function toggleMenu() {
   myMenuToggle.value = !myMenuToggle.value;
+  console.log(myMenuToggle.value)
 }
 
 async function bellReply() {
