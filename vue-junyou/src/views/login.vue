@@ -8,11 +8,21 @@ import loginFailed from "@/components/loginFailed.vue";
 // import type {user} from '@/js/api';
 import { getUserDataList, type user } from "@/js/api";
 import { setCookie, getCookie } from "@/js/cookie";
+import EmailCheck from "./emailCheck.vue";
 const store = useLoginStore();
 const router = useRouter();
 //使用者輸入的帳號密碼
 const userEmail = ref("");
 const pwd = ref("");
+//記住帳號操作 checkBox->getCookie->帶入input框
+const rememberEmailBox = ref(false);
+const rememberEmail= getCookie("rememberEmail")
+if (rememberEmail) userEmail.value = rememberEmail;
+const rememberEmailfunc = () =>{
+rememberEmailBox.value = !rememberEmailBox.value
+console.log(rememberEmailBox.value)
+}
+
 //登入成功失敗開啟哪一個dialog
 const loginStateDialog = ref<boolean>(false);
 const switchDialog = ref<boolean>(false);
@@ -32,6 +42,8 @@ const getuserAccountAndPwd = async () => {
       loginStateDialog.value = true;
       store.userName = userDataTmp.userName;
       setCookie("loginState", "Y", 10);
+      //記住帳號
+      if (rememberEmailBox.value) setCookie("rememberEmail",userDataTmp.email,10); 
     } else {
       switchDialog.value = true;
       loginStateDialog.value = false;
@@ -79,7 +91,7 @@ const componentClose = () => {
   </div>
 
   <div class="stateAria">
-    <input type="checkbox" class="check" />
+    <input type="checkbox" class="check" v-model="rememberEmailBox" @click="rememberEmailfunc"/>
     <div class="remember">記住帳號</div>
     <div class="register">
       <RouterLink to="/register">

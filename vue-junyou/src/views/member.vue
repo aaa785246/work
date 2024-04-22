@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "@/assets/member.css";
 import "@/assets/animate.css";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import router from "@/router";
@@ -15,7 +15,19 @@ const userName = ref(store.userName);
 // const cookieState = getCookie("loginState");
 // if(cookieState != "Y") router.push("/login")
 
+const myMenuToggle = ref(false);
+function toggleMenu() {
+  myMenuToggle.value = !myMenuToggle.value;
+}
 const replyText = ref<reply[]>();
+async function bellReply() {
+  const items: reply[] = await getUserReplyList();
+  replyText.value = items;
+}
+
+onMounted(async() => {
+  bellReply();
+});
 
 type Link = {
   aria: string;
@@ -26,22 +38,6 @@ const links = ref<Link[]>([
   { aria: "管理帳號" },
 ]);
 
-function checkLink(text: string) {
-  console.log("Clicked content:", text);
-}
-
-const myMenuToggle = ref(false);
-
-function toggleMenu() {
-  myMenuToggle.value = !myMenuToggle.value;
-  console.log(myMenuToggle.value)
-}
-
-async function bellReply() {
-  myMenuToggle.value = !myMenuToggle.value;
-  const items: reply[] = await getUserReplyList();
-  replyText.value = items;
-}
 </script>
 
 <template>
@@ -60,14 +56,14 @@ async function bellReply() {
       class="bell"
       title="bell"
       alt="this is bell"
-      @click="bellReply"
+      @click="toggleMenu"
     />
   </div>
   <!-- 遮罩 -->
-  <div :class="myMenuToggle ? 'maskOn' : 'menuMaskOff'" @click="toggleMenu">
+  <div :class="myMenuToggle ? 'maskOn' : 'maskOff'" @click="toggleMenu">
     <!-- 菜單 -->
-    <div :class="myMenuToggle ? 'menuOn' : 'menuOff'">
-      <div class="userName">
+    <div :class="myMenuToggle ? 'menuOn' : 'menuOff'" @click.stop>
+      <div class="MeunUserName">
         {{ userName }}
       </div>
       <!-- 關閉鈕 -->
