@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const getArticleList = async() =>{
     const response = await fetch("http://localhost:3001/article", {method:"GET",});
     const data = await response.json();
@@ -23,12 +25,6 @@ export const getUserReplyList = async() =>{
 } 
 
 
-
-export interface user{
-    email:string;
-    pwd:string;
-    userName:string;
-};
 
 
 export interface reply{

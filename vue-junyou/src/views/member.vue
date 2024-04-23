@@ -10,33 +10,26 @@ import { getCookie } from "@/js/cookie";
 import { getUserReplyList, type reply } from "@/js/api";
 
 const store = useLoginStore();
-const userName = ref(store.userName);
+const userName = ref(getCookie("userName"));
 
-// const cookieState = getCookie("loginState");
-// if(cookieState != "Y") router.push("/login")
+const cookieState = getCookie("loginState");
+if(cookieState != "true") router.push("/login")
+
 
 const myMenuToggle = ref(false);
 function toggleMenu() {
   myMenuToggle.value = !myMenuToggle.value;
 }
-const replyText = ref<reply[]>();
-async function bellReply() {
-  const items: reply[] = await getUserReplyList();
-  replyText.value = items;
-}
+// const replyText = ref<reply[]>();
+// async function bellReply() {
+//   const items: reply[] = await getUserReplyList();
+//   replyText.value = items;
+// }
 
-onMounted(async() => {
-  bellReply();
-});
+// onMounted(async() => {
+//   bellReply();
+// });
 
-type Link = {
-  aria: string;
-};
-const links = ref<Link[]>([
-  { aria: "管理收藏貼文" },
-  { aria: "管理個人貼文" },
-  { aria: "管理帳號" },
-]);
 
 </script>
 

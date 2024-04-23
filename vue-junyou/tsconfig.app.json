@@ -9,7 +9,6 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "module": "ESNext",
-    "esModuleInterop": true
+    "typeRoots": ["./types", "./node_modules/vue/types"]
   }
 }
