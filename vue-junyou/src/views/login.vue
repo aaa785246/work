@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import axios from 'axios';
+import Vue from 'vue';
 import "@/assets/login.css";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
@@ -26,6 +28,37 @@ console.log(rememberEmailBox.value)
 //登入成功失敗開啟哪一個dialog
 const loginStateDialog = ref<boolean>(false);
 const switchDialog = ref<boolean>(false);
+
+
+new Vue({
+  el:'#app',
+  data:{
+    "user_email": "",
+    "user_password": ""
+  }
+  methods:{
+    signIn(){
+      const api =`http://192.168.50.193:8001/api/loginCheck`
+      axios.
+    }
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const user = ref<user>();
 // 假設登入都成功
