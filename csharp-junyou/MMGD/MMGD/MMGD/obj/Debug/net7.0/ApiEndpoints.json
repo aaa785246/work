@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "mmgd.Controllers.mmgdController",
+    "Method": "LoginCheck",
+    "RelativePath": "loginCheck",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "mmgd.Controllers.searchLoginState",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "mmgd.Controllers.mmgdController",
+    "Method": "membernotice",
+    "RelativePath": "notice",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "mmgd.Controllers.noticeState",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "mmgd.Controllers.mmgdController",
+    "Method": "Test",
+    "RelativePath": "test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
