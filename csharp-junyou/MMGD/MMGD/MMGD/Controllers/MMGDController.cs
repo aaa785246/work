@@ -102,7 +102,7 @@ namespace mmgd.Controllers
                                  join userData in _context.userData on message.username equals userData.username
                                  where article.article_number == message.article_number &&
                                  data.user_email == article.email
-                                 orderby Convert.ToInt32(message.floor)
+                                 orderby Convert.ToInt32(message.msg_floor)
                                  select message.msg_content).ToListAsync();
                 return StatusCode(StatusCodes.Status200OK, tmp);
             }                

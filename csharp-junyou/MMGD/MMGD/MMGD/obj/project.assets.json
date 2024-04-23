@@ -3081,11 +3081,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
       "projectName": "MMGD",
-      "projectPath": "C:\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
+      "projectPath": "C:\\Users\\user\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\MMGD\\MMGD\\MMGD\\obj\\",
+      "outputPath": "C:\\Users\\user\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
