@@ -28,7 +28,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[message]",
+         "Name": "[dbo].[message_floor]",
          "ObjectType": 0
       },
       {

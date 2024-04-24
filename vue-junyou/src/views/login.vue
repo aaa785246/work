@@ -41,6 +41,7 @@ const signin = async () => {
         switchDialog.value = true;
         loginStateDialog.value = true;
         setCookie("userName",response.data.user_name,10)
+        setCookie("userEmail", response.data.user_email, 10);
         setCookie("loginState", response.data.authorized, 10);
         // 記住帳號
         if (rememberEmailBox.value) setCookie("rememberEmail", response.data.user_email, 10);

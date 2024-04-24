@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "mmgd.Controllers.mmgdController",
+    "Method": "addMessage",
+    "RelativePath": "addmessage",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "mmgd.Controllers.addMessage",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "mmgd.Controllers.mmgdController",
     "Method": "LoginCheck",
     "RelativePath": "loginCheck",
     "HttpMethod": "POST",

@@ -91,21 +91,76 @@ namespace mmgd.Controllers
             }
         }
 
-        //通知
+        //通知 
         [HttpPost("notice")]
         public async Task<ObjectResult> membernotice(noticeState data)
         {
             try
             {
-                var tmp = await (from message in _context.message_floor
-                                 join article in _context.article on message.article_number equals article.article_number
-                                 join userData in _context.userData on message.username equals userData.username
-                                 where article.article_number == message.article_number &&
+                var tmp = await (from notice in _context.notice
+                                 join article in _context.article on notice.airicle_number equals article.article_number
+                                 join userData in _context.userData on notice.message_username equals userData.username
+                                 where article.article_number == notice.airicle_number &&
                                  data.user_email == article.email
-                                 orderby Convert.ToInt32(message.msg_floor)
-                                 select message.msg_content).ToListAsync();
+                                 orderby Convert.ToInt32(notice.msg_floor)
+                                 select new { notice.message_username, notice.message_content,notice.airicle_number}).ToListAsync();
                 return StatusCode(StatusCodes.Status200OK, tmp);
             }                
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
+        //新增留言並同步增加到通知表
+        [HttpPost("addmessage")]
+        public async Task<ObjectResult> addMessage(addMessage data)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(data.msg_userName) ||
+                    string.IsNullOrWhiteSpace(data.article_number) || string.IsNullOrWhiteSpace(data.msg_content))
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, "輸入內容不可為空");
+                }
+                //目前的留言樓數
+                var dataFloor = await (from message in _context.message_floor
+                                 where message.article_number == data.article_number
+                                 orderby Convert.ToInt32(message.msg_floor) descending
+                                 select message.msg_floor
+                                ).FirstOrDefaultAsync();
+
+                var poster = await (from article in _context.article
+                                    where article.article_number ==  data.article_number
+                                    select article.email).FirstOrDefaultAsync();
+
+
+
+                var param_message = new message_floor
+                {
+                    username = data.msg_userName,
+                    msg_floor = Convert.ToString(Convert.ToInt32(dataFloor) + 1),
+                    article_number = data.article_number,
+                    msg_content = data.msg_content
+                };
+
+
+
+
+                var param_notice = new notice
+                {
+                    email = poster,
+                    message_username = data.msg_userName,
+                    airicle_number = data.article_number,
+                    msg_floor = Convert.ToString(Convert.ToInt32(dataFloor) + 1),
+                    message_content = data.msg_content,
+                    viewed = "N"
+                };
+
+                _context.message_floor.AddAsync(param_message);
+                _context.notice.AddAsync(param_notice);
+                await _context.SaveChangesAsync();
+                return StatusCode(StatusCodes.Status200OK, "OK");
+            }
             catch
             {
                 return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
@@ -117,6 +172,8 @@ namespace mmgd.Controllers
     public record loginState(string user_name, string user_email, bool Authorized);
     //notice
     public record noticeState(string user_email);
+    //addMessage
+    public record addMessage(string msg_userName,string article_number, string msg_content,string posterEmail);
 
     //預設值
     //loginState("test@com", false);

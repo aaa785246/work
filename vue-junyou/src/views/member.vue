@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import axios from "axios";
 import "@/assets/member.css";
 import "@/assets/animate.css";
 import { onMounted, ref } from "vue";
@@ -9,28 +10,36 @@ import { useLoginStore } from "@/stores/login";
 import { getCookie } from "@/js/cookie";
 import { getUserReplyList, type reply } from "@/js/api";
 
-const store = useLoginStore();
-const userName = ref(getCookie("userName"));
-
 const cookieState = getCookie("loginState");
 if(cookieState != "true") router.push("/login")
+
+const store = useLoginStore();
+const userName = ref(getCookie("userName"));
+const userEmail = ref(getCookie("userEmail"))
+
 
 
 const myMenuToggle = ref(false);
 function toggleMenu() {
   myMenuToggle.value = !myMenuToggle.value;
 }
-// const replyText = ref<reply[]>();
-// async function bellReply() {
-//   const items: reply[] = await getUserReplyList();
-//   replyText.value = items;
-// }
+const replyText = ref<reply[]>();
 
-// onMounted(async() => {
-//   bellReply();
-// });
+const noticefunc = async () => {
+  const api = `http://192.168.50.193:8001/api/notice`;
+  await axios
+    .post(api, {
+      user_email: userEmail.value,
+    })
+    .then((response) => {
+        replyText.value = response.data;
+        // console.log(response.data)
+    })
+};
 
-
+onMounted(()=>{
+  noticefunc()
+})
 </script>
 
 <template>
@@ -75,7 +84,7 @@ function toggleMenu() {
         :key="index"
       >
         <div class="mem-title">
-          {{ item.othUser }} 回覆了您:「{{ item.artic }}」
+          {{ item.username }} 回覆了您:「{{ item.msg_content }}」
         </div>
       </div>
     </div>
