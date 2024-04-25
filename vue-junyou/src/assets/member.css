@@ -70,6 +70,12 @@
     z-index: 5;
     padding: 15px;
 }
+
+.mem-title {
+    line-height: 1.2rem;
+}
+
+
 .userName {
     padding: 40px 0;
     font-size: 1.5rem;

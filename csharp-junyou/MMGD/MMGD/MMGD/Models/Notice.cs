@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MMGD.Models;
 
-[PrimaryKey("email", "message_username", "airicle_number", "msg_floor")]
+[PrimaryKey("email", "message_username", "article_number", "msg_floor")]
 public partial class notice
 {
     [Key]
@@ -21,7 +21,7 @@ public partial class notice
 
     [Key]
     [StringLength(8)]
-    public string airicle_number { get; set; }
+    public string article_number { get; set; }
 
     [Required]
     [StringLength(2000)]

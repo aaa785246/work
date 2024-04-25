@@ -16,7 +16,7 @@ if(cookieState != "true") router.push("/login")
 const store = useLoginStore();
 const userName = ref(getCookie("userName"));
 const userEmail = ref(getCookie("userEmail"))
-
+const noticeState = ref(false);
 
 
 const myMenuToggle = ref(false);
@@ -33,7 +33,7 @@ const noticefunc = async () => {
     })
     .then((response) => {
         replyText.value = response.data;
-        // console.log(response.data)
+        console.log(replyText.value)
     })
 };
 
@@ -84,7 +84,7 @@ onMounted(()=>{
         :key="index"
       >
         <div class="mem-title">
-          {{ item.username }} 回覆了您:「{{ item.msg_content }}」
+          {{ item.message_username }} 回覆了您:「{{ item.message_content }}」
         </div>
       </div>
     </div>

@@ -28,6 +28,8 @@ export const getUserReplyList = async() =>{
 
 
 export interface reply{
-    username:string;
-    msg_content:string;
+    message_username:string;
+    message_content:string;
+    article_number:string;
+    viewed:string;
 };

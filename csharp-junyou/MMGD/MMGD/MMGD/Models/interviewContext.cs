@@ -19,6 +19,8 @@ public partial class interviewContext : DbContext
 
     public virtual DbSet<like_article> like_article { get; set; }
 
+    public virtual DbSet<likely> likely { get; set; }
+
     public virtual DbSet<message_floor> message_floor { get; set; }
 
     public virtual DbSet<notice> notice { get; set; }
@@ -27,6 +29,11 @@ public partial class interviewContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<likely>(entity =>
+        {
+            entity.Property(e => e.likely1).IsFixedLength();
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 

@@ -98,19 +98,45 @@ namespace mmgd.Controllers
             try
             {
                 var tmp = await (from notice in _context.notice
-                                 join article in _context.article on notice.airicle_number equals article.article_number
-                                 join userData in _context.userData on notice.message_username equals userData.username
-                                 where article.article_number == notice.airicle_number &&
-                                 data.user_email == article.email
-                                 orderby Convert.ToInt32(notice.msg_floor)
-                                 select new { notice.message_username, notice.message_content,notice.airicle_number}).ToListAsync();
+                                 join article in _context.article on notice.email equals article.email
+                                 where data.user_email == article.email
+                                 orderby Convert.ToInt32(notice.msg_floor), article.article_number
+                                 select new { notice.message_username, notice.message_content, notice.article_number, notice.viewed }).ToListAsync();
                 return StatusCode(StatusCodes.Status200OK, tmp);
-            }                
+            }
             catch
             {
                 return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
             }
         }
+        //關閉通知
+        //關閉通知後把現有留言的viewed改成Y
+        [HttpPost("closenotice")]
+        public async Task<ObjectResult> viewedState(noticeState data)
+        {
+            try
+            {
+                var tmp = await (from notice in _context.notice
+                                 where data.user_email == notice.email &&
+                                 //notice.viewed = "Y"
+                                 select notice)
+                                 .ToListAsync();
+
+                foreach (var item in tmp)
+                {
+                    item.viewed = "Y";
+                }
+                _context.notice.UpdateRange(tmp);
+                _context.SaveChanges();
+                return StatusCode(StatusCodes.Status200OK, tmp);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
+
+
         //新增留言並同步增加到通知表
         [HttpPost("addmessage")]
         public async Task<ObjectResult> addMessage(addMessage data)
@@ -124,14 +150,15 @@ namespace mmgd.Controllers
                 }
                 //目前的留言樓數
                 var dataFloor = await (from message in _context.message_floor
-                                 where message.article_number == data.article_number
-                                 orderby Convert.ToInt32(message.msg_floor) descending
-                                 select message.msg_floor
+                                       where message.article_number == data.article_number
+                                       orderby Convert.ToInt32(message.msg_floor) descending
+                                       select message.msg_floor
                                 ).FirstOrDefaultAsync();
-
-                var poster = await (from article in _context.article
-                                    where article.article_number ==  data.article_number
-                                    select article.email).FirstOrDefaultAsync();
+                //發文者
+                //var poster = await (from userData in _context.userData
+                //                    join article in _context.article on userData.username equals article.username
+                //                    where 
+                //                    select userData.email).FirstOrDefaultAsync();
 
 
 
@@ -148,9 +175,9 @@ namespace mmgd.Controllers
 
                 var param_notice = new notice
                 {
-                    email = poster,
+                    email = data.poster,
                     message_username = data.msg_userName,
-                    airicle_number = data.article_number,
+                    article_number = data.article_number,
                     msg_floor = Convert.ToString(Convert.ToInt32(dataFloor) + 1),
                     message_content = data.msg_content,
                     viewed = "N"
@@ -172,8 +199,14 @@ namespace mmgd.Controllers
     public record loginState(string user_name, string user_email, bool Authorized);
     //notice
     public record noticeState(string user_email);
+    //closeNotice
+    public class closeNotice
+    {
+        public string article_number { get; set; } = string.Empty;
+        public string viewed { get; set; } = string.Empty;
+    };
     //addMessage
-    public record addMessage(string msg_userName,string article_number, string msg_content,string posterEmail);
+    public record addMessage(string poster, string msg_userName, string article_number, string msg_content);
 
     //預設值
     //loginState("test@com", false);

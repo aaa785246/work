@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "mmgd.Controllers.mmgdController",
+    "Method": "viewedState",
+    "RelativePath": "closenotice",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "mmgd.Controllers.noticeState",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "mmgd.Controllers.mmgdController",
     "Method": "LoginCheck",
     "RelativePath": "loginCheck",
     "HttpMethod": "POST",
