@@ -24,11 +24,11 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[like_article]",
+         "Name": "[dbo].[interaction_article]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[likely]",
+         "Name": "[dbo].[like_article]",
          "ObjectType": 0
       },
       {

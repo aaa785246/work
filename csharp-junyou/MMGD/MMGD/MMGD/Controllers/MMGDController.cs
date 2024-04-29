@@ -2,6 +2,7 @@
 using System.Linq;
 using MMGD.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace mmgd.Controllers
 {
@@ -91,16 +92,15 @@ namespace mmgd.Controllers
             }
         }
 
-        //通知 
+         //通知 
         [HttpPost("notice")]
         public async Task<ObjectResult> membernotice(noticeState data)
         {
             try
             {
                 var tmp = await (from notice in _context.notice
-                                 join article in _context.article on notice.email equals article.email
-                                 where data.user_email == article.email
-                                 orderby Convert.ToInt32(notice.msg_floor), article.article_number
+                                 where data.user_email == notice.email
+                                 orderby Convert.ToInt32(notice.msg_floor)
                                  select new { notice.message_username, notice.message_content, notice.article_number, notice.viewed }).ToListAsync();
                 return StatusCode(StatusCodes.Status200OK, tmp);
             }
@@ -117,8 +117,7 @@ namespace mmgd.Controllers
             try
             {
                 var tmp = await (from notice in _context.notice
-                                 where data.user_email == notice.email &&
-                                 //notice.viewed = "Y"
+                                 where data.user_email == notice.email 
                                  select notice)
                                  .ToListAsync();
 
@@ -193,21 +192,51 @@ namespace mmgd.Controllers
                 return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
             }
         }
+        [HttpPost("articlesearch")]
+        public async Task<ObjectResult>articleSearch(articleName data)
+        {
+            var tmp =await (from article in _context.article
+                            join interaction in _context.interaction_article on article.article_number equals interaction.article_number
+                            where string.IsNullOrWhiteSpace(data.article_name) ||article.title.Contains(data.article_name)
+                            select new allArticle()
+                            {
+                                username = article.username,
+                                email = article.email,
+                                article_number = article.article_number,
+                                article_title = article.title,
+                                article_content = article.article_content,
+                                like_count = interaction.like_couter,
+                                message_count = interaction.message_couter
+                            }).ToListAsync();
+            return Ok(tmp);
+        }
     }
+
+
+
+
     //login
     public record searchLoginState(string user_email, string user_password);
     public record loginState(string user_name, string user_email, bool Authorized);
     //notice
     public record noticeState(string user_email);
-    //closeNotice
-    public class closeNotice
-    {
-        public string article_number { get; set; } = string.Empty;
-        public string viewed { get; set; } = string.Empty;
-    };
+    
+
     //addMessage
     public record addMessage(string poster, string msg_userName, string article_number, string msg_content);
 
+    //article
+    public record articleName(string article_name);
+    public class allArticle {
+        public string username { get; set; }
+        public string email { get; set; }
+        public string article_number { get; set; }
+        public string article_title { get; set; }
+        public string article_content { get; set; }
+        public string like_count { get; set; }
+        public string message_count { get; set; }
+    }
+    
     //預設值
     //loginState("test@com", false);
     //loginState( "test@com", false, "tests");

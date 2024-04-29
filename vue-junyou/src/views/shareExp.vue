@@ -1,21 +1,52 @@
 <script setup lang="ts">
 import "@/assets/shareExp.css";
-import { ref } from 'vue';
-
+import { onMounted, ref } from "vue";
+import axios from "axios";
+import { type articles } from "@/js/api";
+import { useArticleStore } from '@/stores/article'
+import { useRouter } from "vue-router";
+const router = useRouter();
+const store = useArticleStore()
 //標題、內容
-const artic = ref("前端工程師面試阿阿阿阿阿阿阿");
-const msg = ref("最近去了很多家軟工面試，這家是我目前面試下來最有趣的，一開始一樣是正常的自我介紹與一些面試官的問題，在自我介紹與一些簡單的問題後");
-//標題或內容太長做裁減
-if (msg.value.length > 30) {
-  msg.value = msg.value.substring(0, 30) + "....";
-}
-if (artic.value.length > 7) {
-  artic.value = artic.value.substring(0, 7)+ "..";
-}
-//愛心數
-var heartCount = ref(80) ;
-//留言數
-const msgCount = ref(8);
+const articleText = ref<articles[] | undefined>();
+const search = ref("");
+
+const article = async () => {
+  const api = `http://192.168.50.193:8001/api/articlesearch`;
+  await axios
+    .post(api, {
+      article_name: search.value,
+    })
+    .then((response) => {
+      articleText.value = response.data;
+      // console.log(articleText.value)
+      //標題或內容太長做裁減
+      if (articleText.value != undefined) {
+        for (const item of articleText.value) {
+          if (item.article_content.length > 30) {
+            item.cut = item.article_content.substring(0, 20) + "...";
+          } else {
+            item.cut = item.article_content;
+          }
+        }
+      }
+    });
+};
+onMounted(() => {
+  article();
+});
+const returnPage = (index: number) => {
+  if (articleText.value != undefined) {
+    store.email = articleText.value[index].email
+    store.userName = articleText.value[index].username
+    store.article_number = articleText.value[index].article_number
+    store.article_title = articleText.value[index].article_title
+    store.article_content = articleText.value[index].article_content
+    store.like_count = articleText.value[index].like_count
+    store.message_count = articleText.value[index].message_count
+  }
+  router.push(`/article`)
+};
 </script>
 
 <template>
@@ -41,43 +72,21 @@ const msgCount = ref(8);
   </div>
   <!-- 到時候用for迴圈跑 *要注意第一個框是 class="articleBox"與第二個框class="articleBox2" 
     margin設定不同 要額外處理-->
-  <RouterLink to="/article">
+  <div
+    v-for="(item, index) in articleText"
+    :key="index"
+    @click="returnPage(index)"
+  >
     <div class="articleBox">
-    <div class="sh-title">{{ artic }}</div>
-    <div class="sh-content">{{ msg }}</div>
-    <div class="heartAndMsg-container">
-      <img src="@/img/heart.png" alt="heart" class="heart" />
-      <div class="heartAndMsgCount">{{ heartCount }}</div>
-      <img src="@/img/message2.png" alt="message" class="message" />
-      <div class="heartAndMsgCount">{{ msgCount }}</div>
+      <div class="sh-title">{{ item.article_title }}</div>
+      <div class="sh-content">{{ item.cut }}</div>
+      <div class="heartAndMsg-container">
+        <img src="@/img/heart.png" alt="heart" class="heart" />
+        <div class="heartAndMsgCount">{{ item.like_count }}</div>
+        <img src="@/img/message2.png" alt="message" class="message" />
+        <div class="heartAndMsgCount">{{ item.message_count }}</div>
+      </div>
     </div>
   </div>
-  </RouterLink>
- 
-  <RouterLink to="/article">
-    <div class="articleBox">
-    <div class="sh-title">{{ artic }}</div>
-    <div class="sh-content">{{ msg }}</div>
-    <div class="heartAndMsg-container">
-      <img src="@/img/heart.png" alt="heart" class="heart" />
-      <div class="heartAndMsgCount">{{ heartCount }}</div>
-      <img src="@/img/message2.png" alt="heart" class="message" />
-      <div class="heartAndMsgCount">{{ msgCount }}</div>
-    </div>
-  </div>
-  </RouterLink>
-  
-
-  <RouterLink to="/article">
-    <div class="articleBox">
-    <div class="sh-title">{{ artic }}</div>
-    <div class="sh-content">{{ msg }}</div>
-    <div class="heartAndMsg-container">
-      <img src="@/img/heart.png" alt="heart" class="heart" />
-      <div class="heartAndMsgCount">{{ heartCount }}</div>
-      <img src="@/img/message2.png" alt="heart" class="message" />
-      <div class="heartAndMsgCount">{{ msgCount }}</div>
-    </div>
-    </div>
-  </RouterLink>
 </template>
+@/stores/article

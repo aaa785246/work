@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import "@/assets/article.css";
-import { ref, onMounted } from "vue";
-import { getArticleList, getMessageList } from "@/js/api";
+import {  onMounted } from "vue";
 import articleContent from "@/components/articleContent.vue";
 import messageContent from "@/components/messageContent.vue";
+import { useRoute } from 'vue-router';
 
-// onMounted(async () => {
 
-// });
+
+
 </script>
 
 <template>
@@ -20,9 +20,9 @@ import messageContent from "@/components/messageContent.vue";
     />
   </RouterLink>
   <!-- 文章內容 -->
-  <articleContent :articleNumber="3" />
+  <articleContent />
   <!-- 留言內容 -->
-  <messageContent />
+  <!-- <messageContent /> -->
 </template>
 
 <!-- <style scoped></style> -->

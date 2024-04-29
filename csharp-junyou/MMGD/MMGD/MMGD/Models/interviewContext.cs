@@ -17,9 +17,9 @@ public partial class interviewContext : DbContext
 
     public virtual DbSet<collect_article> collect_article { get; set; }
 
-    public virtual DbSet<like_article> like_article { get; set; }
+    public virtual DbSet<interaction_article> interaction_article { get; set; }
 
-    public virtual DbSet<likely> likely { get; set; }
+    public virtual DbSet<like_article> like_article { get; set; }
 
     public virtual DbSet<message_floor> message_floor { get; set; }
 
@@ -29,9 +29,9 @@ public partial class interviewContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<likely>(entity =>
+        modelBuilder.Entity<interaction_article>(entity =>
         {
-            entity.Property(e => e.likely1).IsFixedLength();
+            entity.HasKey(e => e.article_number).HasName("PK_interaction_artic");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "@/assets/article.css";
 import { ref, onMounted } from "vue";
-import { getMessageList } from "@/js/api";
+// import { getMessageList } from "@/js/api";
 
 //定義message物件告訴TS
 interface Message {
@@ -15,8 +15,8 @@ const message = ref<Message[]>([{ userName: "", message: "" }]);
 //掛載api
 onMounted(async () => {
   //留言api
-  const messageData = await getMessageList();
-  message.value = messageData;
+  // const messageData = await getMessageList();
+  // message.value = messageData;
 });
 </script>
 <template>

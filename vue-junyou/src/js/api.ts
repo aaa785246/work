@@ -33,3 +33,14 @@ export interface reply{
     article_number:string;
     viewed:string;
 };
+
+export interface articles {
+    article_number:string;
+    article_title:string;
+    article_content:string;
+    email:string;
+    username:string;
+    like_count:string;
+    message_count:string;
+    cut:string;
+}

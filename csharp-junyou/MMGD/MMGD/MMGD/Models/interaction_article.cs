@@ -8,14 +8,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MMGD.Models;
 
-public partial class likely
+public partial class interaction_article
 {
     [Key]
     [StringLength(8)]
     public string article_number { get; set; }
 
     [Required]
-    [Column("likely")]
     [StringLength(8)]
-    public string likely1 { get; set; }
+    public string like_couter { get; set; }
+
+    [Required]
+    [StringLength(8)]
+    public string message_couter { get; set; }
 }

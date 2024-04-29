@@ -117,3 +117,4 @@ const componentClose = () => {
   <loginSuccessful v-if="loginStateDialog === true" :state="switchDialog" />
   <loginFailed v-else :state="switchDialog" @close-dialog="componentClose" />
 </template>
+@/stores/article

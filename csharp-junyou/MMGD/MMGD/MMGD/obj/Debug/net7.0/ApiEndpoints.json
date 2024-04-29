@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "mmgd.Controllers.mmgdController",
+    "Method": "articleSearch",
+    "RelativePath": "articlesearch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "mmgd.Controllers.articleName",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "mmgd.Controllers.mmgdController",
     "Method": "viewedState",
     "RelativePath": "closenotice",
     "HttpMethod": "POST",
