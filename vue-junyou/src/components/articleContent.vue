@@ -4,20 +4,13 @@ import bookmarkImg from "@/img/bookmark.png";
 import bookmarkImgOn from "@/img/bookmarkon.png";
 import { ref, onMounted, computed } from "vue";
 import { useArticleStore } from '@/stores/article'
-
 const store = useArticleStore();
-const title =ref("");
-const userName = ref("")
-const content = ref("")
-const likeCount = ref("");
+
 
 onMounted(async () => {
- title.value = store.article_title
- userName.value = store.userName
- content.value = store.article_content
- likeCount.value = store.like_count
- if(store.article_title == null){
-  
+
+ if(store.article_title == ""){
+ console.log("抓不到pinia")
  }
 });
 
@@ -41,14 +34,14 @@ const toggleMark = () => {
 <template>
   <div>
     <div class="article-title">
-      {{ title }}
+      {{ store.article_title }}
     </div>
-    <div class="article-user">{{ userName }}</div>
-    <div class="article-content">{{ content }}</div>
+    <div class="article-user">{{ store.userName }}</div>
+    <div class="article-content">{{ store.article_content}}</div>
 
     <div class="ar-heartAndMsg-container">
       <img src="@/img/heart.png" alt="heart" class="ar-heart" />
-      <div class="ar-heartCount">{{ likeCount }}</div>
+      <div class="ar-heartCount">{{ store.like_count }}</div>
       <img
         :src="bookMarkImgSrc"
         alt="bookmark"
@@ -57,6 +50,6 @@ const toggleMark = () => {
       />
       <img src="@/img/share.png" alt="share" :class="share" />
     </div>
-    <div class="ar-allMsg">所有留言</div>@/stores/article
+    <div class="ar-allMsg">所有留言</div>
   </div>
 </template>

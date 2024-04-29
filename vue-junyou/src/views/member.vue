@@ -11,8 +11,6 @@ import { getUserReplyList, type reply } from "@/js/api";
 
 const cookieState = getCookie("loginState");
 if (cookieState != "true") router.push("/login");
-
-const store = useLoginStore();
 const userName = ref(getCookie("userName"));
 const userEmail = ref(getCookie("userEmail"));
 const noticeState = ref(false);
@@ -112,4 +110,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-@/stores/article
