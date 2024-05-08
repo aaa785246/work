@@ -12,7 +12,7 @@ const articleText = ref<articles[] | undefined>();
 const search = ref("");
 
 const article = async () => {
-  const api = `http://192.168.50.193:8001/api/articlesearch`;
+  const api = `http://192.168.1.200:8000/articlesearch`;
   await axios
     .post(api, {
       article_name: search.value,

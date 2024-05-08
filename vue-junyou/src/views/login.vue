@@ -4,34 +4,21 @@ import axios from "axios";
 import "@/assets/login.css";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { useLoginStore } from "@/stores/login";
-import loginSuccessful from "@/components/loginSuccessful.vue";
-import loginFailed from "@/components/loginFailed.vue";
-// import { getUserDataList} from "@/js/api";
-import { getUserDataList} from "@/js/api";
+import successful from "@/components/successfulComponent.vue";
+import failed from "@/components/failedComponent.vue"
 import { setCookie, getCookie } from "@/js/cookie";
-const store = useLoginStore();
-const router = useRouter();
 //使用者輸入的帳號密碼
-const userEmail = ref("");
+const userEmail = ref(getCookie("rememberEmail") || "");
 const pwd = ref("");
-//記住帳號操作 checkBox->getCookie->帶入input框
-const rememberEmailBox = ref(false);
-const rememberEmail = getCookie("rememberEmail");
-
-if (rememberEmail) userEmail.value = rememberEmail;
-const rememberEmailfunc = () => {
-  rememberEmailBox.value = !rememberEmailBox.value;
-  console.log(rememberEmailBox.value);
-};
-
+//記住帳號操作 checkBox打勾->登入成功setCookie->下次自動帶入input框
+const IsCheckRememberEmail = ref(false);
 //登入成功失敗開啟哪一個dialog
 const loginStateDialog = ref<boolean>(false);
 const switchDialog = ref<boolean>(false);
 
 // 定義函式來呼叫 API
 const signin = async () => {
-  const api = `http://192.168.50.193:8001/api/loginCheck`;
+  const api = `http://192.168.1.200:8000/loginCheck`;
   await axios
     .post(api, {
       user_email: userEmail.value,
@@ -40,11 +27,13 @@ const signin = async () => {
     .then((response) => {
         switchDialog.value = true;
         loginStateDialog.value = true;
-        setCookie("userName",response.data.user_name,10)
-        setCookie("userEmail", response.data.user_email, 10);
-        setCookie("loginState", response.data.authorized, 10);
+        // console.log("使用者:"+response.data.user_name)
+        // console.log("loginState:"+response.data.verify)
+        setCookie("userName",response.data.user_name,60)
+        setCookie("userEmail", userEmail.value, 10);
+        setCookie("loginState", response.data.verify, 10);
         // 記住帳號
-        if (rememberEmailBox.value) setCookie("rememberEmail", response.data.user_email, 10);
+        if (IsCheckRememberEmail.value === true) setCookie("rememberEmail", userEmail.value, 43200);
     })
     .catch(() => {
       switchDialog.value = true;
@@ -74,7 +63,7 @@ const componentClose = () => {
   </div>
 
   <div class="inputAria">
-    <p class="inputP">帳號:</p>
+    <p class="inputP">電子郵件:</p>
     <input
       type="text"
       class="inputText"
@@ -85,7 +74,7 @@ const componentClose = () => {
   <div class="inputAria2">
     <p class="inputP">密碼:</p>
     <input
-      type="text"
+      type="password"
       class="inputText"
       placeholder="包含大寫字母、小寫字母、數字"
       v-model="pwd"
@@ -96,10 +85,9 @@ const componentClose = () => {
     <input
       type="checkbox"
       class="check"
-      v-model="rememberEmailBox"
-      @click="rememberEmailfunc"
+      v-model="IsCheckRememberEmail"
     />
-    <div class="remember">記住帳號</div>
+    <div class="remember">記住電子郵件</div>
     <div class="register">
       <RouterLink to="/register">
         <div>註冊</div>
@@ -114,7 +102,6 @@ const componentClose = () => {
   <div class="loginbtnBox">
     <button class="loginbtn" @click="signin">登入</button>
   </div>
-  <loginSuccessful v-if="loginStateDialog === true" :state="switchDialog" />
-  <loginFailed v-else :state="switchDialog" @close-dialog="componentClose" />
+  <successful v-if="loginStateDialog === true" :state="switchDialog" content="1" />
+  <failed v-else :state="switchDialog" @close-dialog="componentClose" content="1"/>
 </template>
-@/stores/article

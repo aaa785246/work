@@ -3,7 +3,7 @@ using System.Linq;
 using MMGD.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
-
+using BCrypt;
 namespace mmgd.Controllers
 {
     //[Route("api/[controller]")]
@@ -15,6 +15,20 @@ namespace mmgd.Controllers
         public mmgdController(interviewContext context)
         {
             _context = context;
+        }
+
+        [HttpGet("test-non-database")]
+        public async Task<ActionResult> Test2()
+        {
+            try
+            {
+                return StatusCode(StatusCodes.Status200OK, "測試");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
         }
 
         [HttpGet("test")]
@@ -32,56 +46,97 @@ namespace mmgd.Controllers
 
         }
 
+        private string HashPassword(string password)
+        {
+            // 生成随机的salt
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
+            // 使用salt哈希密码
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+            return hashedPassword;
+        }
+        private bool VerifyPassword(string password, string hashedPassword)
+        {
+            // 使用哈希后的密码和明文密码进行比较
+            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+        }
+
+        [HttpPost("register")]
+        public async Task<ObjectResult> register(registerState data)
+        {
+            try
+            {
+                //信箱驗證
+                var accoutCheck = await (from user in _context.userData
+                                        where user.email == data.email ||
+                                        user.username == data.userName
+                                        select user).ToListAsync();
+                if (accoutCheck.Any())
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, "信箱或名稱重複");
+                }
+                else
+                {
+                    var reg = new userData
+                    {
+                        email = data.email,
+                        username = data.userName,
+                        pwd = HashPassword(data.password)
+                    };
+                    _context.userData.AddAsync(reg);
+                    await _context.SaveChangesAsync();
+                    return StatusCode(StatusCodes.Status200OK, reg);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+
         [HttpPost("loginCheck")]
         //登入驗證
         public async Task<ObjectResult> LoginCheck(searchLoginState data)
         {
             try
             {
-                var checkTmp = await (from user in _context.userData
+
+                //取出資料庫加鹽密碼
+                var saltPwd = await (from user in _context.userData
                                       where
-                                      user.email == data.user_email &&
-                                      user.pwd == data.user_password
-                                      select user).FirstOrDefaultAsync();
+                                      user.email == data.user_email
+                                      select user.pwd).FirstOrDefaultAsync();
+
+                
 
 
-
-                if (checkTmp != null)
+                if (saltPwd == null)
                 {
-                    var login = new loginState
-                    (
-                        checkTmp.username,
-                        checkTmp.email,
-                        true
-                    );
-
-                    //var login2 = new loginState
-                    //(
-                    //    login.user_name,
-                    //    "test@com",
-                    //    login.Authorized
-                    //);
-
-
-                    //var login3 = new loginState2()
-                    //{
-                    //    //user_name = checkTmp.username,
-                    //    Authorized = true,
-                    //    user_email = checkTmp.email,
-                    //};
-                    //login3.user_email = "test@com";
-
-                    return StatusCode(StatusCodes.Status200OK, login);
+                    return StatusCode(StatusCodes.Status401Unauthorized, "找不到該筆電子郵件");
                 }
                 else
-                {
-                    var login = new loginState
-                    (
-                        "",
-                        "",
-                        false
-                    );
-                    return StatusCode(StatusCodes.Status401Unauthorized, login);
+                {  
+                    
+                    var verify = VerifyPassword(data.user_password, saltPwd);
+                    if (verify == true)
+                    {
+                        var userName = await (from user in _context.userData
+                                              where user.email == data.user_email
+                                              select user.username).FirstOrDefaultAsync();
+
+                        var state = new loginState
+                        {
+                            user_name = userName,
+                            verify = verify
+                        };
+
+                    return StatusCode(StatusCodes.Status200OK, state);
+                    }
+
+                  
+                    return StatusCode(StatusCodes.Status401Unauthorized, verify);
                 }
 
             }
@@ -210,14 +265,38 @@ namespace mmgd.Controllers
                             }).ToListAsync();
             return Ok(tmp);
         }
+        [HttpPost("existed")]
+        public async Task<ObjectResult> existedEmail(existedEmail data)
+        {
+            try
+            {
+                var tmp = await (from userData in _context.userData
+                                 where data.user_email == userData.email
+                                 select userData.email).ToListAsync();
+                if(tmp.Any())
+                {
+                return StatusCode(StatusCodes.Status200OK, tmp);
+                }
+                return StatusCode(StatusCodes.Status200OK, "該信箱沒有註冊");
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
+
     }
 
 
-
-
+    //register 
+    public record registerState(string userName, string email, string password);
     //login
     public record searchLoginState(string user_email, string user_password);
-    public record loginState(string user_name, string user_email, bool Authorized);
+    public class loginState
+    {
+        public string user_name { get; set; }
+        public bool verify { get; set; }
+    }
     //notice
     public record noticeState(string user_email);
     
@@ -236,7 +315,9 @@ namespace mmgd.Controllers
         public string like_count { get; set; }
         public string message_count { get; set; }
     }
-    
+    //existed
+    public record existedEmail(string user_email);
+
     //預設值
     //loginState("test@com", false);
     //loginState( "test@com", false, "tests");

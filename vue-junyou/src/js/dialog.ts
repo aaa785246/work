@@ -6,7 +6,7 @@ export function transformRoutes(sec: Ref<number>, path: string): void {
     const reciprocal = sec.value + 1;
     const set = setInterval(() => {
         sec.value--;
-        if (sec.value == 0) {
+        if (sec.value <= 0 ) {
             router.push(path)
         }  
     }, 1000);

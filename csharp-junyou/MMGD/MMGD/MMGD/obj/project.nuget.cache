@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "OD8t1cnxzSAOHK3ZLpxCYl8u4f37lyie+TqfHrL02pvQS/ZiQAazy1ESq8Iz6c3wgYkpnvOiSgE/uTbsz9ukoA==",
+  "dgSpecHash": "X1G2SjZNPEDQ1QJgOQstWA3KHpVni0DZhUuLzj4rghS5uB/OGS5wSUW/ccgeIRrVJrZzTQaw7uNu2rzS3nUbkw==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.15\\microsoft.aspnetcore.openapi.7.0.15.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

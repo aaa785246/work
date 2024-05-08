@@ -6,13 +6,12 @@ const router = useRouter();
 
 const props = defineProps<{
   state: boolean;
+  content: string;
 }>();
 
 const dialog = ref<HTMLDialogElement | null>(null);
 
-//修改父層狀態
-const emit = defineEmits(["closeDialog"]);
-
+const content = ref("");
 //秒數跑完跳轉網址
 const transformSec = ref(1);
 
@@ -21,20 +20,33 @@ onMounted(() => {
     dialog.value?.close();
     return;
   }
+  if (props.content == "1") {
+    transformRoutes(transformSec, "/member");
+    content.value = `登入成功，畫面於${transformSec.value}秒後跳轉`
+  } else if (props.content == "2") {
+    transformRoutes(transformSec, "/login");
+    content.value = `註冊成功，畫面於${transformSec.value}秒後跳轉`
+  } else if (props.content == "3") {
+    transformRoutes(transformSec, "/newpwd");
+    content.value = `驗證成功，畫面於${transformSec.value}秒後跳轉`
+  }
   dialog.value?.showModal();
-  transformRoutes(transformSec, "/member");
 });
 
 watch(
-  () => props.state,
-  () => {
-    if (props.state === false) {
-      dialog.value?.close();
-      return;
+  () => transformSec.value, (newValue, oldValue) => {
+    if (transformSec.value != oldValue) {
+      if (props.content == "1") {
+        content.value = `登入成功，畫面於${transformSec.value}秒後跳轉`
+      } else if (props.content == "2") {
+        content.value = `註冊成功，畫面於${transformSec.value}秒後跳轉`
+      }else if (props.content == "3") {
+        content.value = `驗證成功，畫面於${transformSec.value}秒後跳轉`
+      }
     }
-    dialog.value?.showModal();
   }
 );
+
 </script>
 
 <template>
@@ -42,7 +54,7 @@ watch(
   <dialog ref="dialog" id="dialog">
     <img src="@/img/accept.png" alt="" class="imgOn" />
     <div class="content">
-      <p>登入成功，畫面於{{ transformSec }}後跳轉</p>
+      <p>{{ content }}</p>
     </div>
   </dialog>
 </template>
@@ -55,6 +67,7 @@ watch(
   left: 60px;
   z-index: 4;
 }
+
 #dialog {
   --max-width: 390px;
   width: 220px;
@@ -77,7 +90,7 @@ watch(
   margin-top: 30px;
 }
 
-.content > p {
+.content>p {
   height: 30px;
 }
 
@@ -86,6 +99,7 @@ watch(
   justify-content: center;
   margin-top: 10px;
 }
+
 .content-btn {
   background-color: #eadfdf;
   border: none;

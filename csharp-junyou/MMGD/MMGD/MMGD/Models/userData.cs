@@ -8,17 +8,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MMGD.Models;
 
+[PrimaryKey("email", "username")]
 public partial class userData
 {
     [Key]
     [StringLength(50)]
     public string email { get; set; }
 
-    [Required]
+    [Key]
     [StringLength(20)]
     public string username { get; set; }
 
     [Required]
-    [StringLength(20)]
+    [StringLength(255)]
     public string pwd { get; set; }
 }

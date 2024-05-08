@@ -29,7 +29,7 @@
 }
 
 
-.maskOn {
+.mem-maskOn {
     position: fixed;
     top: 0%;
     background-color: black;
@@ -44,7 +44,7 @@
     display: none;
 }
 
-.menuOn {
+.mem-menuOn {
     position: relative;
     top: 0px;
     margin-left: 150px;
@@ -85,7 +85,7 @@
     padding-left: 70px;
     font-size: 1.3rem;
 }
-.closeButtonOn {
+.mem-closeButtonOn {
     position: relative;
     width: 25px;
     top: -25px;

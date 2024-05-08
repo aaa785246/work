@@ -34,6 +34,11 @@ public partial class interviewContext : DbContext
             entity.HasKey(e => e.article_number).HasName("PK_interaction_artic");
         });
 
+        modelBuilder.Entity<userData>(entity =>
+        {
+            entity.HasKey(e => new { e.email, e.username }).HasName("PK_userData_1");
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 

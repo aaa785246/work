@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref, defineProps, watch, watchEffect, onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
-import { transformRoutes } from "@/js/dialog";
 const router = useRouter();
 
 const props = defineProps<{
   state: boolean;
+  content: string;
 }>();
 
 const dialog = ref<HTMLDialogElement | null>(null);
-
+const content = ref("");
 //修改父層狀態
 const emit = defineEmits(["closeDialog"]);
 
@@ -18,17 +18,24 @@ const closeModel = () => {
   emit("closeDialog");
 };
 
-onMounted(() => {
-  if (props.state === false) {
-    dialog.value?.close();
-  } else {
-    dialog.value?.showModal();
-  }
-});
+// onMounted(() => {
+//   if (props.state === false) {
+//     dialog.value?.close();
+//   } else {
+//     dialog.value?.showModal();
+//   }
+// });
 
 watch(
   () => props.state,
   () => {
+    if (props.content == "1") {
+      content.value = `登入失敗，帳號或密碼錯誤。`
+    } else if (props.content == "2") {
+      content.value = `註冊失敗，驗證碼錯誤`
+    }else if (props.content == "3") {
+      content.value = `驗證失敗，驗證碼錯誤`
+    }
     if (props.state === false) {
       dialog.value?.close();
     } else {
@@ -60,6 +67,7 @@ watch(
   left: 60px;
   z-index: 4;
 }
+
 #dialog2 {
   --max-width: 390px;
   width: 220px;
@@ -81,7 +89,7 @@ watch(
   margin-top: 30px;
 }
 
-.content > p {
+.content>p {
   height: 30px;
 }
 
@@ -90,6 +98,7 @@ watch(
   justify-content: center;
   margin-top: 10px;
 }
+
 .content-btn {
   background-color: #eadfdf;
   border: none;

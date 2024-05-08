@@ -143,3 +143,4 @@ C:\Users\user\Documents\GitHub\work\csharp-junyou\MMGD\MMGD\MMGD\obj\Debug\net7.
 C:\Users\user\Documents\GitHub\work\csharp-junyou\MMGD\MMGD\MMGD\obj\Debug\net7.0\MMGD.pdb
 C:\Users\user\Documents\GitHub\work\csharp-junyou\MMGD\MMGD\MMGD\obj\Debug\net7.0\MMGD.genruntimeconfig.cache
 C:\Users\user\Documents\GitHub\work\csharp-junyou\MMGD\MMGD\MMGD\obj\Debug\net7.0\ref\MMGD.dll
+C:\Users\user\Documents\GitHub\work\csharp-junyou\MMGD\MMGD\MMGD\bin\Debug\net7.0\BCrypt.Net-Next.dll

@@ -1,18 +1,78 @@
 <script setup lang="ts">
 import "@/assets/emailCheck.css";
-const data = sessionStorage.getItem('status');
+import axios from "axios";
+import emailjs from 'emailjs-com';
+import { setCookie, getCookie } from "@/js/cookie";
+import { ref } from "vue";
+import successful from "@/components/successfulComponent.vue";
+import failed from "@/components/failedComponent.vue"
+const registerStateDialog = ref<boolean>(false);
+const switchDialog = ref<boolean>(false);
+const userName = ref(getCookie("userName"));
+const userEmail = ref(getCookie("userEmail"));
+const pwd = ref(getCookie("pwd"));
+const isRegister = ref(getCookie("isRegister"))
+const verify = ref("");
+const userInput = ref("");
+const content = ref("")
+function verifyRandomInt(min: number, max: number) {
+  return Math.floor((Math.random() * (max - min)) + min);
+}
+for (let i = 0; i < 6; i++) {
+  verify.value += verifyRandomInt(0, 9).toString();
+}
+emailjs.init('q6I64WVaTUYi401rI');
+const serviceID = 'service_rlazx1v';
+const templateID = 'template_l8o7kzc';
+const emailContent = {
+  email: userEmail.value,
+  userName: userName.value,
+  message: verify.value
+}
+emailjs.send(serviceID, templateID, emailContent);
+
+const register = async () => {
+  const api = `http://192.168.1.200:8000/register`;
+  await axios
+    .post(api, {
+      userName: userName.value,
+      email: userEmail.value,
+      password: pwd.value
+    })
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+};
+const registerOrChangePwd = () => {
+  if (userInput.value == verify.value) {
+    if (isRegister.value == "Y") {
+      register();
+      registerStateDialog.value = true;
+      switchDialog.value = true
+      content.value="2";
+    }else {
+      registerStateDialog.value = true;
+      switchDialog.value = true
+      content.value="3";
+    }
+
+  }
+}
+const componentClose = () => {
+  switchDialog.value = false;
+  registerStateDialog.value = false;
+}
 </script>
+
 <template>
   <!-- 回上一頁 -->
   <RouterLink to="/login">
-    <img
-        src="@/img/back.png"
-        className="em-back"
-        title="back"
-        alt="this is back"
-      />
-</RouterLink>
-    <div class="emailPage">
+    <img src="@/img/back.png" className="em-back" title="back" alt="this is back" />
+  </RouterLink>
+  <div class="emailPage">
     <RouterLink to="/">
       <img src="@/img/logo_75.jpg" alt="this is logo" class="email-logo" />
     </RouterLink>
@@ -20,22 +80,17 @@ const data = sessionStorage.getItem('status');
   </div>
   <div class="email-textBox">
     <div class="email-text">
-    已將驗證信寄至您所註冊的電子 <br>
-    郵件信箱，請回傳驗證碼。
-  </div>
+      已將驗證信寄至您所註冊的電子郵件信箱{{ userEmail }}，請回傳驗證碼。
+    </div>
   </div>
   <div class="email-inputAria2">
-    <input
-      type="text"
-      class="email-inputText"
-      placeholder="驗證碼"
-    />
+    <input type="text" class="email-inputText" placeholder="驗證碼" v-model="userInput" />
   </div>
 
-  <RouterLink  :to="data === '1' ? '/newPwd' : '/'" >
-    <div class="email-loginbtnBox">
-    <button class="email-loginbtn">確認</button>
+
+  <div class="email-loginbtnBox">
+    <button class="email-loginbtn" @click="registerOrChangePwd">確認</button>
   </div>
-</RouterLink>
-  
+  <successful v-if="registerStateDialog === true" :state="switchDialog" :content="content" />
+  <failed v-else :state="switchDialog" @close-dialog="componentClose" :content="content" />
 </template>

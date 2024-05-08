@@ -20,7 +20,7 @@ import messageContent from "@/components/messageContent.vue";
   <!-- 文章內容 -->
   <articleContent />
   <!-- 留言內容 -->
-  <!-- <messageContent /> -->
+  <messageContent />
 </template>
 
 <!-- <style scoped></style> -->
