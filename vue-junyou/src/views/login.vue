@@ -7,6 +7,8 @@ import { useRouter } from "vue-router";
 import successful from "@/components/successfulComponent.vue";
 import failed from "@/components/failedComponent.vue"
 import { setCookie, getCookie } from "@/js/cookie";
+//預設去到的頁面
+if(getCookie("arrivedPage")== null) setCookie("arrivedPage","/member",10)
 //使用者輸入的帳號密碼
 const userEmail = ref(getCookie("rememberEmail") || "");
 const pwd = ref("");
@@ -15,7 +17,6 @@ const IsCheckRememberEmail = ref(false);
 //登入成功失敗開啟哪一個dialog
 const loginStateDialog = ref<boolean>(false);
 const switchDialog = ref<boolean>(false);
-
 // 定義函式來呼叫 API
 const signin = async () => {
   const api = `http://192.168.1.200:8000/loginCheck`;
@@ -27,10 +28,8 @@ const signin = async () => {
     .then((response) => {
         switchDialog.value = true;
         loginStateDialog.value = true;
-        // console.log("使用者:"+response.data.user_name)
-        // console.log("loginState:"+response.data.verify)
         setCookie("userName",response.data.user_name,60)
-        setCookie("userEmail", userEmail.value, 10);
+        setCookie("userEmail", userEmail.value, 60);
         setCookie("loginState", response.data.verify, 10);
         // 記住帳號
         if (IsCheckRememberEmail.value === true) setCookie("rememberEmail", userEmail.value, 43200);

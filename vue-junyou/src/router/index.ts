@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/homepage.vue'
+import { useArticleStore } from '@/stores/article'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,7 +18,7 @@ const router = createRouter({
     {
       path:'/register',
       name:'register',
-      component:()=>import("@/views/register.vue")
+      component:()=>import("/src/views/register.vue")
     },
     {
       path:'/emailcheck',
@@ -40,10 +41,6 @@ const router = createRouter({
       component:()=>import("@/views/shareExp.vue")
     },
     {
-      path:'/article',
-      name:'article',
-      component:()=>import("@/views/article.vue")
-    }, {
       path:'/member',
       name:'member',
       component:()=>import("@/views/member.vue")
@@ -51,6 +48,16 @@ const router = createRouter({
       path:'/post',
       name:'post',
       component:()=>import("@/views/post.vue")
+    },
+    // {
+    //   path:'/article/',
+    //   name:'article',
+    //   component:()=>import("@/views/article.vue")
+    // },
+    {
+      path:`/article/:article_number`,
+      name:'article',
+      component:()=>import("@/views/article.vue")
     }
   ]
 })

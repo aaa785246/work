@@ -46,6 +46,7 @@ namespace mmgd.Controllers
 
         }
 
+        //雜湊
         private string HashPassword(string password)
         {
             // 生成随机的salt
@@ -60,6 +61,8 @@ namespace mmgd.Controllers
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
 
+
+        //註冊
         [HttpPost("register")]
         public async Task<ObjectResult> register(registerState data)
         {
@@ -96,8 +99,8 @@ namespace mmgd.Controllers
         }
 
 
-        [HttpPost("loginCheck")]
         //登入驗證
+        [HttpPost("loginCheck")]
         public async Task<ObjectResult> LoginCheck(searchLoginState data)
         {
             try
@@ -108,9 +111,6 @@ namespace mmgd.Controllers
                                       where
                                       user.email == data.user_email
                                       select user.pwd).FirstOrDefaultAsync();
-
-                
-
 
                 if (saltPwd == null)
                 {
@@ -247,24 +247,26 @@ namespace mmgd.Controllers
                 return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
             }
         }
+        //搜尋文章
         [HttpPost("articlesearch")]
-        public async Task<ObjectResult>articleSearch(articleName data)
+        public async Task<ObjectResult> articleSearch(articleName data)
         {
-            var tmp =await (from article in _context.article
-                            join interaction in _context.interaction_article on article.article_number equals interaction.article_number
-                            where string.IsNullOrWhiteSpace(data.article_name) ||article.title.Contains(data.article_name)
-                            select new allArticle()
-                            {
-                                username = article.username,
-                                email = article.email,
-                                article_number = article.article_number,
-                                article_title = article.title,
-                                article_content = article.article_content,
-                                like_count = interaction.like_couter,
-                                message_count = interaction.message_couter
-                            }).ToListAsync();
+            var tmp = await (from article in _context.article
+                             join interaction in _context.interaction_article on article.article_number equals interaction.article_number
+                             where string.IsNullOrWhiteSpace(data.article_name) || article.title.Contains(data.article_name)
+                             select new allArticle()
+                             {
+                                 username = article.username,
+                                 email = article.email,
+                                 article_number = article.article_number,
+                                 article_title = article.title,
+                                 article_content = article.article_content,
+                                 like_count = interaction.like_couter,
+                                 message_count = interaction.message_couter
+                             }).ToListAsync();
             return Ok(tmp);
         }
+        //忘記密碼功能先搜尋信箱是否註冊過
         [HttpPost("existed")]
         public async Task<ObjectResult> existedEmail(existedEmail data)
         {
@@ -285,6 +287,65 @@ namespace mmgd.Controllers
             }
         }
 
+        [HttpPost("newarticle")]
+        public async Task<ObjectResult> newarticle(newArticle data)
+        {
+            try
+            {
+                var articleNumber = await (from article in _context.article
+                                           select article.article_number)
+                                           .OrderByDescending(x=>x)
+                                           .FirstOrDefaultAsync();
+                if (articleNumber == null)
+                {
+                    articleNumber = 0;
+                }
+                var tmp = new article
+                {
+                    article_number = articleNumber + 1,
+                    title = data.title,
+                    article_content = data.article_content,
+                    email = data.user_email,
+                    username = data.user_name
+                };
+
+                _context.article.AddAsync(tmp);
+                await _context.SaveChangesAsync();
+                return StatusCode(StatusCodes.Status200OK, tmp); 
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
+        //根據文章號碼去取得文章內容
+        [HttpPost("searcharticlenumber")]
+        public async Task<ObjectResult> searcharticlenumber(articleNumber data )
+        {
+            try
+            {
+                var number = await (from article in _context.article
+                                    join interaction in _context.interaction_article on article.article_number equals interaction.article_number
+                                    where data.articlenumber == article.article_number
+                                    select new allArticle()
+                                    {
+                                        username = article.username,
+                                        email = article.email,
+                                        article_number = article.article_number,
+                                        article_title = article.title,
+                                        article_content = article.article_content,
+                                        like_count = interaction.like_couter,
+                                        message_count = interaction.message_couter
+                                    }).ToListAsync();
+
+
+                return StatusCode(StatusCodes.Status200OK, number);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
     }
 
 
@@ -309,7 +370,7 @@ namespace mmgd.Controllers
     public class allArticle {
         public string username { get; set; }
         public string email { get; set; }
-        public string article_number { get; set; }
+        public int article_number { get; set; }
         public string article_title { get; set; }
         public string article_content { get; set; }
         public string like_count { get; set; }
@@ -317,6 +378,9 @@ namespace mmgd.Controllers
     }
     //existed
     public record existedEmail(string user_email);
+    //newarticle
+    public record newArticle(string title,string article_content,string user_email,string user_name);
+    public record articleNumber(int articlenumber);
 
     //預設值
     //loginState("test@com", false);

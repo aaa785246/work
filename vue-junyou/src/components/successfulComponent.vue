@@ -2,7 +2,10 @@
 import { ref, defineProps, watch, watchEffect, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { transformRoutes } from "@/js/dialog";
+import { setCookie, getCookie } from "@/js/cookie";
 const router = useRouter();
+//要去的頁面
+const arrivedPage = ref(getCookie("arrivedPage"));
 
 const props = defineProps<{
   state: boolean;
@@ -21,14 +24,17 @@ onMounted(() => {
     return;
   }
   if (props.content == "1") {
-    transformRoutes(transformSec, "/member");
+    transformRoutes(transformSec, arrivedPage.value);
     content.value = `登入成功，畫面於${transformSec.value}秒後跳轉`
   } else if (props.content == "2") {
-    transformRoutes(transformSec, "/login");
+    transformRoutes(transformSec, arrivedPage.value);
     content.value = `註冊成功，畫面於${transformSec.value}秒後跳轉`
   } else if (props.content == "3") {
-    transformRoutes(transformSec, "/newpwd");
+    transformRoutes(transformSec, arrivedPage.value);
     content.value = `驗證成功，畫面於${transformSec.value}秒後跳轉`
+  } else if (props.content == "4") {
+    transformRoutes(transformSec, arrivedPage.value);
+    content.value = `文章發布成功，畫面於${transformSec.value}秒後跳轉`
   }
   dialog.value?.showModal();
 });
@@ -40,8 +46,10 @@ watch(
         content.value = `登入成功，畫面於${transformSec.value}秒後跳轉`
       } else if (props.content == "2") {
         content.value = `註冊成功，畫面於${transformSec.value}秒後跳轉`
-      }else if (props.content == "3") {
+      } else if (props.content == "3") {
         content.value = `驗證成功，畫面於${transformSec.value}秒後跳轉`
+      } else if (props.content == "4") {
+        content.value = `文章發布成功，畫面於${transformSec.value}秒後跳轉`
       }
     }
   }

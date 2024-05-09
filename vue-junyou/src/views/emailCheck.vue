@@ -53,10 +53,12 @@ const registerOrChangePwd = () => {
       registerStateDialog.value = true;
       switchDialog.value = true
       content.value="2";
+      setCookie("arrivedPage","/login",10)
     }else {
       registerStateDialog.value = true;
       switchDialog.value = true
       content.value="3";
+      setCookie("arrivedPage","/newpwd",10)
     }
 
   }

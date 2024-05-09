@@ -11,8 +11,7 @@ namespace MMGD.Models;
 public partial class interaction_article
 {
     [Key]
-    [StringLength(8)]
-    public string article_number { get; set; }
+    public int article_number { get; set; }
 
     [Required]
     [StringLength(8)]

@@ -29,9 +29,14 @@ public partial class interviewContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<article>(entity =>
+        {
+            entity.Property(e => e.article_number).ValueGeneratedNever();
+        });
+
         modelBuilder.Entity<interaction_article>(entity =>
         {
-            entity.HasKey(e => e.article_number).HasName("PK_interaction_artic");
+            entity.Property(e => e.article_number).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<userData>(entity =>

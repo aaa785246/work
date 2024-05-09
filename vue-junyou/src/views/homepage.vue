@@ -2,14 +2,17 @@
 import "@/assets/homepage.css";
 import "@/assets/animate.css";
 import { ref, watch } from "vue";
-import { getCookie, setCookie } from "@/js/cookie";
+import { getCookie, setCookie,deleteCookie } from "@/js/cookie";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
 //如果他有在瀏覽網站並且有登入就保存它的登入狀態
 const loginState = ref(getCookie("loginState"));
 const userName = ref(getCookie("userName"));
+const userEmail = ref(getCookie("userEmail"))
 if (loginState.value == "true") {
-  setCookie("loginState", "true", 20);
+  setCookie("loginState", loginState.value, 20);
+  setCookie("userEmail",userEmail.value,60);
 }
 //控制菜單
 const myMenuToggle = ref(false);
@@ -27,6 +30,23 @@ const goShareExp = () => {
 }
 const goLogin = () => {
   router.push("/login")
+  setCookie("arrivedPage","/member",10)
+  if (loginState.value == "true") {
+    router.push("/member")
+  }
+}
+const postNeedLogin = () => {
+  router.push("/login")
+  setCookie("arrivedPage","/post",10)
+  if (loginState.value == "true") {
+    router.push("/post")
+  }
+}
+const signOut = () => {
+  deleteCookie("loginState");
+  deleteCookie("userEmail");
+  deleteCookie("userName");
+  location.reload();
 }
 </script>
 
@@ -52,15 +72,15 @@ const goLogin = () => {
     <div :class="myMenuToggle ? 'maskMenuOn' : 'maskMenuOff'" @click="toggleMenu">
       <!-- 菜單 -->
       <div :class="myMenuToggle ? 'menuOn' : 'menuOff'" @click.stop>
-        <div v-if="loginState" class="user">歡迎回來{{ userName }}</div>
         <!-- 關閉鈕 -->
         <img src="@/img/close.png" id="close" title="close" alt="this is close" @click="toggleMenu"
-          :class="myMenuToggle ? 'closeButtonOn' : 'closeButtonOff'" />
+        :class="myMenuToggle ? 'closeButtonOn' : 'closeButtonOff'" />
+        <div v-if="loginState" class="user">{{ userName }}<br><p>歡迎回來</p></div>
         <!-- 內容 -->
         <div :class="myMenuToggle ? 'menu-textOn' : 'menu-textOff'" @click="goShareExp">面試心得分享</div>
         <div :class="myMenuToggle ? 'menu-text2On' : 'menu-textOff'" @click="goLogin">會員中心</div>
-        <div v-if="loginState" class="menu-text2On">我要發文</div>
-
+        <div class="menu-text2On" @click="postNeedLogin">我要發文</div>
+        <div v-if="loginState" class="menu-text3On" @click="signOut">我要登出</div>
       </div>
     </div>
     <!-- 主頁面 -->

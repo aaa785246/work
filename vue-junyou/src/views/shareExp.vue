@@ -5,6 +5,7 @@ import axios from "axios";
 import { type articles } from "@/js/api";
 import { useArticleStore } from '@/stores/article'
 import { useRouter } from "vue-router";
+import { getCookie, setCookie } from "@/js/cookie";
 const router = useRouter();
 const store = useArticleStore()
 //標題、內容
@@ -37,15 +38,15 @@ onMounted(() => {
 });
 const returnPage = (index: number) => {
   if (articleText.value != undefined) {
-    store.email = articleText.value[index].email
-    store.userName = articleText.value[index].username
-    store.article_number = articleText.value[index].article_number
-    store.article_title = articleText.value[index].article_title
-    store.article_content = articleText.value[index].article_content
-    store.like_count = articleText.value[index].like_count
-    store.message_count = articleText.value[index].message_count
+    setCookie("article_number",articleText.value[index].article_number.toLocaleString(),10) 
+    // setCookie("email",articleText.value[index].email,10)
+    // setCookie("username",articleText.value[index].username,10) 
+    // setCookie("article_title",articleText.value[index].article_title,10) 
+    // setCookie("article_content",articleText.value[index].article_content,10) 
+    // setCookie("like_count",articleText.value[index].like_count,10) 
+    // setCookie("message_count",articleText.value[index].message_count,10) 
   }
-  router.push(`/article`)
+  router.push(`/article/${getCookie("article_number")}`)
 };
 </script>
 

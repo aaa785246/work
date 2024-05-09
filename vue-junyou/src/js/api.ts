@@ -7,7 +7,7 @@ export interface reply{
 };
 
 export interface articles {
-    article_number:string;
+    article_number:number;
     article_title:string;
     article_content:string;
     email:string;

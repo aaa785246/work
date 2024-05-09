@@ -163,14 +163,20 @@ a {
     position: relative;
     top: 50px;
     left: 50px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     z-index: 4;
+    line-height: 0.5rem;
+}
+.user>p {
+    line-height: 1rem;
+    font-size: 1.1rem;
+    line-height: 0.5rem;
 }
 
 .closeButtonOn {
     position: relative;
     width: 25px;
-    top: 20px;
+    top: 30px;
     left: 180px;
     z-index: 4;
     cursor: pointer;
@@ -196,7 +202,7 @@ a {
 
 .menu-text2On {
     position: relative;
-    top:80px;
+    top:60px;
     left:50px;
     margin-top: 20px;
     visibility: visible;
@@ -204,7 +210,16 @@ a {
     color: black;
     cursor: pointer;
 }
-
+.menu-text3On{
+    position: relative;
+    top:60px;
+    left:50px;
+    margin-top: 20px;
+    visibility: visible;
+    z-index: 5;
+    color: rgba(255, 0, 0, 0.9);
+    cursor: pointer;
+}
 .searchBoxOn {
     position: relative; 
     top: -100px;

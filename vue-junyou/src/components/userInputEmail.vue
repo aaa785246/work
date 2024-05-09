@@ -16,7 +16,11 @@ const checkEmail = () => {
     }
 }
 const userNameEmit = () => {
-    emits("update:userNameValue",userName.value);
+    if (userName.value.length<10) {
+        emits("update:userNameValue",userName.value);
+    }else{
+
+    }
 }
 </script>
 <template>
@@ -29,4 +33,5 @@ const userNameEmit = () => {
         <p class="reg-inputP">名稱:</p>
         <input type="text" class="reg-inputText" placeholder="名稱" v-model="userName" @blur="userNameEmit"/>
     </div>
+    <div v-if="userName.length>10" class="stop">名稱不可超過10個字元</div>
 </template>
