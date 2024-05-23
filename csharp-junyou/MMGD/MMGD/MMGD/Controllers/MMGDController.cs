@@ -4,6 +4,8 @@ using MMGD.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using BCrypt;
+using Microsoft.Identity.Client;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 namespace mmgd.Controllers
 {
     //[Route("api/[controller]")]
@@ -198,7 +200,7 @@ namespace mmgd.Controllers
             try
             {
                 if (string.IsNullOrWhiteSpace(data.msg_userName) ||
-                    string.IsNullOrWhiteSpace(data.article_number) || string.IsNullOrWhiteSpace(data.msg_content))
+                    string.IsNullOrWhiteSpace(data.article_number.ToString()) || string.IsNullOrWhiteSpace(data.msg_content))
                 {
                     return StatusCode(StatusCodes.Status400BadRequest, "輸入內容不可為空");
                 }
@@ -208,13 +210,6 @@ namespace mmgd.Controllers
                                        orderby Convert.ToInt32(message.msg_floor) descending
                                        select message.msg_floor
                                 ).FirstOrDefaultAsync();
-                //發文者
-                //var poster = await (from userData in _context.userData
-                //                    join article in _context.article on userData.username equals article.username
-                //                    where 
-                //                    select userData.email).FirstOrDefaultAsync();
-
-
 
                 var param_message = new message_floor
                 {
@@ -229,7 +224,7 @@ namespace mmgd.Controllers
 
                 var param_notice = new notice
                 {
-                    email = data.poster,
+                    email = data.poster_email,
                     message_username = data.msg_userName,
                     article_number = data.article_number,
                     msg_floor = Convert.ToString(Convert.ToInt32(dataFloor) + 1),
@@ -240,7 +235,7 @@ namespace mmgd.Controllers
                 _context.message_floor.AddAsync(param_message);
                 _context.notice.AddAsync(param_notice);
                 await _context.SaveChangesAsync();
-                return StatusCode(StatusCodes.Status200OK, "OK");
+                return StatusCode(StatusCodes.Status200OK, param_message);
             }
             catch
             {
@@ -266,6 +261,56 @@ namespace mmgd.Controllers
                              }).ToListAsync();
             return Ok(tmp);
         }
+        //點擊增加愛心
+        [HttpPost("likelycount")]
+        public async Task<ObjectResult> likelycount(likelyCount data)
+        {
+            try
+            {   
+                //把該文章的愛心數抓出來
+                var number = await (from i in _context.interaction_article
+                                    where data.articlenumber == i.article_number
+                                    select i).ToListAsync();
+
+                int count = int.Parse(number[0].like_couter);
+                //該使用者喜歡的文章 資料表
+                var like_article = new like_article
+                {
+                    email = data.user_email,
+                    article_number = data.articlenumber
+                };
+                var disLike = await(from like in _context.like_article
+                                    where data.articlenumber == like.article_number
+                                    select like).ToListAsync();
+
+                if (data.count_like == true)
+                {
+                count++;
+                _context.like_article.Add(like_article);
+                }
+                else
+                {
+                count--;
+                _context.like_article.RemoveRange(disLike);
+                }
+                foreach (var item in number)
+                {
+                 item.like_couter = count.ToString();
+                
+
+                }
+
+              
+                _context.interaction_article.UpdateRange(number);
+                await _context.SaveChangesAsync();
+                return StatusCode(StatusCodes.Status200OK, number);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
+
         //忘記密碼功能先搜尋信箱是否註冊過
         [HttpPost("existed")]
         public async Task<ObjectResult> existedEmail(existedEmail data)
@@ -286,7 +331,7 @@ namespace mmgd.Controllers
                 return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
             }
         }
-
+        //新增文章
         [HttpPost("newarticle")]
         public async Task<ObjectResult> newarticle(newArticle data)
         {
@@ -309,7 +354,24 @@ namespace mmgd.Controllers
                     username = data.user_name
                 };
 
+                var interaction = new interaction_article
+                {
+                    article_number = articleNumber + 1,
+                    like_couter = "0",
+                    message_couter = "0"
+                };
+                var message_floor = new message_floor
+                {
+                    username = "0",
+                    msg_floor = "0",
+                    article_number = articleNumber + 1 ,
+                    msg_content= "0"
+                    
+                };
+
                 _context.article.AddAsync(tmp);
+                _context.interaction_article.AddAsync(interaction);
+                _context.message_floor.AddAsync(message_floor);
                 await _context.SaveChangesAsync();
                 return StatusCode(StatusCodes.Status200OK, tmp); 
             }
@@ -346,6 +408,26 @@ namespace mmgd.Controllers
                 return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
             }
         }
+
+        //抓留言
+        [HttpPost("articlemessage")]
+        public async Task<ObjectResult> articlemessage(messagefloor data)
+        {
+            try
+            {
+                var floor = await (from message in _context.message_floor
+                                   where data.articlenumber == message.article_number &&
+                                   message.msg_floor != "0"
+                                   select message).ToListAsync();
+
+
+                return StatusCode(StatusCodes.Status200OK, floor);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
     }
 
 
@@ -363,7 +445,7 @@ namespace mmgd.Controllers
     
 
     //addMessage
-    public record addMessage(string poster, string msg_userName, string article_number, string msg_content);
+    public record addMessage(string poster_email, string msg_userName, int article_number, string msg_content);
 
     //article
     public record articleName(string article_name);
@@ -380,7 +462,11 @@ namespace mmgd.Controllers
     public record existedEmail(string user_email);
     //newarticle
     public record newArticle(string title,string article_content,string user_email,string user_name);
+    //searcharticlenumber
     public record articleNumber(int articlenumber);
+    //likelycount
+    public record likelyCount(string user_email,int articlenumber,bool count_like);
+    public record messagefloor(int articlenumber);
 
     //預設值
     //loginState("test@com", false);

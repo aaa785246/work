@@ -12,7 +12,7 @@ namespace MMGD.Models;
 public partial class notice
 {
     [Key]
-    [StringLength(10)]
+    [StringLength(100)]
     public string email { get; set; }
 
     [Key]
@@ -20,8 +20,7 @@ public partial class notice
     public string message_username { get; set; }
 
     [Key]
-    [StringLength(8)]
-    public string article_number { get; set; }
+    public int article_number { get; set; }
 
     [Required]
     [StringLength(2000)]

@@ -24,7 +24,7 @@ const validEmailfunc = () => {
 }
 
 const existedEmail = async () => {
-  const api = `http://192.168.1.200:8000/existed`;
+  const api = `http://192.168.1.203:8000/existed`;
   await axios
     .post(api, {
       user_email: regEmail.value,

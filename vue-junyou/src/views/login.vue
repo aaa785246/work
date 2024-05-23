@@ -19,7 +19,7 @@ const loginStateDialog = ref<boolean>(false);
 const switchDialog = ref<boolean>(false);
 // 定義函式來呼叫 API
 const signin = async () => {
-  const api = `http://192.168.1.200:8000/loginCheck`;
+  const api = `http://192.168.1.203:8000/loginCheck`;
   await axios
     .post(api, {
       user_email: userEmail.value,

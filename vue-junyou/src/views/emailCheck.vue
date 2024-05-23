@@ -32,7 +32,7 @@ const emailContent = {
 emailjs.send(serviceID, templateID, emailContent);
 
 const register = async () => {
-  const api = `http://192.168.1.200:8000/register`;
+  const api = `http://192.168.1.203:8000/register`;
   await axios
     .post(api, {
       userName: userName.value,

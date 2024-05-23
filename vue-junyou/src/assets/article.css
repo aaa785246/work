@@ -26,7 +26,7 @@
 }
 
 .ar-heartAndMsg-container {
-    display:flex;
+    display: flex;
     /* padding-bottom: 15px; */
     width: 100%;
 }
@@ -48,10 +48,11 @@
     height: 25px;
     margin-left: 20px;
 }
+
 .ar-bookmarkOn {
     width: 31px;
     height: 25px;
-    margin-left: 20px;
+    margin-left: 18px;
 }
 
 .ar-share {
@@ -83,9 +84,14 @@
 }
 
 .ar-content {
-    margin: 0px 20px;
+    margin: 0px 25px;
     padding: 20px 0;
     font-size: 1rem;
+}
+
+.ar-floor {
+    padding-left: 250px;
+    padding-bottom: 10px;
 }
 
 .ar-allMsg {

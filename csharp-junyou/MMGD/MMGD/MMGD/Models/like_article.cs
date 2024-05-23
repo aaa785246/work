@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MMGD.Models;
 
-[PrimaryKey("email", "article_number")]
+[PrimaryKey("article_number", "email")]
 public partial class like_article
 {
     [Key]
@@ -16,6 +16,5 @@ public partial class like_article
     public string email { get; set; }
 
     [Key]
-    [StringLength(8)]
-    public string article_number { get; set; }
+    public int article_number { get; set; }
 }

@@ -16,3 +16,10 @@ export interface articles {
     message_count:string;
     cut:string;
 }
+
+export interface message {
+    username:string,
+    msg_floor:string,
+    article_number:number,
+    msg_content:string,
+}

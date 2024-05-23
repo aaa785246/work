@@ -24,7 +24,7 @@ function toggleMenu() {
 const replyText = ref<reply[]>();
 //該顯示的訊息抓出來 並依據有沒有讀取過 去轉換通知的燈號
 const noticefunc = async () => {
-  const api = `http://192.168.1.200:8000/notice`;
+  const api = `http://192.168.1.203:8000/notice`;
   await axios
     .post(api, {
       user_email: userEmail.value,

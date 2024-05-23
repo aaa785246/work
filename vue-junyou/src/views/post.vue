@@ -46,7 +46,7 @@ watch(() =>
 )
 
 const post = async () => {
-  const api = `http://192.168.1.200:8000/newarticle`;
+  const api = `http://192.168.1.203:8000/newarticle`;
   await axios
     .post(api, {
       title: titleInput.value,
@@ -56,6 +56,7 @@ const post = async () => {
     })
     .then((response) => {
         setCookie("arrivedPage",`/article/${response.data.article_number}`,10);
+        setCookie("article_number",response.data.article_number,10);
         switchDialog.value = true;
     })
     .catch(() => {
