@@ -237,9 +237,9 @@ namespace mmgd.Controllers
                 await _context.SaveChangesAsync();
                 return StatusCode(StatusCodes.Status200OK, param_message);
             }
-            catch
+            catch(Exception ex)
             {
-                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+                return StatusCode(500, ex.Message);
             }
         }
         //搜尋文章
@@ -274,40 +274,69 @@ namespace mmgd.Controllers
 
                 int count = int.Parse(number[0].like_couter);
                 //該使用者喜歡的文章 資料表
-                var like_article = new like_article
-                {
-                    email = data.user_email,
-                    article_number = data.articlenumber
-                };
-                var disLike = await(from like in _context.like_article
-                                    where data.articlenumber == like.article_number
-                                    select like).ToListAsync();
+               
+                var likeData = await (from like in _context.like_article
+                                  where data.articlenumber == like.article_number
+                                  select like).FirstOrDefaultAsync();
 
                 if (data.count_like == true)
                 {
-                count++;
-                _context.like_article.Add(like_article);
+                    if (likeData == null)
+                    {
+                        var like_article = new like_article
+                        {
+                            email = data.user_email,
+                            article_number = data.articlenumber
+                        };
+                    count++;
+                    _context.like_article.Add(like_article);
+                    }
+                    else
+                    {
+                        return StatusCode(StatusCodes.Status409Conflict, "該用戶已經按過讚");
+                    }
                 }
                 else
                 {
                 count--;
-                _context.like_article.RemoveRange(disLike);
-                }
-                foreach (var item in number)
-                {
-                 item.like_couter = count.ToString();
-                
-
+                _context.like_article.RemoveRange(likeData);
                 }
 
-              
+                number[0].like_couter = count.ToString();
                 _context.interaction_article.UpdateRange(number);
                 await _context.SaveChangesAsync();
                 return StatusCode(StatusCodes.Status200OK, number);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpPost("Islike")]
+        public async Task<ObjectResult> isLike(isLike data)
+        {
+            try
+            {
+                //把該文章的愛心數抓出來
+                var isLike = await (from like in _context.like_article
+                                    where data.articlenumber == like.article_number&&
+                                    data.user_email == like.email
+                                    select like).FirstOrDefaultAsync();
+                if (isLike != null)
+                {
+                return StatusCode(StatusCodes.Status200OK, true);
+                }else
+                {
+                    return StatusCode(StatusCodes.Status200OK, false);
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -466,6 +495,8 @@ namespace mmgd.Controllers
     public record articleNumber(int articlenumber);
     //likelycount
     public record likelyCount(string user_email,int articlenumber,bool count_like);
+    //isLike
+    public record isLike(string user_email, int articlenumber);
     public record messagefloor(int articlenumber);
 
     //預設值

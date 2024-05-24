@@ -46,7 +46,8 @@ watch(() =>
 )
 
 const post = async () => {
-  const api = `http://192.168.1.203:8000/newarticle`;
+//   const api = `http://192.168.1.203:8000/newarticle`;
+  const api = `http://192.168.1.200:8000/newarticle`;
   await axios
     .post(api, {
       title: titleInput.value,
