@@ -17,6 +17,15 @@ export interface articles {
     cut:string;
 }
 
+export interface parsonalArticles {
+    article_number:number;
+    title:string;
+    article_content:string;
+    like_couter:string;
+    message_couter:string;
+    cut:string;
+}
+
 export interface message {
     username:string,
     msg_floor:string,

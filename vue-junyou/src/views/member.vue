@@ -55,7 +55,7 @@ const noticeDisappear = async () => {
   if (replyText.value?.length == 0) {
     return
   }
-  const api = `http://192.168.50.193:8001/api/closenotice`;
+  const api = `http://192.168.1.200:8000/closenotice`;
   await axios
     .post(api, {
       user_email: userEmail.value,
@@ -69,13 +69,24 @@ const noticeDisappear = async () => {
 onMounted(() => {
   noticefunc();
 });
+
+const goHomePage = () => {
+  router.push("/")
+}
+const goPersonalArticle = () => {
+  router.push("/personalArticle")
+}
+const goCollectArticle = () => {
+  router.push("/collectArticle")
+}
+const goPoster = () =>{
+  router.push("/post")
+}
 </script>
 
 <template>
   <div class="memberAria">
-    <RouterLink to="/">
-      <img src="@/img/back.png" class="mem-back" title="back" alt="this is back" />
-    </RouterLink>
+      <img src="@/img/back.png" class="mem-back" title="back" alt="this is back" @click="goHomePage"/>
     <div class="userName">{{ userName }}</div>
     <img :src="noticeState ? 'src/img/bellon.png' : 'src/img/bell.png'" class="bell" title="bell" alt="this is bell"
       @click="noticeDisappear" />
@@ -98,4 +109,12 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <div class="mem-menu">
+  <div class="mem-content" @click="goHomePage">首頁</div>
+  <div class="mem-content" @click="goPersonalArticle">管理個人貼文</div>
+  <div class="mem-content" @click="goCollectArticle">管理收藏貼文</div>
+  <div class="mem-content" @click="goPoster">我要發文</div>
+  <div class="mem-content">會員資料</div>
+  </div>
+ 
 </template>

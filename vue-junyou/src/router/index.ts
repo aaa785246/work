@@ -49,11 +49,16 @@ const router = createRouter({
       name:'post',
       component:()=>import("@/views/post.vue")
     },
-    // {
-    //   path:'/article/',
-    //   name:'article',
-    //   component:()=>import("@/views/article.vue")
-    // },
+    {
+      path:'/personalArticle',
+      name:'personalArticle',
+      component:()=>import("@/views/personalArticle.vue")
+    },
+    {
+      path:'/collectArticle',
+      name:'collectArticle',
+      component:()=>import("@/views/collectArticle.vue")
+    },
     {
       path:`/article/:article_number`,
       name:'article',

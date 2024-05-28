@@ -35,7 +35,7 @@
     background-color: black;
     opacity: 1;
     width: 150px;
-    height: 100vh;
+    height: 91vh;
     z-index: 3;
 }
 
@@ -49,7 +49,6 @@
     top: 0px;
     margin-left: 150px;
     width: 240px;
-    height: 100vh;
     background-color: #F6F1ED;
     z-index: 5;
     overflow:auto;
@@ -118,4 +117,17 @@
 
 .link {
     font-size: 1.3rem;
+}
+
+.mem-menu{
+    width: 370px;
+    height: 400px;
+    display:grid;
+    grid-template-rows: repeat(5, 1fr); /* 均分5行，每行高度相等 */
+}
+.mem-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }

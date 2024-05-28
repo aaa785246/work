@@ -34,6 +34,8 @@ const existedEmail = async () => {
     //  這裡
     if (emailPattern.test(response.data)) {
       regEmail.value = response.data
+      // console.log(response.data)
+      setCookie("userRegisterEmail",response.data,20)
     }else{
       remind.value = response.data
       validEmail.value = false;

@@ -84,3 +84,33 @@
      margin-left: 30px;
      margin-top: 20px;
  }
+
+ .sh-test {
+    margin-top: 50px;
+    margin-left: 60px;
+    position: fixed;
+    top: 820px;
+    left: 500px;
+ }
+
+ .sh-btnArea {
+    display: inline;
+ }
+ .sh-pageNumber {
+    border: none;
+    cursor: pointer;
+    background-color: rgb(128, 128, 128,0.3);
+    margin-left: 7px;
+    border-radius: 2px;
+ }
+
+ .sh-pageNumberNow {
+    border: none;
+    cursor: pointer;
+    background-color: #eea7a7;
+    margin-left: 10px;
+    border-radius: 2px;
+ }
+ .sh-pageNumberNone {
+   display: none;
+ }

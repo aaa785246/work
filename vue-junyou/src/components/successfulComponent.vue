@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, defineProps, watch, watchEffect, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { transformRoutes } from "@/js/dialog";
+import { transformRoutes, transformlocation } from "@/js/dialog";
 import { setCookie, getCookie } from "@/js/cookie";
 const router = useRouter();
 //要去的頁面
@@ -35,6 +35,15 @@ onMounted(() => {
   } else if (props.content == "4") {
     transformRoutes(transformSec, arrivedPage.value);
     content.value = `文章發布成功，畫面於${transformSec.value}秒後跳轉`
+  } else if (props.content == "5") {
+    content.value = `訊息修改成功，畫面於${transformSec.value}秒後跳轉`
+    transformlocation(transformSec);
+  } else if (props.content == "6") {
+    content.value = `訊息刪除成功，畫面於${transformSec.value}秒後跳轉`
+    transformlocation(transformSec);
+  } else if (props.content == "7") {
+    content.value = `密碼更改成功，畫面於${transformSec.value}秒後跳轉`
+    transformRoutes(transformSec, arrivedPage.value);
   }
   dialog.value?.showModal();
 });
@@ -50,6 +59,12 @@ watch(
         content.value = `驗證成功，畫面於${transformSec.value}秒後跳轉`
       } else if (props.content == "4") {
         content.value = `文章發布成功，畫面於${transformSec.value}秒後跳轉`
+      } else if (props.content == "5") {
+        content.value = `訊息修改成功，畫面於${transformSec.value}秒後跳轉`
+      } else if (props.content == "6") {
+        content.value = `訊息刪除成功，畫面於${transformSec.value}秒後跳轉`
+      } else if (props.content == "7") {
+        content.value = `密碼更改成功，畫面於${transformSec.value}秒後跳轉`
       }
     }
   }

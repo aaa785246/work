@@ -16,6 +16,5 @@ public partial class collect_article
     public string email { get; set; }
 
     [Key]
-    [StringLength(8)]
-    public string article_number { get; set; }
+    public int article_number { get; set; }
 }

@@ -68,6 +68,7 @@
 }
 
 .ar-articleBox {
+    position: relative;
     margin-top: 15px;
     margin: 10px 30px;
     height: auto;
@@ -145,5 +146,31 @@
     margin-top: 5px;
     margin-left: 150px;
     color: rgba(255, 0, 0,0.8);
+    cursor: pointer;
+}
+
+.ar-modeify{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    left: 260px;
+    cursor: pointer;
+}
+.ar-check{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 15px;
+    left: 230px;
+    cursor: pointer;
+}
+
+.ar-delete{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 15px;
+    left: 260px;
     cursor: pointer;
 }

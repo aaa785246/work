@@ -129,7 +129,7 @@ a {
     background-color: black;
     opacity: 1;
     width: 390px;
-    height: 100vh;
+    height: 91vh;
     z-index: 3;
 }
 
@@ -140,7 +140,7 @@ a {
     background-color: black;
     opacity: 1;
     width: 150px;
-    height: 100vh;
+    height: 91vh;
     z-index: 3;
 }
 
@@ -150,7 +150,7 @@ a {
     top: 0px;
     margin-left: 150px;
     width: 240px;
-    height: 100vh;
+    height: 91vh;
     background-color: #F6F1ED;
     z-index: 5;
 }

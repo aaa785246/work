@@ -10,21 +10,22 @@ const props = defineProps<{
 
 const dialog = ref<HTMLDialogElement | null>(null);
 const content = ref("");
+const deleteImg = ref(false);
 //修改父層狀態
-const emit = defineEmits(["closeDialog"]);
-
+const emitClose = defineEmits(["closeDialog","callApi"]);
 //點擊確定後跳轉網址
+const deleteModel = () => {
+  if (deleteImg.value == true) {
+    emitClose("callApi");
+  }else{
+    emitClose("closeDialog");
+  }
+};
+//關閉
 const closeModel = () => {
-  emit("closeDialog");
+  emitClose("closeDialog");
 };
 
-// onMounted(() => {
-//   if (props.state === false) {
-//     dialog.value?.close();
-//   } else {
-//     dialog.value?.showModal();
-//   }
-// });
 
 watch(
   () => props.state,
@@ -35,6 +36,10 @@ watch(
       content.value = `註冊失敗，驗證碼錯誤`
     }else if (props.content == "3") {
       content.value = `驗證失敗，驗證碼錯誤`
+    }else if (props.content == "4"){
+      content.value = `確定要刪除嗎?`
+      deleteImg.value = true;
+      console.log("失敗");
     }
     if (props.state === false) {
       dialog.value?.close();
@@ -48,12 +53,14 @@ watch(
 <template>
   <dialog ref="dialog" id="dialog2">
     <div>
-      <img src="@/img/warning.png" alt="" class="imgOn" />
+      <img src="@/img/warning.png" alt="" class="imgOn"  v-if="deleteImg == false"/>
+      <img src="@/img/garbage.png" alt="" class="imgOn"  v-else/>
       <div class="content">
-        <p>登入失敗，帳號或密碼錯誤。</p>
+        <p>{{ content }}</p>
       </div>
       <div class="content2">
-        <button class="content-btn" @click="closeModel">確定</button>
+        <button :class="deleteImg?'content-btnDelete':'content-btn'" @click="deleteModel">確定</button>
+        <button class="content-btnCancel" v-if="deleteImg== true" @click="closeModel">取消</button>
       </div>
     </div>
   </dialog>
@@ -104,5 +111,19 @@ watch(
   border: none;
   border-radius: 5px;
   padding: 20px 50px;
+}
+
+.content-btnDelete {
+  background-color: #eadfdf;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+}
+.content-btnCancel {
+  background-color: #eadfdf;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  margin-left: 20px;
 }
 </style>
