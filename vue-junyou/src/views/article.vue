@@ -5,21 +5,29 @@ import { ref, onMounted, watch } from "vue";
 import messageContent from "@/components/messageContent.vue";
 import bookmarkImg from "@/img/bookmark.png";
 import bookmarkImgOn from "@/img/bookmarkon.png";
-import { setCookie,getCookie } from "@/js/cookie";
+import { setCookie, getCookie } from "@/js/cookie";
 import { type message } from "@/js/api";
 import { useRouter } from "vue-router";
 import sure from "@/components/successfulComponent.vue";
 import deleteMsg from "@/components/failedComponent.vue"
+const loginState = ref(getCookie("loginState"))
+//如果他有在瀏覽網站並且有登入就保存它的登入狀態
+if (loginState.value == "true") {
+  setCookie("loginState", "true", 20)
+  setCookie("userEmail", getCookie("userEmail"), 60),
+    setCookie("userName", getCookie("userName"), 60)
+}
 const router = useRouter();
 const email = ref("");
 const posterName = ref("");
 const userName = ref(getCookie("userName"));
+const userEmail = ref(getCookie("userEmail"));
 const article_title = ref("");
 const article_content = ref("");
+const article_contentModeify = ref("")
 const like_count = ref("");
 const message_count = ref("");
 const article_number = ref(getCookie("article_number"));
-const loginState = ref(getCookie("loginState"))
 const messageFloor = ref<message[] | undefined>();
 const cutMsgFloor = ref<message[] | undefined>();
 const remind = ref("")
@@ -85,12 +93,13 @@ const getisCollect = async () => {
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
-      user_email:getCookie("userEmail"),
+      user_email: getCookie("userEmail"),
     })
     .then((response) => {
       isCollect.value = response.data;
       // console.log("使用者是否有收藏:"+response.data)
-    });}
+    });
+}
 //即時更新收藏狀態API
 const CollectState = async () => {
   // const api = `http://192.168.1.203:8000/collectarticle`;
@@ -98,35 +107,36 @@ const CollectState = async () => {
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
-      user_email:getCookie("userEmail"),
+      user_email: getCookie("userEmail"),
     })
     .then((response) => {
       console.log(response.data);
-    });}
+    });
+}
 //留言API
 const inputMessage = async () => {
   //有登入執行API
   if (loginState.value != "") {
-     // const api = `http://192.168.1.203:8000/addmessage`;
-  const api = `http://192.168.1.200:8000/addmessage`;
-  await axios
-    .post(api, {
-      poster_email: email.value,
-      msg_userName: getCookie("userName"),
-      article_number: parseInt(article_number.value),
-      msg_content: contentInput.value
-    })
-    .then((response) => {
-      //留言成功讓網頁重整
-      location.reload();
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }else {
+    // const api = `http://192.168.1.203:8000/addmessage`;
+    const api = `http://192.168.1.200:8000/addmessage`;
+    await axios
+      .post(api, {
+        poster_email: email.value,
+        msg_userName: getCookie("userName"),
+        article_number: parseInt(article_number.value),
+        msg_content: contentInput.value
+      })
+      .then((response) => {
+        //留言成功讓網頁重整
+        location.reload();
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  } else {
     remindMsg.value = "點此登入"
   }
- 
+
 };
 //即時更新愛心數量API
 const likeCount = async (state: boolean) => {
@@ -152,7 +162,7 @@ const deletemessage = async () => {
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
-      msg_floor:modeifyFloor.value
+      msg_floor: modeifyFloor.value
     })
     .then((response) => {
       getMessage()
@@ -166,13 +176,42 @@ const modeifymessage = async () => {
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
-      msg_floor:modeifyFloor.value,
-      msg_content:modeifyContent.value
+      msg_floor: modeifyFloor.value,
+      msg_content: modeifyContent.value
     })
     .then((response) => {
       getMessage()
       checkDeleteDialog.value = true;
-    });}
+    });
+}
+//修改文章內容
+const modeifyArticle = async () => {
+  // const api = `http://192.168.1.203:8000/modeifyarticle`;
+  const api = `http://192.168.1.200:8000/modeifyarticle`;
+  await axios
+    .post(api, {
+      articlenumber: parseInt(article_number.value),
+      user_email: userEmail.value,
+      article_content: article_content.value
+    })
+    .then((response) => {
+      checkArticleModeifyDialog.value = true;
+    });
+}
+
+//刪除文章
+const deleteArticle = async () => {
+  // const api = `http://192.168.1.203:8000/deletearticle`;
+  const api = `http://192.168.1.200:8000/deletearticle`;
+  await axios
+    .post(api, {
+      articlenumber: parseInt(article_number.value),
+      user_email: userEmail.value,
+    })
+    .then((response) => {
+      console.log(response.data)
+    });
+}
 
 
 //我要留言textarea設定
@@ -227,9 +266,28 @@ watch(() =>
   }
 )
 
-const test = () => {
- console.log(checkLike.value)
-};
+watch(() =>
+  article_contentModeify.value, (newValue, oldValue) => {
+    // console.log(contentInput.value.length)
+    if (article_contentModeify.value.length >= 1000) {
+      //輸入數字超過1600
+      const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
+      textarea.maxLength = 1200;
+      textarea.rows = 112;
+      // console.log("總字數限制:"+textarea.maxLength)   
+    } else if (article_contentModeify.value.length > newRow.value) {
+      console.log("已達警告字數")
+      //輸入字數超過總字數的0.9就新增行數以及增加最大字數限制
+      const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
+      textarea.maxLength = textarea.maxLength + 100;
+      textarea.rows = textarea.rows + 4;
+      newRow.value = textarea.maxLength * 0.95;
+    }
+  }
+)
+
+
+
 //喜歡與收藏圖片開關
 const checkLike = ref(true);
 const checkCollect = ref(true)
@@ -279,13 +337,13 @@ const likeArticle = () => {
   // console.log("func有執行")
 }
 //收藏開啟與關閉
-const checkCollectState = () =>{
+const checkCollectState = () => {
   checkCollect.value = !checkCollect.value
-  bookMarkImgSrc.value = checkCollect.value ? bookmarkImg : bookmarkImgOn ;
-  bookMarkClass.value = checkCollect.value ?  "ar-bookmark" : "ar-bookmarkOn" ;
+  bookMarkImgSrc.value = checkCollect.value ? bookmarkImg : bookmarkImgOn;
+  bookMarkClass.value = checkCollect.value ? "ar-bookmark" : "ar-bookmarkOn";
 }
 //先前已經點過收藏要執行
-const collectArticle = () =>{
+const collectArticle = () => {
   bookMarkImgSrc.value = isCollect.value ? bookmarkImgOn : bookmarkImg;
   bookMarkClass.value = isCollect.value ? "ar-bookmarkOn" : "ar-bookmark";
   checkCollect.value = false;
@@ -309,8 +367,8 @@ const switchDeleteDialog = ref<boolean>(false);
 //完成刪除的dialog開關
 const checkDeleteDialog = ref<boolean>(false);
 //取得該刪除或編輯哪筆資料
-const modeifyMessage = (index:number) => {
-  modeifyFloor.value = index+1;
+const modeifyMessageBtn = (index: number) => {
+  modeifyFloor.value = index + 1;
   modeifyImgChange.value = true;
   if (cutMsgFloor.value != null) {
     modeifyContent.value = cutMsgFloor.value[index].msg_content
@@ -319,7 +377,7 @@ const modeifyMessage = (index:number) => {
   // console.log(modeifyFloor.value)
 }
 // 點擊垃圾桶img開啟dialog
-const DeleteMsg = () => {
+const DeleteMsgBtn = () => {
   switchDeleteDialog.value = true;
 }
 
@@ -332,28 +390,70 @@ const callDeleteMessageApi = () => {
 //點選取消
 const componentClose = () => {
   switchDeleteDialog.value = false;
-  modeifyImgChange.value = false;
-  modeifyFloor.value = 0;
   console.log("DIALOG關閉")
 };
 //確認修改
-const checkModify = () => {
+const checkModifyMsgBtn = () => {
   modeifymessage();
   switchCheckDialog.value = true;
+}
+//點選更改文章IMG 轉換IMG
+const articleImgChange = ref<boolean>(false);
+const modeifyArticleBtn = () => {
+  articleImgChange.value = true;
+  article_contentModeify.value = article_content.value;
+}
+// 文章修改成功dialog
+const checkArticleModeifyDialog = ref<boolean>(false);
+// 確認文章刪除diglog
+const deleteArticleDialog = ref<boolean>(false);
+// 文章刪除成功dialog
+const CheckDeleteArticleDialog = ref<boolean>(false);
+const checkModifyArticle = () => {
+  modeifyArticle();
+}
+//點選垃圾桶IMG
+const deleteArticleBtn = () => {
+  deleteArticleDialog.value = true;
+}
+//點選確定刪除
+const callDeleteArticleApi = () => {
+  CheckDeleteArticleDialog.value = true;
+  deleteArticle();
+};
+
+const deleteComponentClose = () => {
+  deleteArticleDialog.value = false;
+}
+
+const goShareExp = () => {
+  router.push("/shareExp")
 }
 </script>
 
 <template>
-  <RouterLink to="/shareExp">
-    <img src="@/img/back.png" className="ar-back" title="back" alt="this is back" />
-  </RouterLink>
+  <img src="@/img/back.png" className="ar-back" title="back" alt="this is back" @click="goShareExp" />
   <!-- 文章內容 -->
   <div>
+    <div class="test">
+      <!-- 使用者修改文章內容 -->
+      <img src='/src/img/modeify.png' alt="" class="ar-ArticleModeify"
+        v-if="email == userEmail && articleImgChange == false" @click="modeifyArticleBtn">
+      <!-- 確認按鈕 -->
+      <img src="/src/img/check.png" alt="" class="ar-Articlecheck" v-if="articleImgChange == true"
+        @click="checkModifyArticle">
+      <!-- 刪除 -->
+      <img src="/src/img/garbage.png" alt="" class="ar-Articledelete" v-if="articleImgChange == true"
+        @click="deleteArticleBtn">
+    </div>
     <div class="article-title">
       {{ article_title }}
     </div>
+
     <div class="article-user">{{ posterName }}</div>
-    <div class="article-content">{{ article_content }}</div>
+    <textarea name="" id="" cols="36" rows="5" maxLength="90" v-if="articleImgChange == true" class="ar-inputContent"
+      v-model="article_contentModeify">{{ article_contentModeify }}</textarea>
+    <div class="article-content" v-if="articleImgChange == false">{{ article_content }}</div>
 
     <div class="ar-heartAndMsg-container">
       <img :src="likeOn" class="ar-heart" @click="likely" />
@@ -366,19 +466,22 @@ const checkModify = () => {
     <!-- <button @click="test">測試</button> -->
   </div>
   <!-- 留言內容 -->
-  <div class="ar-articleBox" v-for="(message, index) in cutMsgFloor" :key="index" >
+  <div class="ar-articleBox" v-for="(message, index) in cutMsgFloor" :key="index">
     <div class="ar-messageName">{{ message.username }}</div>
-    <div class="ar-content"  v-if=" modeifyFloor != index+1">{{ message.msg_content }}</div>
+    <div class="ar-content" v-if="modeifyFloor != index + 1">{{ message.msg_content }}</div>
     <!-- 顯示使用者自身的評論，加上修改img供修改 -->
     <img src='/src/img/modeify.png' alt="" class="ar-modeify"
-     v-if="message.username == userName && modeifyImgChange == false" @click="modeifyMessage(index)">
+      v-if="message.username == userName && modeifyImgChange == false" @click="modeifyMessageBtn(index)">
     <!-- 修改img替換成修改完成與垃圾桶-->
     <!-- 修改 -->
-    <img src="/src/img/check.png" alt=""  class="ar-check" v-if="modeifyImgChange == true && modeifyFloor == index+1" @click="checkModify">
+    <img src="/src/img/check.png" alt="" class="ar-check" v-if="modeifyImgChange == true && modeifyFloor == index + 1"
+      @click="checkModifyMsgBtn">
     <!-- 刪除 -->
-    <img src="/src/img/garbage.png" alt=""  class="ar-delete" v-if="modeifyImgChange == true && modeifyFloor == index+1" @click="DeleteMsg">
-    <textarea name="" id="" cols="36" rows="5" v-if="modeifyFloor != 0 && modeifyFloor == index+1 && modeifyImgChange == true" placeholder="請輸入編輯內容"
-    class="ar-inputContent" v-model="modeifyContent">{{ modeifyContent }}</textarea>
+    <img src="/src/img/garbage.png" alt="" class="ar-delete" v-if="modeifyImgChange == true && modeifyFloor == index + 1"
+      @click="DeleteMsgBtn">
+    <textarea name="" id="" cols="36" rows="5"
+      v-if="modeifyFloor != 0 && modeifyFloor == index + 1 && modeifyImgChange == true" placeholder="請輸入編輯內容"
+      class="ar-inputContent" v-model="modeifyContent">{{ modeifyContent }}</textarea>
     <div class="ar-floor">{{ message.msg_floor }}樓</div>
   </div>
   <!-- 我要留言 -->
@@ -392,9 +495,19 @@ const checkModify = () => {
 
   </div>
   <button @click="showMore" class="ar-showMore" v-if="showMoreBtn == true">顯示更多</button>
-  <sure  v-if="switchCheckDialog == true"  :state="switchCheckDialog" content="5" />
-  <sure  v-if="checkDeleteDialog == true" :state="checkDeleteDialog" content="6"/>
-  <deleteMsg :state="switchDeleteDialog"  @call-api="callDeleteMessageApi" @close-dialog="componentClose" content="4"/>
+  <!-- 文章修改成功 -->
+  <sure v-if="checkArticleModeifyDialog == true" :state="checkArticleModeifyDialog" content="8" />
+  <!-- 文章刪除成功 -->
+  <sure v-if="CheckDeleteArticleDialog == true" :state="CheckDeleteArticleDialog" content="9" />
+  <!-- 確認刪除文章 -->
+  <deleteMsg :state="deleteArticleDialog" @call-api="callDeleteArticleApi" @close-dialog="deleteComponentClose"
+    content="5" />
+  <!-- 訊息修改成功 -->
+  <sure v-if="switchCheckDialog == true" :state="switchCheckDialog" content="5" />
+  <!-- 訊息刪除成功 -->
+  <sure v-if="checkDeleteDialog == true" :state="checkDeleteDialog" content="6" />
+  <!-- 確認刪除訊息 -->
+  <deleteMsg :state="switchDeleteDialog" @call-api="callDeleteMessageApi" @close-dialog="componentClose" content="4" />
 </template>
 
-<!-- <style scoped></style> -->
+

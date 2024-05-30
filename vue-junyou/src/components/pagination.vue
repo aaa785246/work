@@ -8,18 +8,19 @@ import { getCookie, setCookie } from "@/js/cookie";
 const router = useRouter();
 const props = defineProps<{
   content: string;
-  reload:string;
+  reload: string;
 }>();
 const emitClose = defineEmits(["finish"]);
 //標題、內容
 const articleText = ref<articles[] | undefined>();
 const allArticle = ref<articles[] | undefined>();
-// const search = ref("");
 const PageLabel = ref<string[]>([]);
+const totalPage = ref(0); 
 //頁數標籤
 const arrayDetect = (total: articles[]) => {
+  // const pageMath = Math.ceil(total.length / 2);
   const pageMath = Math.ceil(total.length / 4);
-
+  totalPage.value = pageMath;
   for (let i = 1; i <= pageMath; i++) {
     PageLabel.value.push(i.toString());
   }
@@ -33,14 +34,14 @@ const article = async () => {
       article_name: props.content,
     })
     .then((response) => {
+      // articleText.value = response.data.slice(0, 2);
       articleText.value = response.data.slice(0, 4);
       allArticle.value = response.data;
-      if(PageLabel.value != null) {
+      if (PageLabel.value != null) {
         PageLabel.value.length = 0;
       }
       if (allArticle.value != null) {
         arrayDetect(allArticle.value)
-        // PageLabel.value.push(1,2,3,4,5)
       }
       //標題或內容太長做裁減
       if (articleText.value != undefined && allArticle.value != undefined) {
@@ -61,58 +62,53 @@ const article = async () => {
       }
     });
 };
+
 // 目前所選擇的頁數
-const isChoose = ref(0);
-//是否被選擇轉換class
-const btnClass = (index:number) => {
-    // console.log("這是ischoose:"+isChoose.value)
-    // const lastindex: string = PageLabel.value.pop()!;
-    // console.log(lastindex)
-    if (isChoose.value === index) {
-        return 'sh-pageNumberNow'
-    }else if (isChoose.value === index - 1){
-        return 'sh-pageNumber'
-    }else {
-        return 'sh-pageNumberNone'
-    }
+const isChoose = ref(1);
 
-    // if (isChoose.value === index) {
-    //     return 'sh-pageNumberNow'
-    // }else if (isChoose.value === index - 1 ){
-    //     PageLabel.value.splice(index -2,0,"...");
-    //     return 'sh-pageNumber'
-    // }else if (PageLabel.value.length -2 == index){
-    //     return 'sh-pageNumber'
-    // }else {
-    //     return 'sh-pageNumberNone'
-    // }
-
-
-    };
 //內容替換
-const arrayChange = (index:number) => {
-  const arraySize = 4 ;
+const arrayChange = (index: number) => {
+  // const arraySize = 2;
+  const arraySize = 4;
   const start = index * arraySize;
   const end = start + arraySize;
-  articleText.value = allArticle.value?.slice(start,end)
-  isChoose.value = index;
+  articleText.value = allArticle.value?.slice(start, end)
+  isChoose.value = index + 1;
+  // console.log("array:"+isChoose.value)
 }
-//上下頁
-const forward = (count:number) =>{
-  if (count == 1) {
-    isChoose.value -= 1;
-  }else if(count == 2) {
-    isChoose.value = parseInt(PageLabel.value[0]) -1;
-  }else if (count == 3){
-    isChoose.value += 1;
-  }else if (count == 4){
-    isChoose.value = PageLabel.value.length - 1;
+//頁籤的class轉換
+const ButtonClassChange = (index:number) => {
+  return isChoose.value === index+1 ? 'sh-pageNumberNow' : 'sh-pageNumber';
+};
+//每組該顯示的頁籤
+const shouldShowButton = (index: number) => {
+  const indexChange = 4;
+  let pageGroup = Math.floor(isChoose.value / indexChange);
+  if (isChoose.value % indexChange === 0 && isChoose.value !== 0) {
+    pageGroup -= 1;
   }
-  const arraySize = 4;
-  const start = isChoose.value * arraySize;
-  const end = start + arraySize;
-  articleText.value = allArticle.value?.slice(start,end)
-} 
+  const min = pageGroup * indexChange;
+  const max = min + indexChange ;
+  return index >= min && index < max;
+};
+
+//上下頁
+const forward = (count: number) => {
+if (count == 1) {
+  arrayChange(0);
+  isChoose.value = 1;
+  // console.log("ischoose:"+isChoose.value)
+}else if (count == 2) {
+  isChoose.value -= 1;
+  arrayChange(isChoose.value - 1);
+}else if (count == 3) {
+  isChoose.value +=1
+  arrayChange(isChoose.value - 1)
+}else if (count == 4) {
+  isChoose.value = totalPage.value;
+  arrayChange(isChoose.value - 1 )
+}
+}
 onMounted(() => {
   article();
 });
@@ -122,16 +118,18 @@ const returnPage = (index: number) => {
   }
   router.push(`/article/${getCookie("article_number")}`)
 };
-watch(()=>props.reload,(newValue,oldValue)=>{
-if(props.reload == "true") {
+watch(() => props.reload, (newValue, oldValue) => {
+  if (props.reload == "true") {
     article()
     emitClose("finish");
     console.log(PageLabel.value)
-}
+  }
 })
+
+
 </script>
 <template>
-    <div v-for="(item, index) in articleText" :key="index" @click="returnPage(index)">
+  <div v-for="(item, index) in articleText" :key="index" @click="returnPage(index)">
     <div class="articleBox">
       <div class="sh-title">{{ item.article_title }}</div>
       <div class="sh-content">{{ item.cut }}</div>
@@ -143,14 +141,14 @@ if(props.reload == "true") {
       </div>
     </div>
   </div>
-  <div class="sh-test">
+  <div class="sh-pagiNation">
     <div class="sh-btnArea">
-    <button class="sh-pageNumber" @click="forward(2)" v-if="isChoose != 0">&lt&lt</button>
-    <button class="sh-pageNumber" @click="forward(1)" v-if="isChoose != 0">&lt</button>
-    <button  :class="btnClass(index)" v-for="(item,index) in PageLabel" :key="index" @click="arrayChange(index)">{{ item }}</button>
-    <button class="sh-pageNumber" @click="forward(3)" v-if="isChoose != PageLabel.length-1">></button>
-    <button class="sh-pageNumber" @click="forward(4)" v-if="isChoose != PageLabel.length-1">>></button>
+      <button class="sh-pageNumber" @click="forward(1)" v-if="isChoose != 1">&lt&lt</button>
+      <button class="sh-pageNumber" @click="forward(2)" v-if="isChoose != 1">&lt</button>
+      <button :class="ButtonClassChange(index)"  v-for="(item, index) in PageLabel" :key="index" @click="arrayChange(index)" 
+      v-show="shouldShowButton(index)">{{ item}}</button>
+      <button class="sh-pageNumber" @click="forward(3)"  v-if="isChoose != totalPage">></button>
+      <button class="sh-pageNumber" @click="forward(4)" v-if=" isChoose != totalPage">>></button>
+    </div>
   </div>
-  </div>
-
 </template>

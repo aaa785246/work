@@ -20,6 +20,7 @@ const toggleMenu = () => {
   myMenuToggle.value = !myMenuToggle.value;
 };
 //控制搜尋
+const search = ref("");
 const mySearchToggle = ref(false);
 const toggleSearch = () => {
   mySearchToggle.value = !mySearchToggle.value;
@@ -27,6 +28,7 @@ const toggleSearch = () => {
 
 const goShareExp = () => {
   router.push("/shareExp")
+  setCookie("searchContent",search.value,10);
 }
 const goLogin = () => {
   router.push("/login")
@@ -61,7 +63,7 @@ const signOut = () => {
     <!-- 遮罩 -->
     <div :class="mySearchToggle ? 'maskSearchOn' : 'maskSearchOff'" @click="toggleSearch"></div>
     <!-- 搜尋框 -->
-    <input type="text" :class="mySearchToggle ? 'searchBoxOn' : 'searchBoxOff'" placeholder="請輸入職業" />
+    <input type="text" :class="mySearchToggle ? 'searchBoxOn' : 'searchBoxOff'" placeholder="請輸入職業" v-model="search" />
     <!-- 搜尋框查詢按鈕 -->
     <img src="@/img/magnifying-glass.png" title="searchBoxGlass" alt="this is searchBoxGlass"
       :class="mySearchToggle ? 'searchBoxGlassOn' : 'searchBoxGlassOff'" @click="goShareExp" />

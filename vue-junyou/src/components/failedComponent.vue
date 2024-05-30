@@ -15,7 +15,7 @@ const deleteImg = ref(false);
 const emitClose = defineEmits(["closeDialog","callApi"]);
 //點擊確定後跳轉網址
 const deleteModel = () => {
-  if (deleteImg.value == true) {
+  if (deleteImg.value == true ) {
     emitClose("callApi");
   }else{
     emitClose("closeDialog");
@@ -39,7 +39,9 @@ watch(
     }else if (props.content == "4"){
       content.value = `確定要刪除嗎?`
       deleteImg.value = true;
-      console.log("失敗");
+    }else if (props.content == "5"){
+      content.value = `確定要刪除嗎?`
+      deleteImg.value = true;
     }
     if (props.state === false) {
       dialog.value?.close();

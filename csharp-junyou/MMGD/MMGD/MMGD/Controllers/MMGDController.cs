@@ -533,6 +533,7 @@ namespace mmgd.Controllers
                 var floor = await (from message in _context.message_floor
                                    where data.articlenumber == message.article_number &&
                                    message.msg_floor != "0"
+                                   orderby message.msg_floor
                                    select message).ToListAsync();
 
 
@@ -647,7 +648,7 @@ namespace mmgd.Controllers
             }
         }
         //個人文章
-        [HttpPost("personalArticle")]
+        [HttpPost("personalarticle")]
         public async Task<ObjectResult> personalArticle(personalArticle data)
         {
             try
@@ -670,18 +671,6 @@ namespace mmgd.Controllers
                 }
                 else if(data.content == "2")
                 {
-                    //var collect = await (from article in _context.article
-                    //                     join collectArticle in _context.collect_article on article.email equals collectArticle.email
-                    //                     join interaction in _context.interaction_article on article.article_number equals interaction.article_number
-                    //                     where data.user_email == collectArticle.email
-                    //                     select new
-                    //                     {
-                    //                         article.article_number,
-                    //                         article.title,
-                    //                         article.article_content,
-                    //                         interaction.like_couter,
-                    //                         interaction.message_couter
-                    //                     }).ToListAsync();
 
                     var collect = await (from collectArticle in _context.collect_article
                                          join article in _context.article on collectArticle.article_number equals article.article_number
@@ -706,6 +695,234 @@ namespace mmgd.Controllers
             catch
             {
                 return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
+        //修改文章內容
+        [HttpPost("modeifyarticle")]
+        public async Task<ObjectResult> modeifyarticle(modeifyarticle data)
+        {
+            try
+            {
+                var articledata = await (from article in _context.article
+                                     where data.articlenumber == article.article_number &&
+                                           data.user_email == article.email
+                                     select article).FirstOrDefaultAsync();
+                articledata.article_content = data.article_content;
+
+                _context.article.UpdateRange(articledata);
+                await _context.SaveChangesAsync();
+                return StatusCode(StatusCodes.Status200OK, articledata);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "錯誤");
+            }
+        }
+        //刪除文章內容
+        [HttpPost("deletearticle")]
+        public async Task<ObjectResult> deletearticle(deletearticle data)
+        {
+            try
+            {
+                using var transaction = await _context.Database.BeginTransactionAsync();
+                //article資料表
+                var articleData = await (from article in _context.article
+                                         where data.articlenumber == article.article_number &&
+                                               data.user_email == article.email
+                                         select article).FirstOrDefaultAsync();
+                if(articleData != null)
+                {
+                    _context.article.Remove(articleData);
+                }
+                
+
+                //collect_article資料表
+                var collectData = await (from collect in _context.collect_article
+                                         where data.articlenumber == collect.article_number
+                                         select collect).ToListAsync();
+                if(collectData != null)
+                {
+                _context.collect_article.RemoveRange(collectData);
+                }
+                //interaction_article資料表
+
+                var inter = await (from interaction in _context.interaction_article
+                                   where data.articlenumber == interaction.article_number
+                                   select interaction).FirstOrDefaultAsync();
+                if (inter != null)
+                {
+                _context.interaction_article.Remove(inter);
+                }
+                //like_article 資料表
+
+                var like = await (from like_article in _context.like_article
+                                  where data.articlenumber == like_article.article_number
+                                  select like_article).FirstOrDefaultAsync();
+                if (like != null)
+                {
+                    _context.like_article.Remove(like);
+                }
+                //message_floor資料表
+                var message = await (from msg in _context.message_floor
+                                     where data.articlenumber == msg.article_number
+                                     select msg).ToListAsync();
+                if (message != null)
+                {
+                    _context.message_floor.RemoveRange(message);
+                }
+                //notice資料表
+                var notice = await (from no in _context.notice
+                                    where data.articlenumber == no.article_number
+                                    select no).ToListAsync();
+                if (notice != null)
+                {
+                _context.notice.RemoveRange(notice);
+                }
+
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return StatusCode(StatusCodes.Status200OK, "文章已刪除");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpPost("modeifyuserdata")]
+        public async Task<ObjectResult> modeifyuserdata(modeifyUserData data)
+        {
+            try
+            {
+                using var transaction = await _context.Database.BeginTransactionAsync();
+                
+
+
+                if(data.user_email != "" || data.user_name != "" || data.user_pwd != "")
+                {
+                    //userData資料表
+                    var userDataTable = await (from userData in _context.userData
+                                               where data.init_userEmail == userData.email
+                                               select userData).FirstOrDefaultAsync();
+
+                    var modeifyUserData = new userData
+                    {
+                        email = data.user_email != "" ? data.user_email : userDataTable.email,
+                        username = data.user_name != "" ? data.user_name : userDataTable.username,
+                        pwd = data.user_pwd != "" ? HashPassword(data.user_pwd) : userDataTable.pwd
+
+                    };
+
+                    _context.userData.Remove(userDataTable);
+                    _context.userData.AddRange(modeifyUserData);
+                    //notice,like_article,collect_article,article資料表
+                    if (data.user_email != "" || data.user_name != "")
+                    {
+                        var noticeTable = await (from notice in _context.notice
+                                                 where data.init_userEmail == notice.email
+                                                 select notice).ToListAsync();
+                        var userName = await (from userD in _context.userData
+                                              where data.init_userEmail == userD.email
+                                              select userD.username).FirstOrDefaultAsync();
+
+                        foreach( var notice in noticeTable)
+                        {
+                            var modeifyNotice = new notice
+                            {
+                                email = data.user_email != "" ?  data.user_email : notice.email,
+                                message_username = notice.message_username ==  userName ? data.user_name : notice.message_username,
+                                article_number = notice.article_number,
+                                message_content =  notice.message_content,
+                                viewed = notice.viewed,
+                                msg_floor = notice.msg_floor
+                            };
+                            _context.notice.RemoveRange(noticeTable);
+                            _context.notice.Add(modeifyNotice);
+                        }
+
+                        var like_articleTable = await (from like in _context.like_article
+                                                       where data.init_userEmail == like.email
+                                                       select like).ToListAsync();
+                        foreach (var item in like_articleTable)
+                        {
+                            var modeifyLike = new like_article
+                            {
+                                email = data.user_email != "" ? data.user_email : item.email,
+                                article_number = item.article_number
+                            };
+                            _context.like_article.RemoveRange(like_articleTable);
+                            _context.like_article.Add(modeifyLike);
+                        }
+
+                        var collectTable = await(from collect in _context.collect_article
+                                                 where data.init_userEmail == collect.email
+                                                 select collect).ToListAsync();
+                        foreach (var item in collectTable)
+                        {
+                            var modeifyCollect = new collect_article
+                            {
+                                email = data.user_email != ""? data.user_email:item.email,
+                                article_number = item.article_number,
+                            };
+                            _context.collect_article.RemoveRange(collectTable);
+                            _context.collect_article.Add(modeifyCollect);
+                        }
+
+                        var articleTable = await (from article in _context.article
+                                                  where data.init_userEmail == article.email
+                                                  select article).ToListAsync();
+
+                        foreach (var item in articleTable)
+                        {
+                            var modeifyArticle = new article
+                            {
+                                article_number = item.article_number,
+                                title = item.title,
+                                article_content = item.article_content,
+                                email = data.user_email != "" ? data.user_email:item.email,
+                                username = data.user_name != "" ? data.user_name : item.username
+                            };
+                            _context.article.RemoveRange(articleTable);
+                            _context.article.Add(modeifyArticle);
+                        }
+
+
+
+
+                        
+                        
+                       
+                    }
+                    //message_floor資料表
+                    if (data.user_name != "")
+                    {
+                        var messageTable = await (from user in _context.userData
+                                                  join msg in _context.message_floor on user.username equals msg.username
+                                                  where user.email == data.init_userEmail
+                                                  select msg).ToListAsync();
+                        foreach(var message in messageTable)
+                        {
+                            var modeifyMsg = new message_floor
+                            {
+                                username = data.user_name,
+                                msg_floor = message.msg_floor,
+                                article_number = message.article_number,
+                                msg_content = message.msg_content
+                            };
+                            _context.message_floor.RemoveRange(messageTable);
+                            _context.message_floor.Add(modeifyMsg); 
+                        }
+                    }
+                   
+                }
+
+
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return StatusCode(StatusCodes.Status200OK, "資料修改完成");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
         }
     }
@@ -756,7 +973,13 @@ namespace mmgd.Controllers
 
     public record modeifymessage(int articlenumber, int msg_floor,string msg_content);
 
+    public record modeifyarticle(int articlenumber, string user_email,string article_content);
+
+    public record deletearticle(int articlenumber, string user_email);
+
     public record collectArticle(int articlenumber,string user_email);
+
+    public record modeifyUserData(string init_userEmail,string user_email,string user_name,string user_pwd);
 
     public record personalArticle(string content, string user_email);
     //預設值

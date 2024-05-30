@@ -85,12 +85,15 @@
      margin-top: 20px;
  }
 
- .sh-test {
+ .sh-pagiNation {
     margin-top: 50px;
     margin-left: 60px;
     position: fixed;
-    top: 820px;
-    left: 500px;
+    top: 830px; 
+    left: 47%; 
+    transform: translate(-50%, 0);
+    width: 300px;
+    max-width: 1200px;
  }
 
  .sh-btnArea {

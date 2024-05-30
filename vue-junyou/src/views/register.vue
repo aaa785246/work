@@ -11,10 +11,10 @@ const userName = ref("");
 const pwd = ref("");
 const checkPwd = ref("");
 const isSamePwd = ref(true);
-const getEmailState = (newValue: string) => {
+const getEmailValue = (newValue: string) => {
   userEmail.value = newValue;
 }
-const getUserNameState = (newValue: string) => {
+const getUserNameValue = (newValue: string) => {
   userName.value = newValue;
 }
 
@@ -57,7 +57,7 @@ const registerBtn = () => {
     </RouterLink>
     <p class="reg-loginTitle">輕鬆獲取 <br />所需要的面試資訊</p>
   </div>
-  <userInputEmail @update:emailValue="getEmailState" @update:userNameValue="getUserNameState" />
+  <userInputEmail @update:emailValue="getEmailValue" @update:userNameValue="getUserNameValue" />
 
   <div class="reg-inputAria2">
     <p class="reg-inputP">密碼:</p>

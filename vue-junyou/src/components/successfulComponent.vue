@@ -44,6 +44,12 @@ onMounted(() => {
   } else if (props.content == "7") {
     content.value = `密碼更改成功，畫面於${transformSec.value}秒後跳轉`
     transformRoutes(transformSec, arrivedPage.value);
+  } else if (props.content == "8") {
+    content.value = `文章更改成功，畫面於${transformSec.value}秒後跳轉`
+    transformlocation(transformSec);
+  } else if (props.content == "9") {
+    content.value = `文章刪除成功，畫面於${transformSec.value}秒後跳轉`
+    transformRoutes(transformSec, "/shareExp");
   }
   dialog.value?.showModal();
 });
@@ -65,6 +71,10 @@ watch(
         content.value = `訊息刪除成功，畫面於${transformSec.value}秒後跳轉`
       } else if (props.content == "7") {
         content.value = `密碼更改成功，畫面於${transformSec.value}秒後跳轉`
+      } else if (props.content == "8") {
+        content.value = `文章更改成功，畫面於${transformSec.value}秒後跳轉`
+      } else if (props.content == "9") {
+        content.value = `文章刪除成功，畫面於${transformSec.value}秒後跳轉`
       }
     }
   }
@@ -105,6 +115,8 @@ watch(
   max-width: var(--max-width);
   left: calc(50% - (var(--max-width) / 2));
   background-color: rgba(0, 0, 0, 0.3);
+  /* height: 100vh; */
+  height: 940px;
 }
 
 .content {

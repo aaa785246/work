@@ -82,6 +82,10 @@ const goCollectArticle = () => {
 const goPoster = () =>{
   router.push("/post")
 }
+
+const goUserData = () =>{
+  router.push("/userData")
+}
 </script>
 
 <template>
@@ -114,7 +118,7 @@ const goPoster = () =>{
   <div class="mem-content" @click="goPersonalArticle">管理個人貼文</div>
   <div class="mem-content" @click="goCollectArticle">管理收藏貼文</div>
   <div class="mem-content" @click="goPoster">我要發文</div>
-  <div class="mem-content">會員資料</div>
+  <div class="mem-content" @click="goUserData">會員資料</div>
   </div>
  
 </template>

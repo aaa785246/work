@@ -9,7 +9,10 @@ import { getCookie, setCookie } from "@/js/cookie";
 import pag from "@/components/pagination.vue"
 const router = useRouter();
 
-const searchContent = ref("")
+const loginState = getCookie("loginState");
+//如果他有在瀏覽網站並且有登入就保存它的登入狀態
+if (loginState == "true") setCookie("loginState","true",20)
+const searchContent = ref(getCookie("searchContent"))
 const reload = ref("")
 const reloadApi = () =>{
   reload.value = "true";
@@ -30,5 +33,5 @@ const finish = () =>{
     <!-- 搜尋框查詢按鈕 -->
     <img src="@/img/magnifying-glass.png" title="searchBoxGlass" alt="this is searchBoxGlass" class="sh-searchBoxGlass" @click="reloadApi"/>
   </div>
-  <pag :content="searchContent" :reload="reload" @finish="finish"/>
+  <pag :content="searchContent" :reload="reload" @finish="finish" />
 </template>

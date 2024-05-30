@@ -7,7 +7,7 @@
 
 
 .article-title {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 20px;
     font-size: 1.3rem;
     font-weight: bold;
@@ -157,6 +157,7 @@
     left: 260px;
     cursor: pointer;
 }
+
 .ar-check{
     width: 30px;
     height: 30px;
@@ -173,4 +174,35 @@
     top: 15px;
     left: 260px;
     cursor: pointer;
+}
+.ar-ArticleModeify{
+    width: 20px;
+    height: 20px;
+    left: 300px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.ar-Articlecheck{
+    width: 30px;
+    height: 30px;
+    left: 260px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.ar-Articledelete{
+    width: 25px;
+    height: 25px;
+    left: 300px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.test {
+    position: relative;
+    margin-left: 20px;
+    width: 300px;
+    height: 10px;
+    /* border: solid 3px red; */
 }

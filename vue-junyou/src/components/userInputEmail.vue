@@ -12,14 +12,11 @@ const checkEmail = () => {
     //輸入內容通過正規表達式後才傳送到父層
     if (validEmail.value) {
         emits("update:emailValue", email.value);
-        // console.log("資料已完成");
     }
 }
 const userNameEmit = () => {
     if (userName.value.length<10) {
         emits("update:userNameValue",userName.value);
-    }else{
-
     }
 }
 </script>
@@ -28,7 +25,7 @@ const userNameEmit = () => {
         <p class="reg-inputP">電子郵件:</p>
         <input type="text" class="reg-inputText" placeholder="xxx@xxx.com" v-model="email" @blur="checkEmail" />
     </div>
-    <div v-if="!validEmail" class="stop">電子郵件不符合格式</div>
+    <div v-if="!validEmail && email != ``" class="stop">電子郵件不符合格式</div>
     <div class="reg-inputAria2">
         <p class="reg-inputP">名稱:</p>
         <input type="text" class="reg-inputText" placeholder="名稱" v-model="userName" @blur="userNameEmit"/>

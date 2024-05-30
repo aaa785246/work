@@ -63,6 +63,10 @@ const router = createRouter({
       path:`/article/:article_number`,
       name:'article',
       component:()=>import("@/views/article.vue")
+    }, {
+      path:`/userData`,
+      name:'userData',
+      component:()=>import("@/views/userData.vue")
     }
   ]
 })
