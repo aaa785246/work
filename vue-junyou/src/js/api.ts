@@ -15,6 +15,7 @@ export interface articles {
     like_count:string;
     message_count:string;
     cut:string;
+    titlecut:string;
 }
 
 export interface parsonalArticles {

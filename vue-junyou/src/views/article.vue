@@ -44,7 +44,7 @@ const bookMarkClass = ref("ar-bookmark");
 //抓取文章API
 const getArticle = async () => {
   // const api = `http://192.168.1.203:8000/searcharticlenumber`;
-  const api = `http://192.168.1.200:8000/searcharticlenumber`;
+  const api = `http://172.20.10.3:8000/searcharticlenumber`;
   await axios
     .post(api, {
       articleNumber: parseInt(article_number.value),
@@ -62,7 +62,7 @@ const getArticle = async () => {
 //抓取留言API
 const getMessage = async () => {
   // const api = `http://192.168.1.203:8000/articlemessage`;
-  const api = `http://192.168.1.200:8000/articlemessage`;
+  const api = `http://172.20.10.3:8000/articlemessage`;
   await axios
     .post(api, {
       articleNumber: parseInt(article_number.value),
@@ -76,7 +76,7 @@ const getMessage = async () => {
 //抓取是否有喜歡(愛心)API
 const getisLike = async () => {
   // const api = `http://192.168.1.203:8000/Islike`;
-  const api = `http://192.168.1.200:8000/Islike`;
+  const api = `http://172.20.10.3:8000/Islike`;
   await axios
     .post(api, {
       user_email: getCookie("userEmail"),
@@ -89,7 +89,7 @@ const getisLike = async () => {
 //抓取是否有收藏文章API
 const getisCollect = async () => {
   // const api = `http://192.168.1.203:8000/Iscollect`;
-  const api = `http://192.168.1.200:8000/Iscollect`;
+  const api = `http://172.20.10.3:8000/Iscollect`;
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
@@ -103,7 +103,7 @@ const getisCollect = async () => {
 //即時更新收藏狀態API
 const CollectState = async () => {
   // const api = `http://192.168.1.203:8000/collectarticle`;
-  const api = `http://192.168.1.200:8000/collectarticle`;
+  const api = `http://172.20.10.3:8000/collectarticle`;
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
@@ -118,7 +118,7 @@ const inputMessage = async () => {
   //有登入執行API
   if (loginState.value != "") {
     // const api = `http://192.168.1.203:8000/addmessage`;
-    const api = `http://192.168.1.200:8000/addmessage`;
+    const api = `http://172.20.10.3:8000/addmessage`;
     await axios
       .post(api, {
         poster_email: email.value,
@@ -141,7 +141,7 @@ const inputMessage = async () => {
 //即時更新愛心數量API
 const likeCount = async (state: boolean) => {
   // const api = `http://192.168.1.203:8000/likelycount`;
-  const api = `http://192.168.1.200:8000/likelycount`;
+  const api = `http://172.20.10.3:8000/likelycount`;
   await axios
     .post(api, {
       user_email: getCookie("userEmail"),
@@ -158,7 +158,7 @@ const likeCount = async (state: boolean) => {
 //刪除訊息API
 const deletemessage = async () => {
   // const api = `http://192.168.1.203:8000/deletemessage`;
-  const api = `http://192.168.1.200:8000/deletemessage`;
+  const api = `http://172.20.10.3:8000/deletemessage`;
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
@@ -172,7 +172,7 @@ const deletemessage = async () => {
 //修改訊息API
 const modeifymessage = async () => {
   // const api = `http://192.168.1.203:8000/modeifymessage`;
-  const api = `http://192.168.1.200:8000/modeifymessage`;
+  const api = `http://172.20.10.3:8000/modeifymessage`;
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
@@ -187,7 +187,7 @@ const modeifymessage = async () => {
 //修改文章內容
 const modeifyArticle = async () => {
   // const api = `http://192.168.1.203:8000/modeifyarticle`;
-  const api = `http://192.168.1.200:8000/modeifyarticle`;
+  const api = `http://172.20.10.3:8000/modeifyarticle`;
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
@@ -202,7 +202,7 @@ const modeifyArticle = async () => {
 //刪除文章
 const deleteArticle = async () => {
   // const api = `http://192.168.1.203:8000/deletearticle`;
-  const api = `http://192.168.1.200:8000/deletearticle`;
+  const api = `http://172.20.10.3:8000/deletearticle`;
   await axios
     .post(api, {
       articlenumber: parseInt(article_number.value),
@@ -243,7 +243,7 @@ onMounted(async () => {
   }
   //留言的textarea
   const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
-  newRow.value = textarea.maxLength * 0.95;
+  newRow.value = textarea.maxLength * 0.8;
 })
 //偵測留言輸入
 watch(() =>
@@ -256,12 +256,12 @@ watch(() =>
       textarea.rows = 112;
       // console.log("總字數限制:"+textarea.maxLength)   
     } else if (contentInput.value.length > newRow.value) {
-      console.log("已達警告字數")
+      // console.log("已達警告字數")
       //輸入字數超過總字數的0.9就新增行數以及增加最大字數限制
       const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
       textarea.maxLength = textarea.maxLength + 100;
-      textarea.rows = textarea.rows + 4;
-      newRow.value = textarea.maxLength * 0.95;
+      textarea.rows = textarea.rows + 5;
+      newRow.value = textarea.maxLength * 0.8;
     }
   }
 )
@@ -276,12 +276,12 @@ watch(() =>
       textarea.rows = 112;
       // console.log("總字數限制:"+textarea.maxLength)   
     } else if (article_contentModeify.value.length > newRow.value) {
-      console.log("已達警告字數")
+      // console.log("已達警告字數")
       //輸入字數超過總字數的0.9就新增行數以及增加最大字數限制
       const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
       textarea.maxLength = textarea.maxLength + 100;
-      textarea.rows = textarea.rows + 4;
-      newRow.value = textarea.maxLength * 0.95;
+      textarea.rows = textarea.rows + 5;
+      newRow.value = textarea.maxLength * 0.8;
     }
   }
 )

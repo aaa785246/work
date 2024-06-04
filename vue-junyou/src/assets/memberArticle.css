@@ -1,6 +1,7 @@
 .pa-back {
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }
 
 
@@ -29,11 +30,11 @@
  }
 
  .pa-articletitle {
-    width: 100%;
     padding-top: 30px;
     margin-left: 15px;
     margin-bottom: 15px;
     font-size: 1.3rem;
+    line-height: 1.5rem;
 }
 
 .pa-content {

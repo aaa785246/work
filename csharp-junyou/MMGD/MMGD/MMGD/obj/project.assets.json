@@ -3121,19 +3121,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\USER\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
       "projectName": "MMGD",
-      "projectPath": "C:\\Users\\user\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\obj\\",
+      "projectPath": "C:\\Users\\USER\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\MMGD.csproj",
+      "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\USER\\Documents\\GitHub\\work\\csharp-junyou\\MMGD\\MMGD\\MMGD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3204,7 +3204,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205\\RuntimeIdentifierGraph.json"
       }
     }
   }

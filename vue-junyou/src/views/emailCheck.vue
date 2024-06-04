@@ -6,6 +6,7 @@ import { setCookie, getCookie } from "@/js/cookie";
 import { ref } from "vue";
 import successful from "@/components/successfulComponent.vue";
 import failed from "@/components/failedComponent.vue"
+import router from "@/router";
 const registerStateDialog = ref<boolean>(false);
 const switchDialog = ref<boolean>(false);
 const userName = ref(getCookie("userName"));
@@ -33,7 +34,7 @@ emailjs.send(serviceID, templateID, emailContent);
 
 const register = async () => {
   // const api = `http://192.168.1.203:8000/register`;
-  const api = `http://192.168.1.200:8000/register`;
+  const api = `http://172.20.10.3:8000/register`;
   await axios
     .post(api, {
       userName: userName.value,
@@ -68,17 +69,19 @@ const componentClose = () => {
   switchDialog.value = false;
   registerStateDialog.value = false;
 }
+const goLogin = () =>{
+  router.push("/login")
+}
+const goHomePage = () =>{
+  router.push("/")
+}
 </script>
 
 <template>
   <!-- 回上一頁 -->
-  <RouterLink to="/login">
-    <img src="@/img/back.png" className="em-back" title="back" alt="this is back" />
-  </RouterLink>
+    <img src="@/img/back.png" className="em-back" title="back" alt="this is back" @click="goLogin"/>
   <div class="emailPage">
-    <RouterLink to="/">
-      <img src="@/img/logo_75.jpg" alt="this is logo" class="email-logo" />
-    </RouterLink>
+      <img src="@/img/logo_75.jpg" alt="this is logo" class="email-logo" @click="goHomePage"/>
     <p class="email-loginTitle">輕鬆獲取 <br />所需要的面試資訊</p>
   </div>
   <div class="email-textBox">

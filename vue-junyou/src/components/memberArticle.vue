@@ -38,7 +38,7 @@ const returnPage = (index: number) => {
 };
 
 const personalArticle = async (content: string) => {
-    const api = `http://192.168.1.200:8000/personalarticle`;
+    const api = `http://172.20.10.3:8000/personalarticle`;
     await axios
         .post(api, {
             user_email: getCookie("userEmail"),

@@ -6,7 +6,7 @@ import { onMounted, ref } from "vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import router from "@/router";
-import { getCookie, setCookie } from "@/js/cookie";
+import { getCookie, setCookie,deleteCookie } from "@/js/cookie";
 import { type reply } from "@/js/api";
 
 const loginState = getCookie("loginState");
@@ -25,7 +25,7 @@ const replyText = ref<reply[]>();
 //該顯示的訊息抓出來 並依據有沒有讀取過 去轉換通知的燈號
 const noticefunc = async () => {
   // const api = `http://192.168.1.203:8000/notice`;
-  const api = `http://192.168.1.200:8000/notice`;
+  const api = `http://172.20.10.3:8000/notice`;
   await axios
     .post(api, {
       user_email: userEmail.value,
@@ -55,7 +55,7 @@ const noticeDisappear = async () => {
   if (replyText.value?.length == 0) {
     return
   }
-  const api = `http://192.168.1.200:8000/closenotice`;
+  const api = `http://172.20.10.3:8000/closenotice`;
   await axios
     .post(api, {
       user_email: userEmail.value,
@@ -85,6 +85,13 @@ const goPoster = () =>{
 
 const goUserData = () =>{
   router.push("/userData")
+}
+
+const signOut = () => {
+  deleteCookie("loginState");
+  deleteCookie("userEmail");
+  deleteCookie("userName");
+  location.reload();
 }
 </script>
 
@@ -119,6 +126,7 @@ const goUserData = () =>{
   <div class="mem-content" @click="goCollectArticle">管理收藏貼文</div>
   <div class="mem-content" @click="goPoster">我要發文</div>
   <div class="mem-content" @click="goUserData">會員資料</div>
+  <div class="mem-sign" @click="signOut">我要登出</div>
   </div>
  
 </template>

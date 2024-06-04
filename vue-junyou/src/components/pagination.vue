@@ -15,7 +15,7 @@ const emitClose = defineEmits(["finish"]);
 const articleText = ref<articles[] | undefined>();
 const allArticle = ref<articles[] | undefined>();
 const PageLabel = ref<string[]>([]);
-const totalPage = ref(0); 
+const totalPage = ref(0);
 //頁數標籤
 const arrayDetect = (total: articles[]) => {
   // const pageMath = Math.ceil(total.length / 2);
@@ -28,7 +28,7 @@ const arrayDetect = (total: articles[]) => {
 //所有文章
 const article = async () => {
   // const api = `http://192.168.1.203:8000/articlesearch`;
-  const api = `http://192.168.1.200:8000/articlesearch`;
+  const api = `http://172.20.10.3:8000/articlesearch`;
   await axios
     .post(api, {
       article_name: props.content,
@@ -51,12 +51,22 @@ const article = async () => {
           } else {
             item.cut = item.article_content;
           }
+          if (item.article_title.length > 15) {
+            item.titlecut = item.article_title.substring(0, 15) + "...";
+          } else {
+            item.titlecut = item.article_title
+          }
         }
         for (const item of allArticle.value) {
           if (item.article_content.length > 30) {
             item.cut = item.article_content.substring(0, 20) + "...";
           } else {
             item.cut = item.article_content;
+          }
+          if (item.article_title.length > 15) {
+            item.titlecut = item.article_title.substring(0, 15) + "...";
+          } else {
+            item.titlecut = item.article_title
           }
         }
       }
@@ -77,8 +87,8 @@ const arrayChange = (index: number) => {
   // console.log("array:"+isChoose.value)
 }
 //頁籤的class轉換
-const ButtonClassChange = (index:number) => {
-  return isChoose.value === index+1 ? 'sh-pageNumberNow' : 'sh-pageNumber';
+const ButtonClassChange = (index: number) => {
+  return isChoose.value === index + 1 ? 'sh-pageNumberNow' : 'sh-pageNumber';
 };
 //每組該顯示的頁籤
 const shouldShowButton = (index: number) => {
@@ -88,26 +98,26 @@ const shouldShowButton = (index: number) => {
     pageGroup -= 1;
   }
   const min = pageGroup * indexChange;
-  const max = min + indexChange ;
+  const max = min + indexChange;
   return index >= min && index < max;
 };
 
 //上下頁
 const forward = (count: number) => {
-if (count == 1) {
-  arrayChange(0);
-  isChoose.value = 1;
-  // console.log("ischoose:"+isChoose.value)
-}else if (count == 2) {
-  isChoose.value -= 1;
-  arrayChange(isChoose.value - 1);
-}else if (count == 3) {
-  isChoose.value +=1
-  arrayChange(isChoose.value - 1)
-}else if (count == 4) {
-  isChoose.value = totalPage.value;
-  arrayChange(isChoose.value - 1 )
-}
+  if (count == 1) {
+    arrayChange(0);
+    isChoose.value = 1;
+    // console.log("ischoose:"+isChoose.value)
+  } else if (count == 2) {
+    isChoose.value -= 1;
+    arrayChange(isChoose.value - 1);
+  } else if (count == 3) {
+    isChoose.value += 1
+    arrayChange(isChoose.value - 1)
+  } else if (count == 4) {
+    isChoose.value = totalPage.value;
+    arrayChange(isChoose.value - 1)
+  }
 }
 onMounted(() => {
   article();
@@ -131,7 +141,7 @@ watch(() => props.reload, (newValue, oldValue) => {
 <template>
   <div v-for="(item, index) in articleText" :key="index" @click="returnPage(index)">
     <div class="articleBox">
-      <div class="sh-title">{{ item.article_title }}</div>
+      <div class="sh-title">{{ item.titlecut }}</div>
       <div class="sh-content">{{ item.cut }}</div>
       <div class="heartAndMsg-container">
         <img src="@/img/heart.png" alt="heart" class="heart" />
@@ -145,10 +155,10 @@ watch(() => props.reload, (newValue, oldValue) => {
     <div class="sh-btnArea">
       <button class="sh-pageNumber" @click="forward(1)" v-if="isChoose != 1">&lt&lt</button>
       <button class="sh-pageNumber" @click="forward(2)" v-if="isChoose != 1">&lt</button>
-      <button :class="ButtonClassChange(index)"  v-for="(item, index) in PageLabel" :key="index" @click="arrayChange(index)" 
-      v-show="shouldShowButton(index)">{{ item}}</button>
-      <button class="sh-pageNumber" @click="forward(3)"  v-if="isChoose != totalPage">></button>
-      <button class="sh-pageNumber" @click="forward(4)" v-if=" isChoose != totalPage">>></button>
+      <button :class="ButtonClassChange(index)" v-for="(item, index) in PageLabel" :key="index"
+        @click="arrayChange(index)" v-show="shouldShowButton(index)">{{ item }}</button>
+      <button class="sh-pageNumber" @click="forward(3)" v-if="isChoose != totalPage">></button>
+      <button class="sh-pageNumber" @click="forward(4)" v-if="isChoose != totalPage">>></button>
     </div>
   </div>
 </template>

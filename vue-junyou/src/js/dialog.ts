@@ -10,7 +10,7 @@ export function transformRoutes(sec: Ref<number>, path: string): void {
             router.push(path)
         }  
     }, 1000);
-    setTimeout(()=>clearInterval(set),reciprocal*1000 + 1)
+    setTimeout(()=>clearInterval(set),reciprocal*1000 + 0.1)
 }
 
 

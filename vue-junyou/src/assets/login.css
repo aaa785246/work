@@ -66,16 +66,19 @@
 
 .remember {
     margin-left: 5px;
+    cursor: pointer;
 }
 
 .register {
     padding-left: 90px;
     padding-right: 5px;
     border-right: 2px solid black;
+    cursor: pointer;
 }
 
 .forget {
     margin-left: 5px;
+    cursor: pointer;
 }
 
 .loginbtn {
@@ -98,6 +101,7 @@
     height: 25px;
     margin-top: 30px;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 .lg-maskdivOn {

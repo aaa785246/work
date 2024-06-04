@@ -17,39 +17,42 @@ const dialog = ref<HTMLDialogElement | null>(null);
 const content = ref("");
 //秒數跑完跳轉網址
 const transformSec = ref(1);
-
+const returnSec = ref(0.5);
 onMounted(() => {
   if (props.state === false) {
     dialog.value?.close();
     return;
   }
   if (props.content == "1") {
-    transformRoutes(transformSec, arrivedPage.value);
+    transformRoutes(returnSec, arrivedPage.value);
     content.value = `登入成功，畫面於${transformSec.value}秒後跳轉`
   } else if (props.content == "2") {
-    transformRoutes(transformSec, arrivedPage.value);
+    transformRoutes(returnSec, arrivedPage.value);
     content.value = `註冊成功，畫面於${transformSec.value}秒後跳轉`
   } else if (props.content == "3") {
-    transformRoutes(transformSec, arrivedPage.value);
+    transformRoutes(returnSec, arrivedPage.value);
     content.value = `驗證成功，畫面於${transformSec.value}秒後跳轉`
   } else if (props.content == "4") {
-    transformRoutes(transformSec, arrivedPage.value);
+    transformRoutes(returnSec, arrivedPage.value);
     content.value = `文章發布成功，畫面於${transformSec.value}秒後跳轉`
   } else if (props.content == "5") {
     content.value = `訊息修改成功，畫面於${transformSec.value}秒後跳轉`
-    transformlocation(transformSec);
+    transformlocation(returnSec);
   } else if (props.content == "6") {
     content.value = `訊息刪除成功，畫面於${transformSec.value}秒後跳轉`
-    transformlocation(transformSec);
+    transformlocation(returnSec);
   } else if (props.content == "7") {
     content.value = `密碼更改成功，畫面於${transformSec.value}秒後跳轉`
-    transformRoutes(transformSec, arrivedPage.value);
+    transformRoutes(returnSec, arrivedPage.value);
   } else if (props.content == "8") {
     content.value = `文章更改成功，畫面於${transformSec.value}秒後跳轉`
-    transformlocation(transformSec);
+    transformlocation(returnSec);
   } else if (props.content == "9") {
     content.value = `文章刪除成功，畫面於${transformSec.value}秒後跳轉`
-    transformRoutes(transformSec, "/shareExp");
+    transformRoutes(returnSec, "/shareExp");
+  } else if (props.content == "10") {
+    content.value = `資料更新成功，畫面於${transformSec.value}秒後跳轉`
+    transformRoutes(returnSec, "/member");
   }
   dialog.value?.showModal();
 });
@@ -75,6 +78,8 @@ watch(
         content.value = `文章更改成功，畫面於${transformSec.value}秒後跳轉`
       } else if (props.content == "9") {
         content.value = `文章刪除成功，畫面於${transformSec.value}秒後跳轉`
+      } else if (props.content == "10") {
+        content.value = `資料更新成功，畫面於${transformSec.value}秒後跳轉`
       }
     }
   }

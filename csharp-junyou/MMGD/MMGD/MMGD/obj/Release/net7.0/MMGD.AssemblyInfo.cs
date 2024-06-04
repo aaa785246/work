@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MMGD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0988f3ff3976c078fa0301f6243d0347ac6c0fd4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2fe2e6482b1790d601270c52a73e5e4ae5509da2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MMGD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MMGD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
