@@ -108,32 +108,61 @@
     background-color: #EADFDF;
     border-radius: 15px;
 }
+
 .ar-inputContent {
-        width: 280px;
-        margin: 10px 17px;
-        margin-top: 10px;
-        border-radius: 15px;
-        padding-top: 10px;
-        border: none;
-        resize: none;
+    width: 280px;
+    margin: 10px 17px;
+    margin-top: 10px;
+    border-radius: 15px;
+    padding-top: 10px;
+    border: none;
+    resize: none;
 }
-.ar-msgBtn{
+
+.ar-inputContentNew {
+    width: 280px;
+    margin: 10px 17px;
+    margin-top: 10px;
+    border-radius: 15px;
+    padding-top: 10px;
+    border: none;
+    resize: none;
+}
+
+.ar-display {
+    display:none;
+}
+
+.ar-inputArticleContent {
+    width: 280px;
+    margin: 10px 17px;
+    margin-top: 10px;
+    border-radius: 15px;
+    padding-top: 10px;
+    border: none;
+    resize: none;
+}
+
+.ar-msgBtn {
     margin-bottom: 5px;
     margin-left: 72%;
     background-color: #EADFDF;
     border-radius: 5px;
     padding: 3px 5px;
 }
-.ar-remind{
+
+.ar-remind {
     margin-top: 10px;
     margin-left: 30px;
-    color: rgba(255, 0, 0,0.8);
+    color: rgba(255, 0, 0, 0.8);
     cursor: pointer;
 }
-.ar-msgArea{
+
+.ar-msgArea {
     position: relative;
 }
-.ar-showMore{
+
+.ar-showMore {
     margin-left: 70%;
     cursor: pointer;
     background-color: #EADFDF;
@@ -142,15 +171,15 @@
     padding: 10px 10px;
 }
 
-.ar-MsgRemind{
+.ar-MsgRemind {
     position: absolute;
     margin-top: 5px;
     margin-left: 150px;
-    color: rgba(255, 0, 0,0.8);
+    color: rgba(255, 0, 0, 0.8);
     cursor: pointer;
 }
 
-.ar-modeify{
+.ar-modeify {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -159,7 +188,7 @@
     cursor: pointer;
 }
 
-.ar-check{
+.ar-check {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -168,7 +197,7 @@
     cursor: pointer;
 }
 
-.ar-delete{
+.ar-delete {
     width: 25px;
     height: 25px;
     position: absolute;
@@ -176,7 +205,8 @@
     left: 260px;
     cursor: pointer;
 }
-.ar-ArticleModeify{
+
+.ar-ArticleModeify {
     width: 20px;
     height: 20px;
     left: 300px;
@@ -184,7 +214,7 @@
     cursor: pointer;
 }
 
-.ar-Articlecheck{
+.ar-Articlecheck {
     width: 30px;
     height: 30px;
     left: 260px;
@@ -192,7 +222,7 @@
     cursor: pointer;
 }
 
-.ar-Articledelete{
+.ar-Articledelete {
     width: 25px;
     height: 25px;
     left: 300px;

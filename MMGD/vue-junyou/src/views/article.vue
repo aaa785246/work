@@ -181,7 +181,7 @@ const modeifymessage = async () => {
     })
     .then((response) => {
       getMessage()
-      checkDeleteDialog.value = true;
+      switchCheckDialog.value = true;
     });
 }
 //修改文章內容
@@ -192,7 +192,7 @@ const modeifyArticle = async () => {
     .post(api, {
       articlenumber: parseInt(article_number.value),
       user_email: userEmail.value,
-      article_content: article_content.value
+      article_content: article_contentModeify.value
     })
     .then((response) => {
       checkArticleModeifyDialog.value = true;
@@ -214,9 +214,11 @@ const deleteArticle = async () => {
 }
 
 
-//我要留言textarea設定
+//textarea設定
 const contentInput = ref("");
-const newRow = ref(0)
+const newMsgRow = ref(0);
+const articleRow = ref(0);
+const msgRow = ref(0);
 const showMoreBtn = ref(true);
 onMounted(async () => {
   await getArticle();
@@ -241,47 +243,95 @@ onMounted(async () => {
       collectArticle()
     }
   }
-  //留言的textarea
-  const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
-  newRow.value = textarea.maxLength * 0.8;
+  //我要留言的textarea
+  newMsgRow.value = 72;
+  //文章的textarea
+  articleRow.value = 72;
+  //留言修改的textarea
+  msgRow.value = 72;
 })
-//偵測留言輸入
+
+// 行數增加
+const msgRowsUpdate = () => {
+  //輸入字數超過總字數的0.8就新增行數以及增加最大字數限制
+  const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
+  textarea.maxLength = textarea.maxLength + 100;
+  textarea.rows = textarea.rows + 5;
+  msgRow.value = textarea.maxLength * 0.8;
+}
+//偵測修改留言
+watch(() =>
+modeifyContent.value, (newValue, oldValue) => {
+    if (modeifyContent.value.length >= 1000) {
+      //輸入數字超過1000
+      const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
+      textarea.maxLength = 1200;
+      textarea.rows = 70;
+      // console.log("總字數限制:"+textarea.maxLength)   
+    } else if (modeifyContent.value.length > msgRow.value) {
+      // console.log("已達警告字數")
+      setTimeout(msgRowsUpdate,1);
+    }
+  }
+)
+// 行數增加
+const newMsgRowsUpdate = () => {
+  //輸入字數超過總字數的0.8就新增行數以及增加最大字數限制
+  const textarea = document.querySelector('.ar-inputContentNew') as HTMLTextAreaElement;
+  textarea.maxLength = textarea.maxLength + 100;
+  textarea.rows = textarea.rows + 5;
+  newMsgRow.value = textarea.maxLength * 0.8;
+}
+//偵測新留言輸入
 watch(() =>
   contentInput.value, (newValue, oldValue) => {
     // console.log(contentInput.value.length)
     if (contentInput.value.length >= 1000) {
-      //輸入數字超過1600
-      const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
+      //輸入數字超過1000
+      const textarea = document.querySelector('.ar-inputContentNew') as HTMLTextAreaElement;
       textarea.maxLength = 1200;
-      textarea.rows = 112;
+      textarea.rows = 70;
       // console.log("總字數限制:"+textarea.maxLength)   
-    } else if (contentInput.value.length > newRow.value) {
+    } else if (contentInput.value.length > newMsgRow.value) {
       // console.log("已達警告字數")
-      //輸入字數超過總字數的0.9就新增行數以及增加最大字數限制
-      const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
-      textarea.maxLength = textarea.maxLength + 100;
-      textarea.rows = textarea.rows + 5;
-      newRow.value = textarea.maxLength * 0.8;
+      setTimeout(newMsgRowsUpdate,1)
     }
   }
 )
-
+const modeifyRows = ref<number>(0);
+// 行數增加
+const articleRowsUpdateFristTime = () => {
+  //輸入字數超過總字數的0.8就新增行數以及增加最大字數限制
+  const textarea = document.querySelector('.ar-inputArticleContent') as HTMLTextAreaElement;
+  textarea.maxLength = textarea.maxLength + article_contentModeify.value.length;
+  textarea.rows = textarea.rows  + Math.ceil(article_contentModeify.value.length/18);
+  articleRow.value = textarea.maxLength * 0.9;
+}
+const articleRowsUpdate = () => {
+  //輸入字數超過總字數的0.8就新增行數以及增加最大字數限制
+  const textarea = document.querySelector('.ar-inputArticleContent') as HTMLTextAreaElement;
+  textarea.maxLength = textarea.maxLength + 100;
+  textarea.rows = textarea.rows + 6;
+  articleRow.value = textarea.maxLength * 0.8;
+}
+//偵測文章修改輸入
 watch(() =>
   article_contentModeify.value, (newValue, oldValue) => {
     // console.log(contentInput.value.length)
-    if (article_contentModeify.value.length >= 1000) {
-      //輸入數字超過1600
-      const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
-      textarea.maxLength = 1200;
-      textarea.rows = 112;
-      // console.log("總字數限制:"+textarea.maxLength)   
-    } else if (article_contentModeify.value.length > newRow.value) {
+    if (article_contentModeify.value.length >= 2100) {
+      //輸入數字超過2000
+      const textarea = document.querySelector('.ar-inputArticleContent') as HTMLTextAreaElement;
+      textarea.maxLength = 3000;
+      textarea.rows = 184;
+      // console.log("總字數限制:" + textarea.maxLength)
+    } else if (article_contentModeify.value.length > articleRow.value &&article_contentModeify.value == article_content.value) {
       // console.log("已達警告字數")
-      //輸入字數超過總字數的0.9就新增行數以及增加最大字數限制
-      const textarea = document.querySelector('.ar-inputContent') as HTMLTextAreaElement;
-      textarea.maxLength = textarea.maxLength + 100;
-      textarea.rows = textarea.rows + 5;
-      newRow.value = textarea.maxLength * 0.8;
+      setTimeout(articleRowsUpdateFristTime, 1);
+      console.log("frist")
+    }else if (article_contentModeify.value.length > articleRow.value) {
+      // console.log("已達警告字數")
+      setTimeout(articleRowsUpdate, 1);
+      console.log("two")
     }
   }
 )
@@ -372,7 +422,6 @@ const modeifyMessageBtn = (index: number) => {
   modeifyImgChange.value = true;
   if (cutMsgFloor.value != null) {
     modeifyContent.value = cutMsgFloor.value[index].msg_content
-    // console.log(modeifyContent.value)
   }
   // console.log(modeifyFloor.value)
 }
@@ -402,6 +451,7 @@ const articleImgChange = ref<boolean>(false);
 const modeifyArticleBtn = () => {
   articleImgChange.value = true;
   article_contentModeify.value = article_content.value;
+  modeifyRows.value = Math.ceil(article_contentModeify.value.length / 18);
 }
 // 文章修改成功dialog
 const checkArticleModeifyDialog = ref<boolean>(false);
@@ -451,7 +501,7 @@ const goShareExp = () => {
     </div>
 
     <div class="article-user">{{ posterName }}</div>
-    <textarea name="" id="" cols="36" rows="5" maxLength="90" v-if="articleImgChange == true" class="ar-inputContent"
+    <textarea name="" id="" cols="36" rows="5" maxLength="90" v-if="articleImgChange == true" class="ar-inputArticleContent"
       v-model="article_contentModeify">{{ article_contentModeify }}</textarea>
     <div class="article-content" v-if="articleImgChange == false">{{ article_content }}</div>
 
@@ -477,8 +527,8 @@ const goShareExp = () => {
     <img src="/src/img/check.png" alt="" class="ar-check" v-if="modeifyImgChange == true && modeifyFloor == index + 1"
       @click="checkModifyMsgBtn">
     <!-- 刪除 -->
-    <img src="/src/img/garbage.png" alt="" class="ar-delete" v-if="modeifyImgChange == true && modeifyFloor == index + 1"
-      @click="DeleteMsgBtn">
+    <img src="/src/img/garbage.png" alt="" class="ar-delete"
+      v-if="modeifyImgChange == true && modeifyFloor == index + 1" @click="DeleteMsgBtn">
     <textarea name="" id="" cols="36" rows="5"
       v-if="modeifyFloor != 0 && modeifyFloor == index + 1 && modeifyImgChange == true" placeholder="請輸入編輯內容"
       class="ar-inputContent" v-model="modeifyContent">{{ modeifyContent }}</textarea>
@@ -486,7 +536,7 @@ const goShareExp = () => {
   </div>
   <!-- 我要留言 -->
   <div class="ar-articleInputBox">
-    <textarea name="content" id="" cols="36" rows="5" maxLength="90" class="ar-inputContent" placeholder="請輸入內文"
+    <textarea name="content" id="" cols="36" rows="5" maxLength="90" class="ar-inputContentNew" placeholder="請輸入內文"
       v-model="contentInput">{{ contentInput }}</textarea>
     <div class="ar-msgArea">
       <div class="ar-MsgRemind" @click="goLogin">{{ remindMsg }}</div>
@@ -509,5 +559,3 @@ const goShareExp = () => {
   <!-- 確認刪除訊息 -->
   <deleteMsg :state="switchDeleteDialog" @call-api="callDeleteMessageApi" @close-dialog="componentClose" content="4" />
 </template>
-
-
