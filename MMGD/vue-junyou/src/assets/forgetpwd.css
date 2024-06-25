@@ -1,0 +1,82 @@
+.fg-back {
+     width: 25px;
+    height: 25px;
+    margin-top: 30px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.forgetPage {
+    margin-top: 50px;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.fg-logo {
+      font-size: 2rem;
+    font-weight: bold;
+    border-right: 2px solid black;
+    padding-right: 50px;
+}
+
+.fg-loginTitle {
+   font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.4rem;
+    margin-left: 30px;
+} 
+
+.fg-text {
+    font-weight: 500;
+    margin-top: 100px;
+    line-height: 1.2rem;
+
+}
+
+.fg-textBox{
+    display: flex;
+    justify-content: center;
+}
+
+
+.fg-inputText {
+    width: 250px;
+    height: 50px;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-left: 20px;
+    padding-left: 20px;
+    margin-top: 30px;
+    border: none;
+}
+
+.fg-inputAria2 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.fg-loginbtn {
+    background-color: #EADFDF;
+    border: none;
+    border-radius: 5px;
+    margin: 50px 0;
+    padding: 20px 100px;
+}
+
+.fg-loginbtnBox {
+    width: 390px;
+    display: flex;
+    justify-content: center;
+}
+
+.stop {
+    margin-top: 10px;
+    margin-left: 150px;
+    color: red;
+}

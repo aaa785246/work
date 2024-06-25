@@ -1,0 +1,51 @@
+.post-back {
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.post-title {
+    margin-left: 30px;
+    margin-top: 30px;
+    font-size: 1.3rem;
+}
+
+.post-inputTitle {
+    margin-left: 35px;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding-left: 5px;
+    padding-top: 20px;
+    border: none;
+    resize: none;
+}
+.post-inputContent{
+    margin-left: 35px;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding-left: 5px;
+    padding-top: 20px;
+    border: none;
+    resize: none;
+}
+
+.post-btn {
+    background-color: #EADFDF;
+    border: none;
+    border-radius: 5px;
+    margin: 50px 0;
+    padding: 20px 120px;
+}
+
+.post-btnBox {
+    width: 390px;
+    display: flex;
+    justify-content: center;
+}
+.post-notice {
+    margin-top: 10px;
+    margin-left: 30px;
+    color: rgb(107, 29, 29);
+}

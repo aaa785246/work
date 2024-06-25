@@ -1,0 +1,107 @@
+.user-back {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+
+.user-memberAria {
+    width: 380px;
+    height: 130px;
+    background-color: #EADFDF;
+    margin: 0;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns:repeat(3,1fr) ;
+    align-items: center;
+    justify-items: center;
+}
+
+.user-title {
+    font-size: 1.3rem;
+}
+
+.userPage {
+    margin-top: 50px;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.user-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    border-right: 2px solid black;
+    padding-right: 50px;
+}
+
+.user-loginTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.4rem;
+    margin-left: 30px;
+} 
+
+.user-inputText {
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-left: 20px;
+    padding-left: 20px;
+    border: none;
+}
+
+
+.user-inputAria {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+
+.user-inputAria2 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+
+.user-inputP {
+    width: 100px;
+    font-weight: bold;
+}
+
+.user-loginbtn {
+    background-color: #EADFDF;
+    border: none;
+    border-radius: 5px;
+    margin: 50px 0;
+    padding: 20px 120px;
+    
+}
+
+.user-loginbtnBox {
+    width: 390px;
+    display: flex;
+    justify-content: center;
+}
+
+.stop {
+    margin-top: 10px;
+    margin-left: 150px;
+    color: red;
+}
+
+.user-divider {
+    margin: 30px 0;
+    margin-left: 10%;
+    width: 300px;
+    border-bottom: 3px solid black; 
+}

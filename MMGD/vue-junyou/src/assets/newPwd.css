@@ -1,0 +1,130 @@
+.np-back {
+    width: 25px;
+    height: 25px;
+    margin-top: 30px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.npPage {
+    margin-top: 50px;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.np-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    border-right: 2px solid black;
+    padding-right: 50px;
+}
+
+.np-loginTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.4rem;
+    margin-left: 30px;
+} 
+
+.np-text {
+    font-weight: 500;
+    margin-top: 100px;
+    line-height: 1.2rem;
+}
+
+.np-textBox{
+    display: flex;
+    justify-content: center;
+}
+
+
+.np-inputText {
+    width: 250px;
+    height: 50px;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    padding-left: 20px;
+    border: none;
+}
+
+.np-inputAria2 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 10vw; */
+    padding-top: 5vw;
+}
+
+.np-loginbtn {
+    background-color: #EADFDF;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10vw;
+    padding: 3vw 30vw;
+    
+}
+
+.np-loginbtnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.np-inputText {
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-left: 20px;
+    padding-left: 20px;
+    border: none;
+}
+
+.np-inputAria {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 10vw; */
+    padding-top: 80px;
+}
+
+.np-inputAria2 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.np-inputP {
+    width: 100px;
+    font-weight: bold;
+}
+
+.np-loginbtn {
+    background-color: #EADFDF;
+    border: none;
+    border-radius: 5px;
+    margin: 50px 0;
+    padding: 20px 120px;
+    
+}
+
+.np-loginbtnBox {
+    width: 390px;
+    display: flex;
+    justify-content: center;
+}
+
+.np-remind{
+    position: absolute;
+    color: rgb(255, 0, 0,0.8);
+    margin-top: 10px;
+    margin-left: 180px;
+}

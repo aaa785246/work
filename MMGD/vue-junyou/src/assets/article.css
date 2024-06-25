@@ -1,0 +1,239 @@
+.ar-back {
+    width: 25px;
+    height: 25px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+
+.article-title {
+    margin-top: 30px;
+    margin-left: 20px;
+    font-size: 1.3rem;
+    line-height: 1.4rem;
+    font-weight: bold;
+}
+
+.article-user {
+    margin: 25px 0;
+    margin-left: 20px;
+    font-size: 1.2rem;
+}
+
+.article-content {
+    margin: 0 20px;
+    margin-bottom: 5vw;
+    line-height: 1.2rem;
+}
+
+.ar-heartAndMsg-container {
+    display: flex;
+    /* padding-bottom: 15px; */
+    width: 100%;
+}
+
+.ar-heart {
+    width: 25px;
+    margin-left: 2vw;
+
+}
+
+.ar-heartCount {
+    width: 25px;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.ar-bookmark {
+    width: 25px;
+    height: 25px;
+    margin-left: 20px;
+}
+
+.ar-bookmarkOn {
+    width: 31px;
+    height: 25px;
+    margin-left: 18px;
+}
+
+.ar-share {
+    width: 25px;
+    height: 25px;
+    margin-left: 170px;
+}
+
+.ar-shareOn {
+    width: 25px;
+    height: 25px;
+    margin-left: 44.3vw;
+}
+
+.ar-articleBox {
+    position: relative;
+    margin-top: 15px;
+    margin: 10px 30px;
+    height: auto;
+    background-color: #EADFDF;
+    border-radius: 15px;
+
+}
+
+
+.ar-messageName {
+    padding-top: 20px;
+    margin-left: 20px;
+    font-size: 1rem;
+}
+
+.ar-content {
+    margin: 0px 25px;
+    padding: 20px 0;
+    font-size: 1rem;
+}
+
+.ar-floor {
+    padding-left: 250px;
+    padding-bottom: 10px;
+}
+
+.ar-allMsg {
+    margin: 30px 0;
+    margin-left: 30px;
+
+}
+
+.ar-articleInputBox {
+    margin: 10px 30px;
+    height: auto;
+    background-color: #EADFDF;
+    border-radius: 15px;
+}
+
+.ar-inputContent {
+    width: 280px;
+    margin: 10px 17px;
+    margin-top: 10px;
+    border-radius: 15px;
+    padding-top: 10px;
+    border: none;
+    resize: none;
+}
+
+.ar-inputContentNew {
+    width: 280px;
+    margin: 10px 17px;
+    margin-top: 10px;
+    border-radius: 15px;
+    padding-top: 10px;
+    border: none;
+    resize: none;
+}
+
+.ar-display {
+    display:none;
+}
+
+.ar-inputArticleContent {
+    width: 280px;
+    margin: 10px 17px;
+    margin-top: 10px;
+    border-radius: 15px;
+    padding-top: 10px;
+    border: none;
+    resize: none;
+}
+
+.ar-msgBtn {
+    margin-bottom: 5px;
+    margin-left: 72%;
+    background-color: #EADFDF;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+.ar-remind {
+    margin-top: 10px;
+    margin-left: 30px;
+    color: rgba(255, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.ar-msgArea {
+    position: relative;
+}
+
+.ar-showMore {
+    margin-left: 70%;
+    cursor: pointer;
+    background-color: #EADFDF;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 10px;
+}
+
+.ar-MsgRemind {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 150px;
+    color: rgba(255, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.ar-modeify {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    left: 260px;
+    cursor: pointer;
+}
+
+.ar-check {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 15px;
+    left: 230px;
+    cursor: pointer;
+}
+
+.ar-delete {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 15px;
+    left: 260px;
+    cursor: pointer;
+}
+
+.ar-ArticleModeify {
+    width: 20px;
+    height: 20px;
+    left: 300px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.ar-Articlecheck {
+    width: 30px;
+    height: 30px;
+    left: 260px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.ar-Articledelete {
+    width: 25px;
+    height: 25px;
+    left: 300px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.test {
+    position: relative;
+    margin-left: 20px;
+    width: 300px;
+    height: 10px;
+    /* border: solid 3px red; */
+}
